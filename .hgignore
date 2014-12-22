@@ -1,0 +1,5 @@
+syntax: glob
+
+config
+catalanfilms.yml
+root/static/json_data
