@@ -3,6 +3,7 @@ use Moose;
 use namespace::autoclean;
 
 use JsonToHtml;
+use CatalanFilmsTemplate;
 use utf8;
 
 BEGIN { extends 'Catalyst::Controller' }
@@ -45,11 +46,13 @@ sub index :Path :Args(0) {
     '</html>';
 
     my $jth = JsonToHtml->new(
-        json_dir => $c->config->{base_dir} . $c->config->{json_dir},
-        html_data_dir => $c->config->{base_dir} . $c->config->{html_dir},
+        json_dir          => $c->config->{base_dir} . $c->config->{json_dir},
+        images_dir        => $c->config->{base_dir} . $c->config->{images_dir},
+        html_data_dir     => $c->config->{base_dir} . $c->config->{html_data_dir},
         html_template_dir =>$c->config->{base_dir} . $c->config->{html_template_dir},
-        config_dir => $c->config->{base_dir} . $c->config->{config_dir},
-        c        => $c
+        config_dir        => $c->config->{base_dir} . $c->config->{config_dir},
+        c                 => $c,
+        image_cache       => 1
     );
 
 #    $c->log->debug("Category URL " . $c->config->{categories}->{fiction}->{url});
@@ -66,7 +69,21 @@ sub index :Path :Args(0) {
     my $config = $jth->get_category_config();
     my @fields = @{$config->{fields}};
 
-    $c->response->body( $html );
+    #TODO: Process all films in a category
+    my @html;
+    my $attrs = {};
+    my $cf_template = CatalanFilmsTemplate->new(
+        include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
+        template_file => $c->config->{categories}->{fiction}->{name} . '.tt.html'
+    );
+    foreach my $item (sort( {$data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format}} keys %{$data->{films}} )) {
+        foreach my $field (@fields) {
+            $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+        }
+        push(@html, $cf_template->process($attrs));
+    }
+    $c->stash->{template} = "catalan_films_catalogue_2015.tt2";
+    $c->stash->{fiction} = join("", @html);
 }
 
 =head2 default
