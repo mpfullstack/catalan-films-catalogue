@@ -4,3 +4,4 @@ config
 catalanfilms.yml
 root/static/json_data
 root/static/images/fiction
+root/static/images/documentary

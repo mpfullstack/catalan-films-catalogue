@@ -22,7 +22,7 @@ CatalanFilms::Controller::Root - Root Controller for CatalanFilms
 
 =head1 DESCRIPTION
 
-[enter your description here]
+Catalan Films Catalogue 2015 generation from JSON to HTML
 
 =head1 METHODS
 
@@ -32,19 +32,26 @@ The root page (/)
 
 =cut
 
-sub index :Path :Args(0) {
-    my ( $self, $c ) = @_;
+sub index : Path("catalogue2015") {
+    my ( $self, $c, $category, $ppi ) = @_;
 
-    my $html = 
-    '<!DOCTYPE html>'.
-    '<html>'.
-    '<head>'.
-    '</head>'.
-    '<body>'.
-    '<p>Hello Catalan Films!</p>'.
-    '<body>'.
-    '</html>';
-
+    $category = "all" unless $category;
+    $ppi = 72 unless $ppi;
+    my $A4_LANSCAPE = {
+        72  => {
+            width  => "842px",
+            height => "595px"
+        },
+        200 => {
+            width  => "2339px",
+            height => "1654px"
+        },
+        300 => {
+            width  => "3508px",
+            height => "2480px"
+        }
+    };
+    
     my $jth = JsonToHtml->new(
         json_dir          => $c->config->{base_dir} . $c->config->{json_dir},
         images_dir        => $c->config->{base_dir} . $c->config->{images_dir},
@@ -55,35 +62,43 @@ sub index :Path :Args(0) {
         image_cache       => 1
     );
 
-#    $c->log->debug("Category URL " . $c->config->{categories}->{fiction}->{url});
-#    $c->log->debug("Category Name " . $c->config->{categories}->{fiction}->{name});
-
-    # Fiction category
-    $jth->url($c->config->{categories}->{fiction}->{url});
-    $jth->category($c->config->{categories}->{fiction}->{name});
-    my $json_data = $jth->get_category_json_data(
-        $c->config->{categories}->{fiction}->{url},
-        $c->config->{categories}->{fiction}->{name}
-    );
-    my $data = $jth->decode_json_data($json_data);
-    my $config = $jth->get_category_config();
-    my @fields = @{$config->{fields}};
-
-    #TODO: Process all films in a category
-    my @html;
-    my $attrs = {};
-    my $cf_template = CatalanFilmsTemplate->new(
-        include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
-        template_file => $c->config->{categories}->{fiction}->{name} . '.tt.html'
-    );
-    foreach my $item (sort( {$data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format}} keys %{$data->{films}} )) {
-        foreach my $field (@fields) {
-            $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
-        }
-        push(@html, $cf_template->process($attrs));
+    my @categories;
+    if( $category eq "all" ) {
+        @categories = keys $c->config->{categories};
+    } else {
+        push(@categories, $category);
     }
+    
+    foreach my $cat (@categories) {
+        $c->log->debug("Processant categoria " . $cat . "...");
+        $jth->url($c->config->{categories}->{$cat}->{url});
+        $jth->category($c->config->{categories}->{$cat}->{name});
+        my $json_data = $jth->get_category_json_data(
+            $c->config->{categories}->{$cat}->{url},
+            $c->config->{categories}->{$cat}->{name}
+        );
+        my $data = $jth->decode_json_data($json_data);
+        my $config = $jth->get_category_config();
+        my @fields = @{$config->{fields}};
+
+        my @html;
+        my $attrs = {};
+        my $cf_template = CatalanFilmsTemplate->new(
+            include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
+            template_file => $c->config->{categories}->{$cat}->{name} . '.tt.html'
+        );
+        foreach my $item (sort( {$data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format}} keys %{$data->{films}} )) {
+            foreach my $field (@fields) {
+                $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+            }
+            push(@html, $cf_template->process($attrs));
+        }
+        $c->stash->{$cat} = join("", @html);
+    }
+
     $c->stash->{template} = "catalan_films_catalogue_2015.tt2";
-    $c->stash->{fiction} = join("", @html);
+    $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width}; 
+    $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}
 }
 
 =head2 default
