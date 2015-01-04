@@ -105,7 +105,7 @@ sub process_item_field {
                     $self->file->SL.
                     $self->category.
                     $self->file->SL.
-                    $item->{id} . "_thumb." . $extension
+                    $item->{id} . "_thumb.jpg"
                 ) 
             ) {                
                 $self->scaleImage(
@@ -113,7 +113,7 @@ sub process_item_field {
                     400
                 );
             }
-            $cleanvalue = $self->c->uri_for('static/images/'. $self->category . '/' . $item->{id} . "_thumb." . $extension);
+            $cleanvalue = $self->c->uri_for('static/images/'. $self->category . '/' . $item->{id} . "_thumb.jpg");
         }
     } else {
         $cleanvalue = $self->hs->parse($item->{$field->{name}});        
@@ -136,7 +136,7 @@ sub scaleImage {
     $y = "" unless $y;
 
     $image =~ /^(\/.+\/)(.+)?\.(.+)$/;
-	my $scaled_image = $1.$2.'_thumb.'.$3;
+	my $scaled_image = $1.$2.'_thumb.jpg';
 
     my $imager = Imager->new();		
     $imager->read( file => $image ) or die "Cannot read: $image ".$imager->errstr();
@@ -148,7 +148,7 @@ sub scaleImage {
         ( $x && $y && ( $x < $imager->getwidth() || $y < $imager->getheight() ) ) 
     ) {
         my $new_image = $imager->scale( xpixels => $x, ypixels => $y, type => 'min', qtype => 'normal' ) or die $image." ".$imager->errstr();
-        $new_image->write( file => $scaled_image, type => undef );
+        $new_image->write( file => $scaled_image, jpegquality => 90 );
     }
 }
 
