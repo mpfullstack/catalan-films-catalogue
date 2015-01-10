@@ -79,6 +79,20 @@ sub process_item_field {
         } elsif( $field->{type} eq 'list_br' ) {
             $cleanvalue = $item->{$field->{name}};
             $cleanvalue =~ s/<br \/>/, /gmi
+        } elsif( $field->{type} eq 'list_by_key' ) {
+            my $key = $field->{key};
+            my @tmp_list = @{$item->{$field->{name}}};
+            my @values;
+            foreach my $item ( @tmp_list ) {
+                if( $item->{$key} ) {
+                    push(@values, $item->{$key});
+                }
+            }
+            if( scalar(@values) > 0 ) {
+                $cleanvalue = $self->hs->parse(join(', ', @values));
+            } else {
+                $cleanvalue = "";
+            }
         } elsif( $field->{type} eq 'image' ) {
             my $image_url = $item->{$field->{name}};
             $image_url =~ /^.+\.(.+)$/gmi;
@@ -110,7 +124,7 @@ sub process_item_field {
             ) {                
                 $self->scaleImage(
                     $self->images_dir . $self->file->SL . $self->category . $self->file->SL . $item->{id} . "." . $extension,
-                    400
+                    500
                 );
             }
             $cleanvalue = $self->c->uri_for('static/images/'. $self->category . '/' . $item->{id} . "_thumb.jpg");

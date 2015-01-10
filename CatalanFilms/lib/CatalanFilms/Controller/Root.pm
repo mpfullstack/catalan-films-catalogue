@@ -1,4 +1,4 @@
-package CatalanFilms::Controller::Root;
+﻿package CatalanFilms::Controller::Root;
 use Moose;
 use namespace::autoclean;
 
@@ -39,8 +39,10 @@ sub index : Path("catalogue2015") {
     $ppi = 72 unless $ppi;
     my $A4_LANSCAPE = {
         72  => {
-            width  => "842px",
-            height => "595px"
+            width  => "1024px",
+            height => "700px"
+#            width  => "842px",
+#            height => "595px"
         },
         200 => {
             width  => "2339px",
@@ -56,7 +58,7 @@ sub index : Path("catalogue2015") {
         json_dir          => $c->config->{base_dir} . $c->config->{json_dir},
         images_dir        => $c->config->{base_dir} . $c->config->{images_dir},
         html_data_dir     => $c->config->{base_dir} . $c->config->{html_data_dir},
-        html_template_dir =>$c->config->{base_dir} . $c->config->{html_template_dir},
+        html_template_dir => $c->config->{base_dir} . $c->config->{html_template_dir},
         config_dir        => $c->config->{base_dir} . $c->config->{config_dir},
         c                 => $c,
         image_cache       => 1
@@ -87,7 +89,17 @@ sub index : Path("catalogue2015") {
             include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
             template_file => $c->config->{categories}->{$cat}->{name} . '.tt.html'
         );
-        foreach my $item (sort( {$data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format}} keys %{$data->{films}} )) {
+        #TODO: Sort films A-Z for each format section
+        my @filmsSortByFormat = sort( 
+            {
+                $data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format} 
+                or
+                $data->{films}->{$a}->{title_en} cmp $data->{films}->{$b}->{title_en} 
+            } keys %{$data->{films}} );
+
+        foreach my $item (@filmsSortByFormat) {
+#            $c->log->debug($data->{films}->{$item}->{format});
+#            $c->log->debug("\t" . $data->{films}->{$item}->{title_en});
             foreach my $field (@fields) {
                 $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
             }

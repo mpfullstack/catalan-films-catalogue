@@ -1,3 +1,23 @@
-[% fiction %]
+[% INSERT html_templates/introduction.tt.html %]
 
-[% documentary %]
+[% INSERT html_templates/index.tt.html %]
+
+<div id="fiction" name="fiction" class="category">
+    [% fiction %]
+</div>
+
+<div id="documentary" name="documentary" class="category">
+    [% documentary %]
+</div>
+
+<div id="animation" name="animation" class="category">
+    [% animation %]
+</div>
+
+<div id="formats" name="formats" class="category">
+    [% formats %]
+</div>
+
+<div id="videogames" name="videogames" class="category">
+    [% videogames %]
+</div>

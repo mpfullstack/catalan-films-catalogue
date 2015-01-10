@@ -1,8 +1,38 @@
-<div class="page">
-<p><strong>%% title_en %%</strong></p>
-<p><strong>%% sinopsis %%</strong></p>
-<p><strong>%% duration %%</strong></p>
-<p><strong>%% gender %%</strong></p>
-<p><strong>%% directorStr %%</strong></p>
-<img src="%% image_linked %%" alt="" />
+<div id="%% id %%" class="page fiction%% IF upcoming == 'upcoming' %% upcoming%% END %%">
+	<div class="inner-content">
+		<p class="category-title">Fiction /</p>
+        <p class="subcategory"><span class="format">%% format %%</span>
+        %% IF catalanspoke == 'catalanspoken' %%<span class="catalanspoke-label">C*</span>%% END %%
+        %% IF catalanspoke == 'catalanspoken' AND upcoming == 'upcoming' %%<span class="sep"> / </span>%% END %%
+        %% IF upcoming == 'upcoming' %%<span class="upcoming-label">Upcoming</span>%% END %%
+        </p>
+		<img src="%% image_linked %%" alt="" />
+        <div class="container-details">
+            <p class="title">%% title_en %%</p>
+            %% IF title_origional %%<p class="title-original">%% title_original %%</p>%% END %%
+            <p class="director">by %% directorStr %%</p><br /><br />
+            %% IF cast %%
+            <p class="details"><span class="name">Written by</span><br /><span class="value">%% script %%</span></p>
+            %% END %%
+            %% IF cast %%
+            <p class="details"><span class="name">Cast</span><br /><span class="value">%% cast %%</span></p>
+            %% END %%
+            %% IF coproducers %%
+            <p class="details"><span class="name">Produced by</span><br /><span class="value">%% coproducers %%</span></p>
+            %% END %%
+            %% IF salesagent %%
+            <p class="details"><span class="name">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
+            %% END %%
+        </div>
+
+        <p class="details"><span class="name">Synopsis /</span></p>
+        <p class="sinopsis">%% sinopsis %%</p>		
+        <p class="extra-info">
+        %% IF gender; gender _ " / "; END; %% 
+        %% IF duration; duration _ "' /"; END; %%
+        %% IF tech; tech _ " / "; END; %%
+        %% IF sound; sound _ " / "; END; %%
+        %% IF vo; vo; END; %%
+        </p>		
+	</div>
 </div>

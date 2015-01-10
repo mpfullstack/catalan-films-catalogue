@@ -7,6 +7,8 @@
   </style>
  </head>
  <body>
-[% content %]
+     <div id="main-container">
+        [% content %]
+    </div>
  </body>
 </html>
