@@ -5,3 +5,6 @@ catalanfilms.yml
 root/static/json_data
 root/static/images/fiction
 root/static/images/documentary
+root/static/images/animation
+root/static/images/videogames
+root/static/images/formats
