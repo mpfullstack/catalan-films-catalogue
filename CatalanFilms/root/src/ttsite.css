@@ -161,6 +161,10 @@ div.index {
             font-family: "AkzidenzGrotesk-Light";
 		}
 
+        div.index .right p a {
+            color: #333;
+        }
+
     div.index .bottom {
         margin: 0 auto;
         clear: both;

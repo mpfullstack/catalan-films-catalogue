@@ -73,6 +73,7 @@ sub index : Path("catalogue2015") {
         push(@categories, $category);
     }
     
+    my $format_id;
     foreach my $cat (@categories) {
         $c->log->debug("Processant categoria " . $cat . "...");
         $jth->url($c->config->{categories}->{$cat}->{url});
@@ -102,6 +103,15 @@ sub index : Path("catalogue2015") {
             } keys %{$data->{films}} );
 
         foreach my $item (@filmsSortByFormat) {
+            my $current_format_id = lc($data->{films}->{$item}->{format});
+            $current_format_id =~ s/ //gmi;
+            $current_format_id = $cat . "-" . $current_format_id;
+            if( $format_id ne $current_format_id ) {
+                $format_id = $current_format_id;
+                $attrs->{format_id} = $current_format_id;
+            } elsif ( $format_id eq $current_format_id ) {
+                $attrs->{format_id} = "";
+            }
             foreach my $field (@fields) {
                 if( $field->{output_name} ) {
                     $attrs->{$field->{output_name}} = $jth->process_item_field($data->{films}->{$item}, $field);
