@@ -9,16 +9,19 @@
 		<img src="%% image_linked %%" alt="" />
         <div class="container-details">
             <p class="title">%% title_en %%</p>
-            %% IF title_origional %%<p class="title-original">%% title_original %%</p>%% END %%
+            %% IF title_original %%<p class="title-original">%% title_original %%</p>%% END %%
             <p class="director">by %% directorStr %%</p><br /><br />
-            %% IF cast %%
+            %% IF script %%
             <p class="details"><span class="name">Written by</span><br /><span class="value">%% script %%</span></p>
             %% END %%
             %% IF cast %%
             <p class="details"><span class="name">Cast</span><br /><span class="value">%% cast %%</span></p>
             %% END %%
-            %% IF coproducers %%
-            <p class="details"><span class="name">Produced by</span><br /><span class="value">%% coproducers %%</span></p>
+            %% IF companyinfo or coproducers %%
+                <p class="details"><span class="name">Produced by</span><br />
+                %% IF companyinfo %%<span class="value">%% companyinfo; IF coproducers; ', ' _ coproducers; END; %%</span>%% END %%
+                %% IF coproducers_rol %% <span class="value">in association with %% coproducers_rol %%</span>%% END %%
+                </p>
             %% END %%
             %% IF salesagent %%
             <p class="details"><span class="name">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
@@ -30,8 +33,10 @@
         <p class="extra-info">
         %% IF gender; gender _ " / "; END; %% 
         %% IF duration; duration _ "' /"; END; %%
+        %% IF color; color _ " /"; END; %%
         %% IF tech; tech _ " / "; END; %%
         %% IF sound; sound _ " / "; END; %%
+        %% IF public; public _ " / "; END; %%
         %% IF vo; vo; END; %%
         </p>		
 	</div>

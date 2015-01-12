@@ -19,7 +19,7 @@ has 'encoding'          => (is => 'rw', isa => 'Str', default => 'utf-8');
 has 'json_cache'        => (is => 'rw', isa => 'Bool', default => 0);
 has 'image_cache'       => (is => 'rw', isa => 'Bool', default => 1);
 has 'file'              => (is => 'ro', isa => 'Object', default => sub { return File::Util->new() }); 
-has 'hs'                => (is => 'ro', isa => 'Object', default => sub { return HTML::Strip->new() }); 
+has 'hs'                => (is => 'ro', isa => 'Object', default => sub { return HTML::Strip->new(striptags => [ 'br' ]) }); 
 has 'c'                 => (is => 'ro', isa => 'Object'); 
 has 'json_dir'          => (is => 'rw', isa => 'Str');
 has 'images_dir'        => (is => 'rw', isa => 'Str');
@@ -81,15 +81,29 @@ sub process_item_field {
             $cleanvalue =~ s/<br \/>/, /gmi
         } elsif( $field->{type} eq 'list_by_key' ) {
             my $key = $field->{key};
+            my $output_name = $field->{output_name};
             my @tmp_list = @{$item->{$field->{name}}};
             my @values;
             foreach my $item ( @tmp_list ) {
                 if( $item->{$key} ) {
-                    push(@values, $item->{$key});
+                    if( $field->{name} eq "coproducers" and $output_name eq "coproducers_rol" ) {
+                        push(@values, $self->trim($item->{$key})) unless !$item->{rol};
+                    } elsif( $field->{name} eq "coproducers" ) {
+                        push(@values, $self->trim($item->{$key})) unless $item->{rol};
+                    } else {
+                        push(@values, $self->trim($item->{$key}));
+                    }
                 }
             }
             if( scalar(@values) > 0 ) {
                 $cleanvalue = $self->hs->parse(join(', ', @values));
+            } else {
+                $cleanvalue = "";
+            }
+        } elsif( $field->{type} eq 'hash_by_key' ) {
+            my $key = $field->{key};
+            if( $item->{$field->{name}} ) {
+                $cleanvalue = $item->{$field->{name}}->{$key};
             } else {
                 $cleanvalue = "";
             }
@@ -130,8 +144,11 @@ sub process_item_field {
             $cleanvalue = $self->c->uri_for('static/images/'. $self->category . '/' . $item->{id} . "_thumb.jpg");
         }
     } else {
-        $cleanvalue = $self->hs->parse($item->{$field->{name}});        
+#        $cleanvalue = $self->hs->parse($item->{$field->{name}});        
+        $cleanvalue = $item->{$field->{name}};        
     }
+
+#    $cleanvalue =~ s/<br \/>/ /gmi;
     
     $cleanvalue =~ s///gmi;
     $cleanvalue = $self->trim($cleanvalue);

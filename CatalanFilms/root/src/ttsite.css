@@ -245,9 +245,9 @@ div.page p.title {
 }
 
 div.page p.title-original {
-	font-size: 30px;
-    font-family: "AkzidenzGrotesk-Medium";
-    margin-top: 2px;
+	font-size: 28px;
+    font-family: "AkzidenzGrotesk-Light";
+    margin-top: 0;
 }
 
 div.page p.director {

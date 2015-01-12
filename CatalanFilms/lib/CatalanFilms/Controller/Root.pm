@@ -4,6 +4,7 @@ use namespace::autoclean;
 
 use JsonToHtml;
 use CatalanFilmsTemplate;
+use Unicode::Normalize;
 use utf8;
 
 BEGIN { extends 'Catalyst::Controller' }
@@ -35,6 +36,7 @@ The root page (/)
 sub index : Path("catalogue2015") {
     my ( $self, $c, $category, $ppi ) = @_;
 
+    my @films;
     $category = "all" unless $category;
     $ppi = 72 unless $ppi;
     my $A4_LANSCAPE = {
@@ -89,25 +91,32 @@ sub index : Path("catalogue2015") {
             include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
             template_file => $c->config->{categories}->{$cat}->{name} . '.tt.html'
         );
-        #TODO: Sort films A-Z for each format section
+        # Sort films A-Z for each format section
         my @filmsSortByFormat = sort( 
             {
                 $data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format} 
                 or
-                $data->{films}->{$a}->{title_en} cmp $data->{films}->{$b}->{title_en} 
+                NFKD(lc($data->{films}->{$a}->{upcoming})) cmp NFKD(lc($data->{films}->{$b}->{upcoming}))
+                or
+                NFKD(lc($data->{films}->{$a}->{title_en})) cmp NFKD(lc($data->{films}->{$b}->{title_en}))
             } keys %{$data->{films}} );
 
         foreach my $item (@filmsSortByFormat) {
-#            $c->log->debug($data->{films}->{$item}->{format});
-#            $c->log->debug("\t" . $data->{films}->{$item}->{title_en});
             foreach my $field (@fields) {
-                $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+                if( $field->{output_name} ) {
+                    $attrs->{$field->{output_name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+                } else {
+                    $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+                }
             }
             push(@html, $cf_template->process($attrs));
+            push(@films, $attrs->{title_en});
         }
         $c->stash->{$cat} = join("", @html);
     }
 
+    # Sort all films in alphabetical order
+    $c->stash->{films} = sort({ NFKD(lc($a)) cmp NFKD(lc($b)) } @films);
     $c->stash->{template} = "catalan_films_catalogue_2015.tt2";
     $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width}; 
     $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}
