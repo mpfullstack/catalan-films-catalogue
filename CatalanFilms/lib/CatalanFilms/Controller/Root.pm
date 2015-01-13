@@ -5,6 +5,7 @@ use namespace::autoclean;
 use JsonToHtml;
 use CatalanFilmsTemplate;
 use Unicode::Normalize;
+use Encode qw(encode decode is_utf8);
 use utf8;
 
 BEGIN { extends 'Catalyst::Controller' }
@@ -36,7 +37,7 @@ The root page (/)
 sub index : Path("catalogue2015") {
     my ( $self, $c, $category, $ppi ) = @_;
 
-    my @films;
+    my @film_names;
     $category = "all" unless $category;
     $ppi = 72 unless $ppi;
     my $A4_LANSCAPE = {
@@ -106,7 +107,7 @@ sub index : Path("catalogue2015") {
             my $current_format_id = lc($data->{films}->{$item}->{format});
             $current_format_id =~ s/ //gmi;
             $current_format_id = $cat . "-" . $current_format_id;
-            if( $format_id ne $current_format_id ) {
+            if( !$format_id || $format_id ne $current_format_id ) {
                 $format_id = $current_format_id;
                 $attrs->{format_id} = $current_format_id;
             } elsif ( $format_id eq $current_format_id ) {
@@ -120,13 +121,41 @@ sub index : Path("catalogue2015") {
                 }
             }
             push(@html, $cf_template->process($attrs));
-            push(@films, $attrs->{title_en});
+            push(@film_names, {
+                title => $attrs->{title_en},
+                id    => $attrs->{id}
+            });
         }
         $c->stash->{$cat} = join("", @html);
     }
 
-    # Sort all films in alphabetical order
-    $c->stash->{films} = sort({ NFKD(lc($a)) cmp NFKD(lc($b)) } @films);
+    sub group_by_alphabet {
+        my ( $self, @names ) = @_;
+        my $group;
+        foreach my $film (@names) {
+            if( !is_utf8($film->{title}) ) {
+                $film->{title} = encode("utf-8",$film->{title});
+            }
+            $film->{title} =~ /^(.{1}).*/gmi;
+            my $first_letter = uc(NFKD($1));
+            $first_letter =~ s/\p{NonspacingMark}//g;
+            $group->{$first_letter} = () unless exists $group->{$first_letter};
+            push(@{$group->{$first_letter}}, $film);
+         
+        }
+        return $group;
+    }
+
+    # Sort all films in alphabetical order and group by alphabet
+    my @sorted_film_names = sort({ NFKD(lc($a->{title})) cmp NFKD(lc($b->{title})) } @film_names);
+    my $title_index_template = CatalanFilmsTemplate->new(
+        include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
+        template_file => 'title_index.tt.html'
+    );
+    $c->stash->{title_index} = $title_index_template->process({
+        grouped_film_names => $self->group_by_alphabet(@sorted_film_names)
+    });
+
     $c->stash->{template} = "catalan_films_catalogue_2015.tt2";
     $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width}; 
     $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}

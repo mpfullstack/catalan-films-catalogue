@@ -86,7 +86,7 @@ sub process_item_field {
             my @values;
             foreach my $item ( @tmp_list ) {
                 if( $item->{$key} ) {
-                    if( $field->{name} eq "coproducers" and $output_name eq "coproducers_rol" ) {
+                    if( $field->{name} eq "coproducers" and $output_name and $output_name eq "coproducers_rol" ) {
                         push(@values, $self->trim($item->{$key})) unless !$item->{rol};
                     } elsif( $field->{name} eq "coproducers" ) {
                         push(@values, $self->trim($item->{$key})) unless $item->{rol};

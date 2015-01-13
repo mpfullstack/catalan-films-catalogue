@@ -56,21 +56,31 @@ body {
 /*
  * Section colors
  * */
-.fiction-color, .fiction-color a { 
+.fiction-color, .fiction-color a, .fiction .category-title { 
 	color: #ee7724; 
 }
 
-.documentary-color, .documentary-color a { 
+.documentary-color, .documentary-color a, .documentary .category-title { 
 	color: #00953b; 
 }
-.animation-color, .animation-color a {
+.animation-color, .animation-color a, .animation .category-title {
 	color: #cb3726;
 }
-.formats-color, .formats-color a { 
+.formats-color, .formats-color a, .formats .category-title {
 	color: #0078ca; 
 }
-.videogames-color, .videogames-color a { 
+.videogames-color, .videogames-color a, .videogames .category-title {
 	color: #6d207c; 
+}
+
+div.category .upcoming p,
+div.category .upcoming a {
+    color: #fff;
+}
+
+div.page.upcoming p.subcategory,
+div.page.upcoming p.extra-info {
+    border-bottom: 1px dashed #fff;
 }
 
 /*
@@ -83,8 +93,20 @@ div.page {
     background: url('/static/images/bg-page2.jpg') repeat-y 0 0;
 }
 
+div.page a.link-production {
+    float: right;
+    clear: right;
+    width: 450px;
+    text-align: right;
+    font-family: "AkzidenzGrotesk-Light";
+    font-size: 18px;
+    text-decoration: none;
+    margin-top: 6px;
+}
+
 div.page .container-details {
     min-height: 340px;
+    width: 468px;
 }
 
 div.inner-content {
@@ -136,11 +158,12 @@ div.index {
     }
 
         div.index .left img {
-            margin-top: 306px;
+            margin-top: 294px;
         }
 
         div.index .left p {
             font-size: 22px;
+            margin-left: 10px;
         }
 
     div.index .right {
@@ -167,6 +190,7 @@ div.index {
 
     div.index .bottom {
         margin: 0 auto;
+        width: 96%;
         clear: both;
         padding-top: 5px;
         border-top: 1px dashed #000;
@@ -194,6 +218,10 @@ div.index {
 
 #formats div.upcoming {
     background: url('/static/images/bg-formats.jpg') repeat-y 0 0; 
+}
+
+#videogames div.upcoming {
+    background: url('/static/images/bg-videogames.jpg') repeat-y 0 0; 
 }
 
 /* 
@@ -257,6 +285,7 @@ div.page p.title-original {
 div.page p.director {
 	font-size: 23px;
     font-family: "AkzidenzGrotesk-Light";
+    margin-bottom: 11px;
 }
 
 div.category img {
@@ -292,3 +321,71 @@ div.page p.extra-info {
     padding-right: 0;
     bottom: 18px;
 } 
+
+/*
+ * Index Titles
+ * */
+
+div.title-index .header {
+    width: 100%;
+    border-bottom: 1px dashed #000;
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+div.title-index .header p {
+    margin: 4px 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+div.title-index .header p.title {
+    color: #000;
+    font-size: 30px;
+    font-family: "AkzidenzGrotesk";
+    font-weight: 400;
+}
+
+div.title-index .header p.sub-title {   
+    color: #000;
+    font-size: 19px;
+    font-family: "AkzidenzGrotesk-Light";
+    font-weight: 400;    
+}
+
+div.title-index .header p.sub-title span {   
+    float: left;
+}
+
+div.title-index .header p.sub-title span.year {   
+    float: right;
+    font-size: 25px;
+}
+
+div.title-index .column {
+    width: 32%;
+    float: left;
+    padding-right: 1%;
+}
+
+div.title-index .column p.letter {
+    font-family: "FranklinGothicRoman";
+    font-size: 229px;
+    color: #000;
+    margin: 0;
+    padding: 15px 0 5px 0;
+}
+
+div.title-index .column p.title-value {
+    font-family: "AkzidenzGrotesk";
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+    padding: 0 0 5px 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

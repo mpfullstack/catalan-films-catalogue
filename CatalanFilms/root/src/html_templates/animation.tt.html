@@ -1,4 +1,4 @@
-<div id="%% id %%" class="page animation%% IF upcoming == 'upcoming' %% upcoming%% END %%">
+<div id="%% id %%" name="%% id %%" class="page animation%% IF upcoming == 'upcoming' %% upcoming%% END %%">
 	<div class="inner-content"%% IF format_id %% id="%% format_id %%"%% END %%>
 		<p class="category-title">Animation /</p>
         <p class="subcategory"><span class="format">%% format %%</span>
@@ -6,11 +6,12 @@
         %% IF catalanspoke == 'catalanspoken' AND upcoming == 'upcoming' %%<span class="sep"> / </span>%% END %%
         %% IF upcoming == 'upcoming' %%<span class="upcoming-label">Upcoming</span>%% END %%
         </p>
-		<img src="%% image_linked %%" alt="" />
+        <img src="%% image_linked %%" alt="" />
+        %% IF link_produccio %%<a class="link-production" href="%% link_produccio %%">%% link_produccio %%</a> %% END %%
         <div class="container-details">
             <p class="title">%% title_en %%</p>
             %% IF title_original %%<p class="title-original">%% title_original %%</p>%% END %%
-            <p class="director">by %% directorStr %%</p><br /><br />
+            <p class="director">by %% directorStr %%</p>
             %% IF script %%
             <p class="details"><span class="name">Written by</span><br /><span class="value">%% script %%</span></p>
             %% END %%

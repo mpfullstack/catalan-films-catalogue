@@ -1,0 +1,56 @@
+%% 
+FOREACH key IN grouped_film_names.keys.sort;
+    count = 0;
+    columns = 0;
+%%
+    <div class="page title-index">
+        <div class="inner-content">
+            <div class="header">
+                <p class="title">Title Index</p>
+                <p class="sub-title"><span>A-Z</span><span class="year">2015 /</span></p>
+            </div>
+            <div class="column">
+                <p class="letter">%% key %%/</p>
+                %% FOREACH film IN grouped_film_names.$key.list %%
+                    <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
+                    %% 
+                    count = count + 1; 
+                    IF count > 16 AND columns == 0;
+                        count = 0;
+                        columns = columns + 1;
+                    %%
+                        </div>
+                        <div class="column">
+                    %% 
+                    ELSIF count > 27 AND columns > 0;
+                        count = 0;
+                        columns = columns + 1;
+                    %%
+                        </div>
+                        <div class="column">
+                    %%
+                    END;
+                    IF columns == 3;
+                        columns = columns + 1;
+                        count = 0;
+                    %%
+            </div>
+        </div>
+    </div>
+    <div class="page title-index">
+        <div class="inner-content">
+            <div class="header">
+                <p class="title">Title Index</p>
+                <p class="sub-title"><span>A-Z</span><span class="year">2015 /</span></p>
+            </div>
+            <div class="column">
+                %%
+            END;
+        END;
+        %%
+            </div>
+        </div>
+    </div>
+%% 
+END;
+%%
