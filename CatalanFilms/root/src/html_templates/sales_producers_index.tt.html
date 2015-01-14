@@ -27,7 +27,7 @@ FOREACH key IN sales_producers_names.keys.sort;
                         </div>
                         <div class="column">
                     %% 
-                    ELSIF count > 8 AND ( columns == 1 || columns == 3 ) AND key != "S" AND key != "D";
+                    ELSIF count > 8 AND ( columns == 1 || columns == 3 ) AND key != "S" AND key != "D" AND key != "F";
                         count = 0;
                         columns = columns + 1;
                     %%                        
