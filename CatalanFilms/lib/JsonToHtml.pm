@@ -49,6 +49,27 @@ sub get_category_json_data {
     return $data;
 }
 
+sub get_sales_producers_json_data {
+    my ( $self ) = @_;
+    $self->c->log->debug("Llegint categoria " . $self->category . "...");
+    my $data;
+    my $filedir = $self->json_dir . $self->file->SL . $self->category.".json";
+    $self->file->make_dir($self->json_dir, 0755, '--if-not-exists');
+    if( $self->json_cache and $self->file->existent($filedir) ) {
+        $data = $self->file->load_file($filedir);
+    } else {
+        $data = get($self->url);
+        $self->file->write_file(
+            'file'    => $filedir,
+            'bitmask' => 0755,
+            'content' => $data,
+            'binmode' => 'utf8'
+        );
+    }
+    $self->c->log->debug("FET");
+    return $data;
+}
+
 sub decode_json_data {
     my ( $self, $json_data ) = @_;
     $self->c->log->debug("Decodificant dades JSON");

@@ -1,0 +1,60 @@
+%% 
+FOREACH key IN sales_producers_names.keys.sort;
+    count = 0;
+    columns = 0;
+    total_count = 0;
+%%
+    <div class="page title-index sales-producers">
+        <div class="inner-content">
+            <div class="header">
+                <p class="title">Sales & Production Companies</p>
+                <p class="sub-title"><span>A-Z</span><span class="year">2015 /</span></p>
+            </div>
+            <div class="column">
+                <p class="letter">%% key %%/</p>
+                %% items = sales_producers_names.$key.list.count %%
+                %% FOREACH company IN sales_producers_names.$key.list %%
+                    %% total_count = total_count+1 %%
+                    <p class="title-value">%% company.empresa %%</p>
+                    <p class="contact-value">%% company.contacto %% / %% company.direccion %%</p>
+                    <p class="contact-value">%% IF company.tel; company.tel; END; %% / %% IF company.email; company.email; END; %%</p>
+                    %% 
+                    count = count + 1; 
+                    IF count > 4 AND columns == 0;
+                        count = 0;
+                        columns = columns + 1;
+                    %%
+                        </div>
+                        <div class="column">
+                    %% 
+                    ELSIF count > 8 AND ( columns == 1 || columns == 3 ) AND key != "S" AND key != "D";
+                        count = 0;
+                        columns = columns + 1;
+                    %%                        
+            </div>
+        </div>
+    </div>
+    <div class="page title-index sales-producers">
+        <div class="inner-content">
+            <div class="header">
+                <p class="title">Sales & Production Companies</p>
+                <p class="sub-title"><span>A-Z</span><span class="year">2015 /</span></p>
+            </div>
+            <div class="column">
+                %%
+                ELSIF count > 7 AND columns == 2;
+                        count = 0;
+                        columns = columns + 1;
+                %%
+                </div>
+                <div class="column">
+                %%
+            END;
+        END;
+        %%
+            </div>
+        </div>
+    </div>
+%% 
+END;
+%%

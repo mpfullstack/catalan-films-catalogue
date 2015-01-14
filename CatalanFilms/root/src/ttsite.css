@@ -370,6 +370,10 @@ div.title-index .column {
     padding-right: 1%;
 }
 
+div.sales-producers .column {
+    width: 49%;
+}
+
 div.title-index .column p.letter {
     font-family: "FranklinGothicRoman";
     font-size: 229px;
@@ -378,14 +382,32 @@ div.title-index .column p.letter {
     padding: 15px 0 5px 0;
 }
 
+div.sales-producers .column p.letter {
+    padding: 33px 0 15px 0;
+}
+
 div.title-index .column p.title-value {
     font-family: "AkzidenzGrotesk";
-    font-weight: 400;
-    font-size: 14px;
+    font-size: 17px;
     margin: 0;
     padding: 0 0 5px 0;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+div.title-index .column p.contact-value {
+    font-family: "AkzidenzGrotesk-Light";
+    font-weight: 400;    
+    font-size: 15px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.sales-producers .column p.title-value {
+    padding-bottom: 0;
+    margin-top: 5px;
 }

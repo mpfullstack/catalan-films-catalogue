@@ -25,3 +25,7 @@
 <div id="titleindex" name="titleindex">
     [% title_index %]
 </div>
+
+<div id="salesproduction" name="salesproduction">
+    [% sales_producers_index %]
+</div>

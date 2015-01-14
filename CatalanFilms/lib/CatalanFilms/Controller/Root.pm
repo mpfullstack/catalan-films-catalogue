@@ -79,10 +79,7 @@ sub index : Path("catalogue2015") {
         $c->log->debug("Processant categoria " . $cat . "...");
         $jth->url($c->config->{categories}->{$cat}->{url});
         $jth->category($c->config->{categories}->{$cat}->{name});
-        my $json_data = $jth->get_category_json_data(
-            $c->config->{categories}->{$cat}->{url},
-            $c->config->{categories}->{$cat}->{name}
-        );
+        my $json_data = $jth->get_category_json_data();
         my $data = $jth->decode_json_data($json_data);
         my $config = $jth->get_category_config();
         my @fields = @{$config->{fields}};
@@ -95,13 +92,13 @@ sub index : Path("catalogue2015") {
         );
         # Sort films A-Z for each format section
         my @filmsSortByFormat = sort( 
-            {
-                $data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format} 
-                or
-                NFKD(lc($data->{films}->{$a}->{upcoming})) cmp NFKD(lc($data->{films}->{$b}->{upcoming}))
-                or
-                NFKD(lc($data->{films}->{$a}->{title_en})) cmp NFKD(lc($data->{films}->{$b}->{title_en}))
-            } keys %{$data->{films}} );
+        {
+            $data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format} 
+            or
+            NFKD(lc($data->{films}->{$a}->{upcoming})) cmp NFKD(lc($data->{films}->{$b}->{upcoming}))
+            or
+            NFKD(lc($data->{films}->{$a}->{title_en})) cmp NFKD(lc($data->{films}->{$b}->{title_en}))
+        } keys %{$data->{films}} );
 
         foreach my $item (@filmsSortByFormat) {
             my $current_format_id = lc($data->{films}->{$item}->{format});
@@ -122,21 +119,21 @@ sub index : Path("catalogue2015") {
             }
             push(@html, $cf_template->process($attrs));
             push(@film_names, {
-                title => $attrs->{title_en},
-                id    => $attrs->{id}
+                "title" => $attrs->{title_en},
+                "id"    => $attrs->{id}
             });
         }
         $c->stash->{$cat} = join("", @html);
     }
 
     sub group_by_alphabet {
-        my ( $self, @names ) = @_;
+        my ( $self, $key, @names ) = @_;
         my $group;
         foreach my $film (@names) {
-            if( !is_utf8($film->{title}) ) {
-                $film->{title} = encode("utf-8",$film->{title});
+            if( !is_utf8($film->{$key}) ) {
+                $film->{$key} = encode("utf-8",$film->{$key});
             }
-            $film->{title} =~ /^(.{1}).*/gmi;
+            $film->{$key} =~ /^(.{1}).*/gmi;
             my $first_letter = uc(NFKD($1));
             $first_letter =~ s/\p{NonspacingMark}//g;
             $group->{$first_letter} = () unless exists $group->{$first_letter};
@@ -146,6 +143,46 @@ sub index : Path("catalogue2015") {
         return $group;
     }
 
+    # Sales
+    $jth->url($c->config->{sales}->{url});
+    $jth->category($c->config->{sales}->{name});
+    my $json_data = $jth->get_sales_producers_json_data();
+    my $sales_data = $jth->decode_json_data($json_data);
+#    $c->log->debug("Sales Data " . scalar(keys %{$sales_data}));
+    
+    # Producers
+    $jth->url($c->config->{producers}->{url});
+    $jth->category($c->config->{producers}->{name});
+    $json_data = $jth->get_sales_producers_json_data();
+    my $producers_data = $jth->decode_json_data($json_data);
+#    $c->log->debug("producers_data " . scalar(keys %{$producers_data}));
+
+#    foreach my $key (keys %{$sales_data}) {
+#        if( exists $producers_data->{$key} ) {
+#            $c->log->debug("Key $key exists");
+#        }
+#    }
+
+    my $sales_producers_data = ($sales_data, $producers_data);
+    # Sort sales & producers A-Z
+    my @sales_producers = sort( 
+    {
+        NFKD(lc($sales_producers_data->{$a}->{empresa})) cmp NFKD(lc($sales_producers_data->{$b}->{empresa}))
+    } keys %{$sales_producers_data} );
+
+    $c->log->debug("Total Sales & Producers: " . scalar(@sales_producers));
+    my @sales_producers_list;
+    foreach my $key (@sales_producers) {
+        push(@sales_producers_list, $sales_producers_data->{$key});
+    }
+    my $sales_producers_index_template = CatalanFilmsTemplate->new(
+        include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
+        template_file => 'sales_producers_index.tt.html'
+    );
+    $c->stash->{sales_producers_index} = $sales_producers_index_template->process({
+        sales_producers_names => $self->group_by_alphabet("empresa", @sales_producers_list)
+    });
+    
     # Sort all films in alphabetical order and group by alphabet
     my @sorted_film_names = sort({ NFKD(lc($a->{title})) cmp NFKD(lc($b->{title})) } @film_names);
     my $title_index_template = CatalanFilmsTemplate->new(
@@ -153,7 +190,7 @@ sub index : Path("catalogue2015") {
         template_file => 'title_index.tt.html'
     );
     $c->stash->{title_index} = $title_index_template->process({
-        grouped_film_names => $self->group_by_alphabet(@sorted_film_names)
+        grouped_film_names => $self->group_by_alphabet("title", @sorted_film_names)
     });
 
     $c->stash->{template} = "catalan_films_catalogue_2015.tt2";
