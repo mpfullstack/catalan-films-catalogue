@@ -96,16 +96,19 @@ div.page {
 div.page a.link-production {
     float: right;
     clear: right;
-    width: 450px;
+    width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-align: right;
     font-family: "AkzidenzGrotesk-Light";
-    font-size: 18px;
+    font-size: 17px;
     text-decoration: none;
     margin-top: 6px;
 }
 
 div.page .container-details {
-    min-height: 340px;
+    min-height: 355px;
     width: 468px;
 }
 
@@ -126,7 +129,7 @@ div.category p {
  * */
 div.introduction {
     text-align: center;	
-    background: url('/static/images/bg-introduction.jpg') no-repeat 0 0;
+    background: url('/static/images/bg-introduction2.jpg') no-repeat 0 0;
 }
 
 	div.introduction p.categories {
@@ -271,19 +274,19 @@ div.page p.subcategory {
     }
 
 div.page p.title {
-	font-size: 33px;
+	font-size: 31px;
 	margin-top: 5px;
     font-family: "AkzidenzGrotesk-Medium";
 }
 
 div.page p.title-original {
-	font-size: 28px;
+	font-size: 26px;
     font-family: "AkzidenzGrotesk-Light";
     margin-top: 0;
 }
 
 div.page p.director {
-	font-size: 23px;
+	font-size: 21px;
     font-family: "AkzidenzGrotesk-Light";
     margin-bottom: 11px;
 }
@@ -295,22 +298,23 @@ div.category img {
 }
 
 div.page p.details span.name {
-	font-size: 25px;
+	font-size: 24px;
 }
 
 div.page p.details span.value {
-	font-size: 18px;
+	font-size: 17px;
+    line-height: 21px;
     font-family: "AkzidenzGrotesk-Light";
 }
 
 div.page p.sinopsis {
-	font-size: 18px;
+	font-size: 17px;
     font-family: "AkzidenzGrotesk-Light";
 }
 
 div.page p.extra-info {
     font-family: "AkzidenzGrotesk-Light";
-    font-size: 23px;
+    font-size: 20px;
     padding-bottom: 8px;
     border-bottom: 1px dashed #000;
     position: absolute;
@@ -379,11 +383,12 @@ div.title-index .column p.letter {
     font-size: 229px;
     color: #000;
     margin: 0;
-    padding: 15px 0 5px 0;
+    padding: 15px 0 15px 0;
+    line-height: 172px;
 }
 
 div.sales-producers .column p.letter {
-    padding: 33px 0 15px 0;
+    padding: 15px 0 63px 0;
 }
 
 div.title-index .column p.title-value {

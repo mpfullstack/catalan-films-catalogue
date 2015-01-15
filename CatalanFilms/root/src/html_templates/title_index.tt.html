@@ -15,14 +15,14 @@ FOREACH key IN grouped_film_names.keys.sort;
                     <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
                     %% 
                     count = count + 1; 
-                    IF count > 16 AND columns == 0;
+                    IF count > 14 AND columns == 0;
                         count = 0;
                         columns = columns + 1;
                     %%
                         </div>
                         <div class="column">
                     %% 
-                    ELSIF count > 27 AND columns > 0;
+                    ELSIF count > 22 AND columns > 0;
                         count = 0;
                         columns = columns + 1;
                     %%
