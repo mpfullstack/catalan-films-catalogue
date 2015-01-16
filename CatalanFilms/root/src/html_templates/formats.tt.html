@@ -1,5 +1,14 @@
+%% IF format_id %%
+<div id="%% format_id %%" name="%% format_id %%" class="page category-entry">
+    <div class="inner-content">
+        <div class="category-entry-info">
+            <h2 class="formats-color">Formats /</h2>
+        </div>
+    </div>
+</div>
+%% END %%
 <div id="%% id %%" name="%% id %%" class="page formats%% IF upcoming == 'upcoming' %% upcoming%% END %%">
-	<div class="inner-content"%% IF format_id %% id="%% format_id %%"%% END %%>
+	<div class="inner-content">
 		<p class="category-title">Formats /</p>
         <p class="subcategory"><span class="format">%% format %%</span>
         %% IF catalanspoke == 'catalanspoken' %%<span class="catalanspoke-label">C*</span>%% END %%

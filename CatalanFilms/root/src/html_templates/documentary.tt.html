@@ -1,5 +1,21 @@
+%% IF format_id %%
+<div id="%% format_id %%" name="%% format_id %%" class="page category-entry">
+    <div class="inner-content">
+        <div class="category-entry-info">
+            <h2 class="documentary-color">Documentary /</h2>
+            <p>
+                <span%% IF format_id == "documentary-featurefilms" %% class="selected"%% END %%>Feature Films</span> / 
+                <span%% IF format_id == "documentary-shortfilms" %% class="selected"%% END %%>Short Films</span> / 
+                <span%% IF format_id == "documentary-televisiondocumentaries" %% class="selected"%% END %%>TV Documentaries</span><br />
+                <span%% IF format_id == "documentary-documentaryseries" %% class="selected"%% END %%>Documentary Series</span> / 
+                <span%% IF format_id == "documentary-transmedia" %% class="selected"%% END %%>Transmedia</span>
+            </p>
+        </div>
+    </div>
+</div>
+%% END %%
 <div id="%% id %%" name="%% id %%" class="page documentary%% IF upcoming == 'upcoming' %% upcoming%% END %%">
-	<div class="inner-content"%% IF format_id %% id="%% format_id %%"%% END %%>
+	<div class="inner-content">
 		<p class="category-title">Documentary /</p>
         <p class="subcategory"><span class="format">%% format %%</span>
         %% IF catalanspoke == 'catalanspoken' %%<span class="catalanspoke-label">C*</span>%% END %%

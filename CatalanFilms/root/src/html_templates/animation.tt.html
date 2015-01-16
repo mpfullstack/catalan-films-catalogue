@@ -1,5 +1,21 @@
+%% IF format_id %%
+<div id="%% format_id %%" name="%% format_id %%" class="page category-entry">
+    <div class="inner-content">
+        <div class="category-entry-info">
+            <h2 class="animation-color">Animation /</h2>
+            <p>
+                <span%% IF format_id == "animation-featurefilms" %% class="selected"%% END %%>Feature Films</span> / 
+                <span%% IF format_id == "animation-shortfilms" %% class="selected"%% END %%>Short Films</span> / 
+                <span%% IF format_id == "animation-tvseries" %% class="selected"%% END %%>TV Series</span><br />
+                <span%% IF format_id == "animation-webseries" %% class="selected"%% END %%>Web Series</span> / 
+                <span%% IF format_id == "animation-apps" %% class="selected"%% END %%>Apps</span>
+            </p>
+        </div>
+    </div>
+</div>
+%% END %%
 <div id="%% id %%" name="%% id %%" class="page animation%% IF upcoming == 'upcoming' %% upcoming%% END %%">
-	<div class="inner-content"%% IF format_id %% id="%% format_id %%"%% END %%>
+	<div class="inner-content">
 		<p class="category-title">Animation /</p>
         <p class="subcategory"><span class="format">%% format %%</span>
         %% IF catalanspoke == 'catalanspoken' %%<span class="catalanspoke-label">C*</span>%% END %%

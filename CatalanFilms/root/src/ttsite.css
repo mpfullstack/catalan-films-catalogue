@@ -91,6 +91,36 @@ div.page {
     height: [% site.page_height %];
     page-break-after: always;
     background: url('/static/images/bg-page2.jpg') repeat-y 0 0;
+/*    overflow: hidden;*/
+}
+
+div.category-entry {
+    position: relative;
+}
+
+/*div.category-entry img {*/
+/*    width: 101.2%;*/
+/*}*/
+
+div.category-entry-info {
+    position: absolute;
+    bottom: 30px;
+    left: 0;    
+}
+
+div.category-entry-info h2 {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+div.category-entry-info p {
+    font-size: 21px;
+    font-weight: 400;
+    font-family: "AkzidenzGrotesk-Light";
+}
+
+div.category-entry-info p span.selected {
+    font-size: 40px;
 }
 
 div.page a.link-production {
