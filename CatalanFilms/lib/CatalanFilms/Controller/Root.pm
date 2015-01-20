@@ -3,6 +3,7 @@ use Moose;
 use namespace::autoclean;
 
 use JsonToHtml;
+use Clone 'clone';
 use CatalanFilmsTemplate;
 use Unicode::Normalize;
 use Encode qw(encode decode is_utf8);
@@ -84,6 +85,25 @@ sub index : Path("catalogue2015") {
         my $config = $jth->get_category_config();
         my @fields = @{$config->{fields}};
 
+
+        if( $cat eq "documentary" ) {
+            # Duplicate 5555 "Super Commuters" to Documentary Series
+            my $tmp_film = clone($data->{films}->{5555});
+            $data->{films}->{5555_1} = $tmp_film;
+            $data->{films}->{5555_1}->{format} = "Television Documentaries Series";
+            # Duplicate 5553 "Ghost Towns" to Documentary Series
+            $tmp_film = clone($data->{films}->{5553});
+            $data->{films}->{5553_1} = $tmp_film;
+            $data->{films}->{5553_1}->{format} = "Television Documentaries Series";
+            # Duplicate 4527 "Las Sin Sombrero" to Transmedia
+            $tmp_film = clone($data->{films}->{4527});
+            $data->{films}->{4527_1} = $tmp_film;
+            $data->{films}->{4527_1}->{format} = "Transmedia";
+        } elsif( $cat eq "animation" ) {
+            # Move 4584 "Old Folks' Tales. 2nd Season" to Animation TV Series
+            $data->{films}->{4584}->{format} = "TV Series";
+        }
+
         my @html;
         my $attrs = {};
         my $cf_template = CatalanFilmsTemplate->new(
@@ -93,7 +113,44 @@ sub index : Path("catalogue2015") {
         # Sort films A-Z for each format section
         my @filmsSortByFormat = sort( 
         {
-            $data->{films}->{$a}->{format} cmp $data->{films}->{$b}->{format} 
+            my $a_format = $data->{films}->{$a}->{format};
+            my $b_format = $data->{films}->{$b}->{format};
+            my $a_id = $data->{films}->{$a}->{id};
+            my $b_id = $data->{films}->{$b}->{id};
+            if( $a_format eq "Fiction - Webseries" ) {
+                $a_format = "Web Series";
+            }
+            if( $b_format eq "Fiction - Webseries" ) {
+                $b_format = "Web Series";
+            }
+            if( $a_format eq "Anmation - Webseries" ) {
+                $a_format = "Web Series";
+            }
+            if( $b_format eq "Anmation - Webseries" ) {
+                $b_format = "Web Series";
+            }            
+            if(
+                $cat eq "animation" 
+                and                
+                $a_format eq "Other Platforms" 
+            ) {            
+                $a_format = "ZApps";
+            }
+            if(
+                $cat eq "animation" 
+                and                
+                $b_format eq "Other Platforms" 
+            ) {            
+                $b_format = "ZApps";
+            }
+            if( $cat eq "documentary" and ($a_format eq "Other Platforms" or $a_format eq "VDocumental - Webdocs") ) {
+                $a_format = "Transmedia";
+            }
+            if( $cat eq "documentary" and ($b_format eq "Other Platforms" or $b_format eq "VDocumental - Webdocs") ) {
+                $b_format = "Transmedia";
+            }
+
+            $a_format cmp $b_format 
             or
             NFKD(lc($data->{films}->{$a}->{upcoming})) cmp NFKD(lc($data->{films}->{$b}->{upcoming}))
             or
@@ -102,26 +159,58 @@ sub index : Path("catalogue2015") {
 
         foreach my $item (@filmsSortByFormat) {
             my $current_format_id = lc($data->{films}->{$item}->{format});
-            $current_format_id =~ s/ //gmi;
-            $current_format_id = $cat . "-" . $current_format_id;
-            if( !$format_id || $format_id ne $current_format_id ) {
-                $format_id = $current_format_id;
-                $attrs->{format_id} = $current_format_id;
-            } elsif ( $format_id eq $current_format_id ) {
-                $attrs->{format_id} = "";
-            }
-            foreach my $field (@fields) {
-                if( $field->{output_name} ) {
-                    $attrs->{$field->{output_name}} = $jth->process_item_field($data->{films}->{$item}, $field);
-                } else {
-                    $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+            if( $cat eq "formats" and $current_format_id eq "fiction - webseries" ) {
+            } else {
+                if( 
+                    $cat eq "documentary" 
+                    and 
+                    ( $current_format_id eq "other platforms" or $current_format_id eq "vdocumental - webdocs" ) 
+                ) {
+                    $current_format_id = "transmedia";
                 }
+                if( 
+                    $cat eq "documentary" 
+                    and 
+                    ( $current_format_id eq "television documentaries series" ) 
+                ) {
+                    $current_format_id = "televisiondocumentariesseries";
+                    $data->{films}->{$item}->{format} = "Documentary Series";
+                }                
+                if( 
+                    $cat eq "animation" 
+                    and 
+                    $current_format_id eq "other platforms" 
+                ) {
+                    $current_format_id = "apps";
+                }
+                if( 
+                    $cat eq "animation" 
+                    and 
+                    $current_format_id eq "anmation - webseries" 
+                ) {
+                    $current_format_id = "webseries";
+                }
+                $current_format_id =~ s/ //gmi;
+                $current_format_id = $cat . "-" . $current_format_id;
+                if( !$format_id || $format_id ne $current_format_id ) {
+                    $format_id = $current_format_id;
+                    $attrs->{format_id} = $current_format_id;
+                } elsif ( $format_id eq $current_format_id ) {
+                    $attrs->{format_id} = "";
+                }
+                foreach my $field (@fields) {
+                    if( $field->{output_name} ) {
+                        $attrs->{$field->{output_name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+                    } else {
+                        $attrs->{$field->{name}} = $jth->process_item_field($data->{films}->{$item}, $field);
+                    }
+                }
+                push(@html, $cf_template->process($attrs));
+                push(@film_names, {
+                    "title" => $attrs->{title_en},
+                    "id"    => $attrs->{id}
+                });
             }
-            push(@html, $cf_template->process($attrs));
-            push(@film_names, {
-                "title" => $attrs->{title_en},
-                "id"    => $attrs->{id}
-            });
         }
         $c->stash->{$cat} = join("", @html);
     }

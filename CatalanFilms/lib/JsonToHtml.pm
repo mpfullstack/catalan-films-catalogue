@@ -166,7 +166,37 @@ sub process_item_field {
         }
     } else {
 #        $cleanvalue = $self->hs->parse($item->{$field->{name}});        
-        $cleanvalue = $item->{$field->{name}};        
+        if( $field->{name} eq "format" ) {
+            if( $item->{$field->{name}} eq "Fiction - Webseries" ) {
+                $cleanvalue = "Web Series";
+            } elsif(
+                $self->category eq "documentary" 
+                and
+                (
+                    $item->{$field->{name}} eq "Other Platforms" 
+                    or
+                    $item->{$field->{name}} eq "VDocumental - Webdocs"
+                )
+            ) {
+                $cleanvalue = "Transmedia";
+            } elsif(
+                $self->category eq "animation" 
+                and                
+                $item->{$field->{name}} eq "Other Platforms" 
+            ) {
+                $cleanvalue = "Apps";
+            } elsif(
+                $self->category eq "animation" 
+                and
+                $item->{$field->{name}} eq "Anmation - Webseries" 
+            ) {
+                $cleanvalue = "Web Series";
+            } else {
+                $cleanvalue = $item->{$field->{name}};
+            }
+        } else {
+            $cleanvalue = $item->{$field->{name}};        
+        }
     }
 
 #    $cleanvalue =~ s/<br \/>/ /gmi;
