@@ -15,9 +15,14 @@ FOREACH key IN sales_producers_names.keys.sort;
                 %% items = sales_producers_names.$key.list.count %%
                 %% FOREACH company IN sales_producers_names.$key.list %%
                     %% total_count = total_count+1 %%
-                    <p class="title-value">%% company.empresa %%</p>
+                    <p class="title-value">
+                        %% IF company.web %%<a href="http://%% company.web %%">%% END %%
+                            %% company.empresa %%
+                        %% IF company.web %%</a>%% END %%
+                    </p>
                     <p class="contact-value">%% company.contacto %% / %% company.direccion %%</p>
-                    <p class="contact-value">%% IF company.tel; company.tel; END; %% / %% IF company.email; company.email; END; %%</p>
+                    <p class="contact-value">%% IF company.tel; company.tel; END; %% / 
+                    %% IF company.email %%<a href="mailto:%% company.email %%">%% company.email %%</a>%% END %%</p>
                     %% 
                     count = count + 1; 
                     IF count > 4 AND columns == 0;

@@ -159,7 +159,15 @@ sub index : Path("catalogue2015") {
 
         foreach my $item (@filmsSortByFormat) {
             my $current_format_id = lc($data->{films}->{$item}->{format});
-            if( $cat eq "formats" and $current_format_id eq "fiction - webseries" ) {
+            if( 
+                $cat eq "formats" 
+                and 
+                (
+                    $current_format_id eq "fiction - webseries" 
+                    or
+                    $current_format_id eq "anmation - webseries"
+                )
+            ) {
             } else {
                 if( 
                     $cat eq "documentary" 

@@ -177,6 +177,14 @@ div.introduction {
 		}
 
 /*
+ * Credits
+ * */
+div.credits {
+    text-align: center;	
+    background: url('/static/images/bg-credits.jpg') no-repeat 0 0;
+}
+
+/*
  * Index
  * */
 div.index {
@@ -440,6 +448,10 @@ div.title-index .column p.contact-value {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+div.sales-producers .column p.contact-value a {
+    color: #333;
 }
 
 div.sales-producers .column p.title-value {
