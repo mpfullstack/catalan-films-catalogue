@@ -22,6 +22,10 @@
     [% videogames %]
 </div>
 
+<div id="eventsinstitutions" name="eventsinstitutions">
+[% PROCESS html_templates/eventsinstitutions.tt.html %]
+</div>
+
 <div id="titleindex" name="titleindex">
     [% title_index %]
 </div>

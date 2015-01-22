@@ -1,0 +1,30 @@
+[%
+    links = {
+        "001" = "http://www.academiadelcinema.cat/ca/"
+        "002" = "http://alternativa.cccb.org/2014/ct/"
+        "003" = "http://www.animatsitgesbcn.cat/es"
+        "004" = "http://www.animac.cat"
+        "005" = "http://www.bcncatfilmcommission.com"
+        "006" = "http://www.bcncatfilmcommission.com"
+        "007" = "http://catalunyafilmfestivals.com"
+        "008" = "http://www.cinemadautor.cat/es/"
+        "009" = "http://www.docsbarcelona.com"
+        "010" = "http://www.festivalfilmets.cat"
+        "011" = "http://www.in-edit.org/webapp/"
+        "012" = "http://mecalbcn.org"
+        "013" = "http://www.europacreativamedia.cat/inici"
+        "014" = "http://www.medimed.org/home.html"
+        "015" = "http://www.parcaudiovisual.cat"
+        "016" = "http://www.festivalrec.com"
+        "017" = "http://sitgesfilmfestival.com"
+    };
+    FOREACH id IN ["001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017"];
+%]
+<div class="page" style="text-align: center;">
+    <a href="[% links.$id %]">
+        <img style="height: 680px;" src="/static/images/events/05_FitxaEventsInstitutions_[% id %].jpg" alt="" />
+    </a>
+</div>
+[% 
+    END;
+%]
