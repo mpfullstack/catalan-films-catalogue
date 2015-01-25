@@ -87,16 +87,12 @@ sub index : Path("catalogue2015") {
 
 
         if( $cat eq "documentary" ) {
-            # Duplicate 5555 "Super Commuters" to Documentary Series
-            my $tmp_film = clone($data->{films}->{5555});
-            $data->{films}->{5555_1} = $tmp_film;
-            $data->{films}->{5555_1}->{format} = "Television Documentaries Series";
-            # Duplicate 5553 "Ghost Towns" to Documentary Series
-            $tmp_film = clone($data->{films}->{5553});
-            $data->{films}->{5553_1} = $tmp_film;
-            $data->{films}->{5553_1}->{format} = "Television Documentaries Series";
+            # Change 5555 "Super Commuters" to Documentary Series
+            $data->{films}->{5555}->{format} = "Television Documentaries Series";
+            # Change 5553 "Ghost Towns" to Documentary Series
+            $data->{films}->{5553}->{format} = "Television Documentaries Series";
             # Duplicate 4527 "Las Sin Sombrero" to Transmedia
-            $tmp_film = clone($data->{films}->{4527});
+            my $tmp_film = clone($data->{films}->{4527});
             $data->{films}->{4527_1} = $tmp_film;
             $data->{films}->{4527_1}->{format} = "Transmedia";
         } elsif( $cat eq "animation" ) {
