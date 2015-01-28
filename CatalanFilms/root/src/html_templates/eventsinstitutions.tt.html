@@ -6,30 +6,33 @@
     </div>
 </div>
 [%
-    links = {
-        "001" = "http://www.academiadelcinema.cat/ca/"
-        "002" = "http://alternativa.cccb.org/2014/ct/"
-        "003" = "http://www.animatsitgesbcn.cat/es"
-        "004" = "http://www.animac.cat"
-        "005" = "http://www.bcncatfilmcommission.com"
-        "006" = "http://www.bcncatfilmcommission.com"
-        "007" = "http://catalunyafilmfestivals.com"
-        "008" = "http://www.cinemadautor.cat/es/"
-        "009" = "http://www.docsbarcelona.com"
-        "010" = "http://www.festivalfilmets.cat"
-        "011" = "http://www.in-edit.org/webapp/"
-        "012" = "http://mecalbcn.org"
-        "013" = "http://www.europacreativamedia.cat/inici"
-        "014" = "http://www.medimed.org/home.html"
-        "015" = "http://www.parcaudiovisual.cat"
-        "016" = "http://www.festivalrec.com"
-        "017" = "http://sitgesfilmfestival.com"
-    };
-    FOREACH id IN ["001","002","003","004","005","006","007","008","009","010","011","012","013","014","015","016","017"];
+    links = [
+        {id = "017", link = "http://www.academiadelcinema.cat/ca/"},
+        {id = "016", link = "http://alternativa.cccb.org/2014/ct/"},
+        {id = "015", link = "http://www.animatsitgesbcn.cat/es"},
+        {id = "014", link = "http://www.animac.cat"},
+        {id = "013", link = "http://www.bcncatfilmcommission.com"},
+        {id = "019", link = "http://www.catalanfilms.cat/"},
+        {id = "018", link = "http://catalunyafilmfestivals.com"},
+        {id = "012", link = "http://www.bcncatfilmcommission.com"},
+        {id = "011", link = "http://www.docsbarcelona.com"},
+        {id = "010", link = "http://www.festivalfilmets.cat"},
+        {id = "009", link = "http://www.in-edit.org/webapp/"},
+        {id = "005", link = "http://www.in-edit.org/webapp/"},
+        {id = "008", link = "http://mecalbcn.org"},
+        {id = "007", link = "http://www.europacreativamedia.cat/inici"},
+        {id = "006", link = "http://www.medimed.org/home.html"},
+        {id = "004", link = "http://www.parcaudiovisual.cat"},
+        {id = "003", link = "http://www.festivalrec.com"},
+        {id = "002", link = "http://sitgesfilmfestival.com"},
+        {id = "001", link = ""},
+        {id = "020", link = ""}
+    ];
+    FOREACH item IN links;
 %]
 <div class="page" style="text-align: center;">
-    <a href="[% links.$id %]">
-        <img style="height: 680px;" src="/static/images/events/05_FitxaEventsInstitutions_[% id %].jpg" alt="" />
+    <a href="[% item.link %]">
+        <img src="/static/images/events/[% item.id %].jpg" alt="" />
     </a>
 </div>
 [% 
