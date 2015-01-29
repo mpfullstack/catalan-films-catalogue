@@ -102,14 +102,19 @@ FOREACH key IN sales_producers_names.keys.sort;
                         </div>
                         <div class="column">
                     %% 
-                    ELSIF count > 8 AND ( columns == 1 || columns == 3 ) AND key != "S" AND key != "D" AND key != "F";
+                    ELSIF (key == "M" AND columns == 3 AND count == 9);
+                    %%
+                    %%
+                    BREAK;
+                    ELSIF count > 8 AND ( columns == 1 || columns == 3 );
                         count = 0;
-                        columns = columns + 1;
-                    %%                        
+                        columns = columns + 1;          
+                    %%
             </div>
         </div>
     </div>
     <div class="page title-index sales-producers">
+        
         <div class="inner-content">
             <div class="header">
                 <p class="title">Sales & Production Companies</p>
@@ -117,7 +122,7 @@ FOREACH key IN sales_producers_names.keys.sort;
             </div>
             <div class="column">
                 %%
-                ELSIF count > 7 AND columns == 2;
+                ELSIF count > 8 AND columns == 2;
                         count = 0;
                         columns = columns + 1;
                 %%

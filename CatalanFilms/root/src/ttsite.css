@@ -416,6 +416,10 @@ div.title-index .column {
     padding-right: 1%;
 }
 
+div.sales-producers .header {
+    margin-bottom: 10px;
+}
+
 div.sales-producers .column {
     width: 50%;
     padding-right: 0;
@@ -431,11 +435,12 @@ div.title-index .column p.letter {
 }
 
 div.sales-producers .column p.letter {
-    padding: 15px 0 63px 0;
+    padding: 35px 0 43px 0;
 }
 
 div.sales-producers .column p.title-value {
     font-size: 14px;
+    color: #000;
 }
 
 div.title-index .column p.title-value {
