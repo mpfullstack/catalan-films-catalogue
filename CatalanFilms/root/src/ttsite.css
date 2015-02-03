@@ -438,11 +438,6 @@ div.sales-producers .column p.letter {
     padding: 35px 0 43px 0;
 }
 
-div.sales-producers .column p.title-value {
-    font-size: 14px;
-    color: #000;
-}
-
 div.title-index .column p.title-value {
     font-family: "AkzidenzGrotesk";
     font-size: 17px;
@@ -471,4 +466,11 @@ div.sales-producers .column p.contact-value a {
 div.sales-producers .column p.title-value {
     padding-bottom: 0;
     margin-top: 5px;
+    font-size: 16px;
+    color: #000;
 }
+
+    div.sales-producers .column p.title-value span.special {
+        font-size: 14px;
+        color: #333;
+    }

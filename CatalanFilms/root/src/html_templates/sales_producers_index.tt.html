@@ -89,8 +89,15 @@ FOREACH key IN sales_producers_names.keys.sort;
                         %% IF company.web %%<a href="http://%% company.web %%">%% END %%
                             %% company.empresa %%
                         %% IF company.web %%</a>%% END %%
+                        %% IF company.empresa == "Castelao Productions" || company.empresa == "Filmax International" || company.empresa == "Filmax" || company.empresa == "Neptuno Films" %%
+                            <span class="special">/ %% company.contacto %%</span>
+                        %% END %%
                     </p>
-                    <p class="contact-value">%% company.contacto %% / %% company.direccion %%</p>
+                    %% IF company.empresa == "Neptuno Films" %%
+                    <p class="contact-value">Prc. Audiovisual Catalunya. Ctra.BV-1274,KM1 Ed.Nord,L. 12,08225,Terrassa</p>
+                    %% ELSE %%
+                    <p class="contact-value">%% IF company.empresa != "Castelao Productions" && company.empresa != "Filmax International" && company.empresa != "Filmax"; company.contacto; %% / %% END;company.direccion %%</p>
+                    %% END %%
                     <p class="contact-value">%% IF company.tel; company.tel; END; %% / 
                     %% IF company.email %%<a href="mailto:%% company.email %%">%% company.email %%</a>%% END %%</p>
                     %% 
@@ -102,7 +109,7 @@ FOREACH key IN sales_producers_names.keys.sort;
                         </div>
                         <div class="column">
                     %% 
-                    ELSIF (key == "M" AND columns == 3 AND count == 9);
+                    ELSIF (key == "M" AND columns == 3 AND count == 9) || (key == "F" AND columns == 1 AND count == 9);
                     %%
                     %%
                     BREAK;
