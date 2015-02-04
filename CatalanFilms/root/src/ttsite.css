@@ -184,9 +184,56 @@ div.introduction {
  * Credits
  * */
 div.credits {
-    text-align: center;	
-    background: url('/static/images/bg-credits.jpg') no-repeat 0 0;
+/*    text-align: center;	*/
+/*    background: url('/static/images/bg-credits.jpg') no-repeat 0 0;*/
 }
+
+    div.credits .inner {
+        width: 573px;
+        margin: 0 auto;
+        padding-top: 100px;
+    }
+
+        div.credits .bottom {
+            width: 100%;
+            border-top: 1px solid #000;
+            margin-top: 20px;
+            padding-top: 25px;
+        }
+
+        div.credits .bottom p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        div.credits .bottom a {
+            margin-right: 30px;
+            margin-bottom: 30px;
+        }
+
+        div.credits .footer {
+            width: 90%;
+            overflow: hidden;
+            margin: 150px auto 0 auto;
+            padding: 10px 0;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+
+        div.credits .footer a.catalanfilms {
+            float: left;
+            height: 60px;
+            display: inline-block;
+            border-right: 1px dashed #000;
+            padding-right: 10px;
+        }
+
+        div.credits .footer p {
+            float: left;
+            font-size: 16px;
+            margin-left: 7px;
+            margin-top: 19px;
+        }
 
 /*
  * Index

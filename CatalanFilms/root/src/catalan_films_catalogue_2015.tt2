@@ -35,6 +35,5 @@
 </div>
 
 <div id="credits" name="credits">
-    <div class="page credits"> 
-    </div>
+    [% PROCESS html_templates/credits.tt.html %]
 </div>
