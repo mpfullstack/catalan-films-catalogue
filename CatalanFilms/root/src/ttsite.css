@@ -194,11 +194,19 @@ div.credits {
         padding-top: 100px;
     }
 
+    div.credits .inner a {
+	display: block;
+    }
+
         div.credits .bottom {
             width: 100%;
             border-top: 1px solid #000;
             margin-top: 20px;
             padding-top: 25px;
+        }
+
+        div.credits .bottom img.proa {
+            margin-right: 49px;
         }
 
         div.credits .bottom p {
@@ -208,15 +216,19 @@ div.credits {
 
         div.credits .bottom a {
             display: inline-block;
-            margin-right: 30px;
+            margin-right: 49px;
             margin-bottom: 10px;
         }
+
+            div.credits .bottom a.last {
+                margin-right: 0;
+            }
 
         div.credits .footer {
             width: 90%;
             overflow: hidden;
             margin: 150px auto 0 auto;
-            padding: 10px 0 15px 0;
+            padding: 7px 0 12px 0;
             border-top: 1px dashed #000;
             border-bottom: 1px dashed #000;
         }
@@ -232,9 +244,22 @@ div.credits {
         div.credits .footer p {
             float: left;
             font-size: 16px;
-            margin-left: 7px;
+            margin-left: 10px;
             margin-top: 19px;
         }
+
+        div.credits p.design-guime {
+            text-align: right;
+            font-size: 1.3em;
+            width: 90%;
+            margin: 8px auto 0 auto;
+            display: block;
+        }
+
+            div.credits p.design-guime a {
+                display: inline-block;
+                font-weight: 600;
+            }
 
 /*
  * Index
