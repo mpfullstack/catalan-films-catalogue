@@ -13,7 +13,7 @@ has 'encoding'      => (is => 'rw', isa => 'Str', default => 'utf-8');
 
 sub process {
 	my ( $self, $data ) = @_;
-	
+
 	# Config options
 	my $config = {
 		INCLUDE_PATH => $self->include_path,
@@ -24,12 +24,13 @@ sub process {
 		END_TAG      => $self->end_tag,
         render_die => 1
 	};
-	
+
 	my $output;
     my $template = Template->new($config);
 	$template->process($self->template_file, $data, \$output) || die $template->error(), "\n";
-    
-    return encode("utf8",$output);
+
+    #return encode("utf8",$output);
+    return $output;
 }
 
 return 1;

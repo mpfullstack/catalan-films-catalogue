@@ -57,7 +57,7 @@ sub index : Path("catalogue2015") {
             height => "2480px"
         }
     };
-    
+
     my $jth = JsonToHtml->new(
         json_dir          => $c->config->{base_dir} . $c->config->{json_dir},
         images_dir        => $c->config->{base_dir} . $c->config->{images_dir},
@@ -74,7 +74,7 @@ sub index : Path("catalogue2015") {
     } else {
         push(@categories, $category);
     }
-    
+
     my $format_id;
     foreach my $cat (@categories) {
         $c->log->debug("Processant categoria " . $cat . "...");
@@ -107,7 +107,7 @@ sub index : Path("catalogue2015") {
             template_file => $c->config->{categories}->{$cat}->{name} . '.tt.html'
         );
         # Sort films A-Z for each format section
-        my @filmsSortByFormat = sort( 
+        my @filmsSortByFormat = sort(
         {
             my $a_format = $data->{films}->{$a}->{format};
             my $b_format = $data->{films}->{$b}->{format};
@@ -124,19 +124,19 @@ sub index : Path("catalogue2015") {
             }
             if( $b_format eq "Anmation - Webseries" ) {
                 $b_format = "Web Series";
-            }            
+            }
             if(
-                $cat eq "animation" 
-                and                
-                $a_format eq "Other Platforms" 
-            ) {            
+                $cat eq "animation"
+                and
+                $a_format eq "Other Platforms"
+            ) {
                 $a_format = "ZApps";
             }
             if(
-                $cat eq "animation" 
-                and                
-                $b_format eq "Other Platforms" 
-            ) {            
+                $cat eq "animation"
+                and
+                $b_format eq "Other Platforms"
+            ) {
                 $b_format = "ZApps";
             }
             if( $cat eq "documentary" and ($a_format eq "Other Platforms" or $a_format eq "VDocumental - Webdocs") ) {
@@ -146,7 +146,7 @@ sub index : Path("catalogue2015") {
                 $b_format = "Transmedia";
             }
 
-            $a_format cmp $b_format 
+            $a_format cmp $b_format
             or
             NFKD(lc($data->{films}->{$a}->{upcoming})) cmp NFKD(lc($data->{films}->{$b}->{upcoming}))
             or
@@ -155,42 +155,42 @@ sub index : Path("catalogue2015") {
 
         foreach my $item (@filmsSortByFormat) {
             my $current_format_id = lc($data->{films}->{$item}->{format});
-            if( 
-                $cat eq "formats" 
-                and 
+            if(
+                $cat eq "formats"
+                and
                 (
-                    $current_format_id eq "fiction - webseries" 
+                    $current_format_id eq "fiction - webseries"
                     or
                     $current_format_id eq "anmation - webseries"
                 )
             ) {
             } else {
-                if( 
-                    $cat eq "documentary" 
-                    and 
-                    ( $current_format_id eq "other platforms" or $current_format_id eq "vdocumental - webdocs" ) 
+                if(
+                    $cat eq "documentary"
+                    and
+                    ( $current_format_id eq "other platforms" or $current_format_id eq "vdocumental - webdocs" )
                 ) {
                     $current_format_id = "transmedia";
                 }
-                if( 
-                    $cat eq "documentary" 
-                    and 
-                    ( $current_format_id eq "television documentaries series" ) 
+                if(
+                    $cat eq "documentary"
+                    and
+                    ( $current_format_id eq "television documentaries series" )
                 ) {
                     $current_format_id = "televisiondocumentariesseries";
                     $data->{films}->{$item}->{format} = "Documentary Series";
-                }                
-                if( 
-                    $cat eq "animation" 
-                    and 
-                    $current_format_id eq "other platforms" 
+                }
+                if(
+                    $cat eq "animation"
+                    and
+                    $current_format_id eq "other platforms"
                 ) {
                     $current_format_id = "apps";
                 }
-                if( 
-                    $cat eq "animation" 
-                    and 
-                    $current_format_id eq "anmation - webseries" 
+                if(
+                    $cat eq "animation"
+                    and
+                    $current_format_id eq "anmation - webseries"
                 ) {
                     $current_format_id = "webseries";
                 }
@@ -231,7 +231,7 @@ sub index : Path("catalogue2015") {
             $first_letter =~ s/\p{NonspacingMark}//g;
             $group->{$first_letter} = () unless exists $group->{$first_letter};
             push(@{$group->{$first_letter}}, $film);
-         
+
         }
         return $group;
     }
@@ -242,7 +242,7 @@ sub index : Path("catalogue2015") {
     my $json_data = $jth->get_sales_producers_json_data();
     my $sales_data = $jth->decode_json_data($json_data);
 #    $c->log->debug("Sales Data " . scalar(keys %{$sales_data}));
-    
+
     # Producers
     $jth->url($c->config->{producers}->{url});
     $jth->category($c->config->{producers}->{name});
@@ -258,7 +258,7 @@ sub index : Path("catalogue2015") {
 
     my $sales_producers_data = ($sales_data, $producers_data);
     # Sort sales & producers A-Z
-    my @sales_producers = sort( 
+    my @sales_producers = sort(
     {
         NFKD(lc($sales_producers_data->{$a}->{empresa})) cmp NFKD(lc($sales_producers_data->{$b}->{empresa}))
     } keys %{$sales_producers_data} );
@@ -275,7 +275,7 @@ sub index : Path("catalogue2015") {
     $c->stash->{sales_producers_index} = $sales_producers_index_template->process({
         sales_producers_names => $self->group_by_alphabet("empresa", @sales_producers_list)
     });
-    
+
     # Sort all films in alphabetical order and group by alphabet
     my @sorted_film_names = sort({ NFKD(lc($a->{title})) cmp NFKD(lc($b->{title})) } @film_names);
     my $title_index_template = CatalanFilmsTemplate->new(
@@ -287,7 +287,7 @@ sub index : Path("catalogue2015") {
     });
 
     $c->stash->{template} = "catalan_films_catalogue_2015.tt2";
-    $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width}; 
+    $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width};
     $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}
 }
 

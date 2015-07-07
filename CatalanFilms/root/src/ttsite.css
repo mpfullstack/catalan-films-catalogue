@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
 	font-family: "AkzidenzGrotesk";
 	src: url("/static/fonts/AkzidenzGrotesk-Regular.otf");
 }
@@ -17,7 +17,7 @@
 	font-family: "FranklinGothicRoman";
 	src: url("/static/fonts/FranklinGothicRoman.ttf");
 }
-
+*/
 html {
    
 }
@@ -40,8 +40,8 @@ p {
 }
 
 body {
-	font-family: "AkzidenzGrotesk", helvetica, arial, sans-serif;
-	font-size: 62.5%;
+	font-family: /*Akzidenz-Grotesk BQ,*/helvetica, arial, sans-serif;
+font-size: 50%;
     background-color: #fff;
     color: #333;
     margin: 0;
@@ -116,10 +116,10 @@ div.category-entry-info h2 {
 div.category-entry-info p {
     font-size: 21px;
     font-weight: 400;
-    font-family: "AkzidenzGrotesk-Light";
 }
 
 div.category-entry-info p a {
+font-weight: 300;
     color: #000;
 }
 
@@ -135,8 +135,8 @@ div.page a.link-production {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: right;
-    font-family: "AkzidenzGrotesk-Light";
     font-size: 17px;
+    font-weight: 300;
     text-decoration: none;
     margin-top: 6px;
 }
@@ -238,14 +238,14 @@ div.credits {
             height: 54px;
             display: block;
             border-right: 1px dashed #000;
-            padding-right: 10px;
+            padding-right: 17px;
         }
 
         div.credits .footer p {
             float: left;
-            font-size: 16px;
-            margin-left: 10px;
-            margin-top: 19px;
+            font-size: 15px;
+            margin-left: 22px;
+            margin-top: 22px;
         }
 
         div.credits p.design-guime {
@@ -276,12 +276,13 @@ div.index {
     }
 
         div.index .left img {
-            margin-top: 294px;
+            margin-top: 276px;
         }
 
         div.index .left p {
-            font-size: 22px;
-            margin-left: 10px;
+            font-size: 16px;
+            margin-left: -40px;
+font-weight: 300;
         }
 
     div.index .right {
@@ -295,12 +296,12 @@ div.index {
 		div.index .right h2 {
 			font-size: 28px;
             font-weight: 400;
-		}
+		margin-top: 12px;}
 		
 		div.index .right p {
 			font-size: 18px;
-            font-family: "AkzidenzGrotesk-Light";
-		}
+	    font-weight: 300;
+	line-height: 24px;	}
 
         div.index .right p a {
             color: #333;
@@ -315,7 +316,8 @@ div.index {
     }
 	
 		div.index .bottom  p {
-			font-size: 15px;
+			font-size: 14px;
+line-height: 19px;
 		}
 
 /*
@@ -366,7 +368,7 @@ div.page p.subcategory {
         font-size: 18px;
         float: left;
         margin-top: 6px;
-        font-family: "AkzidenzGrotesk-Light";
+	font-weight: 300;
     }
 
     div.page p.subcategory span {
@@ -384,25 +386,24 @@ div.page p.subcategory {
     }
 
     div.page p.subcategory span.catalanspoke-label {
-        font-size: 33px;
-        font-family: "FranklinGothicRoman";
+        font-size: 33px; 
+font-family: Franklin Gothic;
     }
 
 div.page p.title {
 	font-size: 31px;
 	margin-top: 5px;
-    font-family: "AkzidenzGrotesk-Medium";
 }
 
 div.page p.title-original {
 	font-size: 26px;
-    font-family: "AkzidenzGrotesk-Light";
+    font-weight:300;
     margin-top: 0;
 }
 
 div.page p.director {
 	font-size: 21px;
-    font-family: "AkzidenzGrotesk-Light";
+    font-weight: 300;
     margin-bottom: 11px;
 }
 
@@ -419,16 +420,17 @@ div.page p.details span.name {
 div.page p.details span.value {
 	font-size: 17px;
     line-height: 21px;
-    font-family: "AkzidenzGrotesk-Light";
+    font-weight: 300;
 }
 
 div.page p.sinopsis {
 	font-size: 17px;
-    font-family: "AkzidenzGrotesk-Light";
+    font-weight: 300;
+line-height: 19px;
 }
 
 div.page p.extra-info {
-    font-family: "AkzidenzGrotesk-Light";
+    font-weight: 300;
     font-size: 20px;
     padding-bottom: 8px;
     border-bottom: 1px dashed #000;
@@ -463,15 +465,13 @@ div.title-index .header p {
 div.title-index .header p.title {
     color: #000;
     font-size: 30px;
-    font-family: "AkzidenzGrotesk";
     font-weight: 400;
 }
 
 div.title-index .header p.sub-title {   
     color: #000;
     font-size: 19px;
-    font-family: "AkzidenzGrotesk-Light";
-    font-weight: 400;    
+    font-weight: 300;    
 }
 
 div.title-index .header p.sub-title span {   
@@ -499,20 +499,21 @@ div.sales-producers .column {
 }
 
 div.title-index .column p.letter {
-    font-family: "FranklinGothicRoman";
-    font-size: 229px;
+    font-size: 265px;
     color: #000;
     margin: 0;
-    padding: 15px 0 15px 0;
+    padding: 40px 0 7px 0;
     line-height: 172px;
-}
+font-weight: 600;
+letter-spacing: 14px;}
 
 div.sales-producers .column p.letter {
-    padding: 35px 0 43px 0;
+font-weight: 600;
+    padding: 54px 0 25px 0;
+letter-spacing: 14px;
 }
 
 div.title-index .column p.title-value {
-    font-family: "AkzidenzGrotesk";
     font-size: 17px;
     margin: 0;
     padding: 0 0 5px 0;
@@ -523,8 +524,7 @@ div.title-index .column p.title-value {
 }
 
 div.title-index .column p.contact-value {
-    font-family: "AkzidenzGrotesk-Light";
-    font-weight: 400;    
+    font-weight: 300;    
     font-size: 15px;
     width: 100%;
     white-space: nowrap;
@@ -538,7 +538,7 @@ div.sales-producers .column p.contact-value a {
 
 div.sales-producers .column p.title-value {
     padding-bottom: 0;
-    margin-top: 5px;
+    margin-top: 13px;
     font-size: 16px;
     color: #000;
 }

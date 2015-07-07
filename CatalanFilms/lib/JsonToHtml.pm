@@ -18,9 +18,9 @@ has 'category'          => (is => 'rw', isa => 'Str');
 has 'encoding'          => (is => 'rw', isa => 'Str', default => 'utf-8');
 has 'json_cache'        => (is => 'rw', isa => 'Bool', default => 0);
 has 'image_cache'       => (is => 'rw', isa => 'Bool', default => 1);
-has 'file'              => (is => 'ro', isa => 'Object', default => sub { return File::Util->new() }); 
-has 'hs'                => (is => 'ro', isa => 'Object', default => sub { return HTML::Strip->new(striptags => [ 'br' ]) }); 
-has 'c'                 => (is => 'ro', isa => 'Object'); 
+has 'file'              => (is => 'ro', isa => 'Object', default => sub { return File::Util->new() });
+has 'hs'                => (is => 'ro', isa => 'Object', default => sub { return HTML::Strip->new(striptags => [ 'br' ]) });
+has 'c'                 => (is => 'ro', isa => 'Object');
 has 'json_dir'          => (is => 'rw', isa => 'Str');
 has 'images_dir'        => (is => 'rw', isa => 'Str');
 has 'html_data_dir'     => (is => 'rw', isa => 'Str');
@@ -132,14 +132,14 @@ sub process_item_field {
             my $image_url = $item->{$field->{name}};
             $image_url =~ /^.+\.(.+)$/gmi;
             my $extension = $1;
-            if( 
+            if(
                 !$self->file->existent(
                     $self->images_dir.
                     $self->file->SL.
                     $self->category.
                     $self->file->SL.
                     $item->{id} . "." . $extension
-                ) 
+                )
             ) {
                 my $image = get($image_url);
                 $self->file->write_file(
@@ -147,16 +147,16 @@ sub process_item_field {
                   'content' => $image
                 );
             }
-            if( !$self->image_cache 
-                || 
+            if( !$self->image_cache
+                ||
                 !$self->file->existent(
                     $self->images_dir.
                     $self->file->SL.
                     $self->category.
                     $self->file->SL.
                     $item->{id} . "_thumb.jpg"
-                ) 
-            ) {                
+                )
+            ) {
                 $self->scaleImage(
                     $self->images_dir . $self->file->SL . $self->category . $self->file->SL . $item->{id} . "." . $extension,
                     500
@@ -165,42 +165,42 @@ sub process_item_field {
             $cleanvalue = $self->c->uri_for('static/images/'. $self->category . '/' . $item->{id} . "_thumb.jpg");
         }
     } else {
-#        $cleanvalue = $self->hs->parse($item->{$field->{name}});        
+#        $cleanvalue = $self->hs->parse($item->{$field->{name}});
         if( $field->{name} eq "format" ) {
             if( $item->{$field->{name}} eq "Fiction - Webseries" ) {
                 $cleanvalue = "Web Series";
             } elsif(
-                $self->category eq "documentary" 
+                $self->category eq "documentary"
                 and
                 (
-                    $item->{$field->{name}} eq "Other Platforms" 
+                    $item->{$field->{name}} eq "Other Platforms"
                     or
                     $item->{$field->{name}} eq "VDocumental - Webdocs"
                 )
             ) {
                 $cleanvalue = "Transmedia";
             } elsif(
-                $self->category eq "animation" 
-                and                
-                $item->{$field->{name}} eq "Other Platforms" 
+                $self->category eq "animation"
+                and
+                $item->{$field->{name}} eq "Other Platforms"
             ) {
                 $cleanvalue = "Apps";
             } elsif(
-                $self->category eq "animation" 
+                $self->category eq "animation"
                 and
-                $item->{$field->{name}} eq "Anmation - Webseries" 
+                $item->{$field->{name}} eq "Anmation - Webseries"
             ) {
                 $cleanvalue = "Web Series";
             } else {
                 $cleanvalue = $item->{$field->{name}};
             }
         } else {
-            $cleanvalue = $item->{$field->{name}};        
+            $cleanvalue = $item->{$field->{name}};
         }
     }
 
 #    $cleanvalue =~ s/<br \/>/ /gmi;
-    
+
     $cleanvalue =~ s///gmi;
     $cleanvalue = $self->trim($cleanvalue);
 
@@ -220,14 +220,14 @@ sub scaleImage {
     $image =~ /^(\/.+\/)(.+)?\.(.+)$/;
 	my $scaled_image = $1.$2.'_thumb.jpg';
 
-    my $imager = Imager->new();		
+    my $imager = Imager->new();
     $imager->read( file => $image ) or die "Cannot read: $image ".$imager->errstr();
     if(
-        ( !$y && $x < $imager->getwidth() ) 
-        || 
-        ( !$x && $y < $imager->getheight() ) 
-        || 
-        ( $x && $y && ( $x < $imager->getwidth() || $y < $imager->getheight() ) ) 
+        ( !$y && $x < $imager->getwidth() )
+        ||
+        ( !$x && $y < $imager->getheight() )
+        ||
+        ( $x && $y && ( $x < $imager->getwidth() || $y < $imager->getheight() ) )
     ) {
         my $new_image = $imager->scale( xpixels => $x, ypixels => $y, type => 'min', qtype => 'normal' ) or die $image." ".$imager->errstr();
         $new_image->write( file => $scaled_image, jpegquality => 90 );
