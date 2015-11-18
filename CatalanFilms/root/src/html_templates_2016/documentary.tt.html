@@ -1,0 +1,60 @@
+%% IF format_id %%
+<div id="%% format_id %%" name="%% format_id %%" class="page category-entry">
+    <div class="inner-content">
+        <div class="category-entry-info">
+            <h2 class="documentary-color">Documentary /</h2>
+            <p>
+                <a href="#documentary-featurefilms"%% IF format_id == "documentary-featurefilms" %% class="selected"%% END %%>Feature Films</a> / 
+                <a href="#documentary-shortfilms"%% IF format_id == "documentary-shortfilms" %% class="selected"%% END %%>Short Films</a> / 
+                <a href="#documentary-televisiondocumentaries"%% IF format_id == "documentary-televisiondocumentaries" %% class="selected"%% END %%>TV Documentaries</a><br />
+                <a href="#documentary-televisiondocumentariesseries"%% IF format_id == "documentary-televisiondocumentariesseries" %% class="selected"%% END %%>Documentary Series</a> / 
+                <a href="#documentary-transmedia"%% IF format_id == "documentary-transmedia" %% class="selected"%% END %%>Transmedia</a>
+            </p>
+        </div>
+    </div>
+</div>
+%% END %%
+<div id="%% id %%" name="%% id %%" class="page documentary%% IF upcoming == 'upcoming' %% upcoming%% END %%">
+	<div class="inner-content">
+		<p class="category-title">Documentary /</p>
+        <p class="subcategory"><span class="format">%% format %%</span>
+        %% IF catalanspoke == 'catalanspoken' %%<span class="catalanspoke-label">C*</span>%% END %%
+        %% IF catalanspoke == 'catalanspoken' AND upcoming == 'upcoming' %%<span class="sep"> / </span>%% END %%
+        %% IF upcoming == 'upcoming' %%<span class="upcoming-label">Upcoming</span>%% END %%
+        </p>
+        <img src="%% image_linked %%" alt="" />
+        %% IF link_produccio %%<a class="link-production" href="%% link_produccio %%">catalanfilmsdb.cat/%% title_en %%</a> %% END %%
+        <div class="container-details">
+            <p class="title">%% title_en %%</p>
+            %% IF title_original %%<p class="title-original">%% title_original %%</p>%% END %%
+            <p class="director">by %% directorStr %%</p>
+            %% IF script %%
+            <p class="details"><span class="name">Written by</span><br /><span class="value">%% script %%</span></p>
+            %% END %%
+            %% IF cast %%
+            <p class="details"><span class="name">Cast</span><br /><span class="value">%% cast %%</span></p>
+            %% END %%
+            %% IF companyinfo or coproducers %%
+                <p class="details"><span class="name">Produced by</span><br />
+                %% IF companyinfo %%<span class="value">%% companyinfo; IF coproducers; ', ' _ coproducers; END; %%</span>%% END %%
+                %% IF coproducers_rol %% <span class="value">in association with %% coproducers_rol %%</span>%% END %%
+                </p>
+            %% END %%
+            %% IF salesagent %%
+            <p class="details"><span class="name">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
+            %% END %%
+        </div>
+
+        <p class="details"><span class="name">Synopsis</span></p>
+        <p class="sinopsis">%% sinopsis %%</p>		
+        <p class="extra-info">
+        %% IF gender; gender _ " / "; END; %% 
+        %% IF duration; duration _ "' /"; END; %%
+        %% IF color; color _ " /"; END; %%
+        %% IF tech; tech _ " / "; END; %%
+        %% IF sound; sound _ " / "; END; %%
+        %% IF public; public _ " / "; END; %%
+        %% IF vo; vo; END; %%
+        </p>		
+	</div>
+</div>

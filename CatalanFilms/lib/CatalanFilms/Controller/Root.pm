@@ -35,10 +35,11 @@ The root page (/)
 
 =cut
 
-sub index : Path("catalogue2015") {
-    my ( $self, $c, $category, $ppi ) = @_;
+sub index : Path("catalogue") {
+    my ( $self, $c, $year, $category, $ppi ) = @_;
 
     my @film_names;
+    $year = 2016 unless $year;
     $category = "all" unless $category;
     $ppi = 72 unless $ppi;
     my $A4_LANSCAPE = {
@@ -58,12 +59,18 @@ sub index : Path("catalogue2015") {
         }
     };
 
+    my $json_dir = $c->config->{json_dir};
+    $json_dir =~ s/{year}/$year/g;
+    my $images_dir = $c->config->{images_dir};
+    $images_dir =~ s/{year}/$year/g;
+    my $html_template_dir = $c->config->{html_template_dir};
+    $html_template_dir =~ s/{year}/$year/g;
+
     my $jth = JsonToHtml->new(
-        json_dir          => $c->config->{base_dir} . $c->config->{json_dir},
-        images_dir        => $c->config->{base_dir} . $c->config->{images_dir},
-        html_data_dir     => $c->config->{base_dir} . $c->config->{html_data_dir},
-        html_template_dir => $c->config->{base_dir} . $c->config->{html_template_dir},
-        config_dir        => $c->config->{base_dir} . $c->config->{config_dir},
+        base_dir          => $c->config->{base_dir},
+        json_dir          => $json_dir,
+        images_dir        => $images_dir,
+        config_dir        => $c->config->{config_dir},
         c                 => $c,
         image_cache       => 1
     );
@@ -75,10 +82,13 @@ sub index : Path("catalogue2015") {
         push(@categories, $category);
     }
 
+    my $url;
     my $format_id;
     foreach my $cat (@categories) {
         $c->log->debug("Processant categoria " . $cat . "...");
-        $jth->url($c->config->{categories}->{$cat}->{url});
+        $url = $c->config->{categories}->{$cat}->{url};
+        $url =~ s/{year}/$year/g;
+        $jth->url($url);
         $jth->category($c->config->{categories}->{$cat}->{name});
         my $json_data = $jth->get_category_json_data();
         my $data = $jth->decode_json_data($json_data);
@@ -86,24 +96,29 @@ sub index : Path("catalogue2015") {
         my @fields = @{$config->{fields}};
 
 
-        if( $cat eq "documentary" ) {
-            # Change 5555 "Super Commuters" to Documentary Series
-            $data->{films}->{5555}->{format} = "Television Documentaries Series";
-            # Change 5553 "Ghost Towns" to Documentary Series
-            $data->{films}->{5553}->{format} = "Television Documentaries Series";
-            # Duplicate 4527 "Las Sin Sombrero" to Transmedia
-            my $tmp_film = clone($data->{films}->{4527});
-            $data->{films}->{4527_1} = $tmp_film;
-            $data->{films}->{4527_1}->{format} = "Transmedia";
-        } elsif( $cat eq "animation" ) {
-            # Move 4584 "Old Folks' Tales. 2nd Season" to Animation TV Series
-            $data->{films}->{4584}->{format} = "TV Series";
+        if( $year == 2015 ) {
+            if( $cat eq "documentary" ) {
+                # Change 5555 "Super Commuters" to Documentary Series
+                $data->{films}->{5555}->{format} = "Television Documentaries Series";
+                # Change 5553 "Ghost Towns" to Documentary Series
+                $data->{films}->{5553}->{format} = "Television Documentaries Series";
+                # Duplicate 4527 "Las Sin Sombrero" to Transmedia
+                my $tmp_film = clone($data->{films}->{4527});
+                $data->{films}->{4527_1} = $tmp_film;
+                $data->{films}->{4527_1}->{format} = "Transmedia";
+            } elsif( $cat eq "animation" ) {
+                # Move 4584 "Old Folks' Tales. 2nd Season" to Animation TV Series
+                # Only for catalogue 2015
+                if( $year == 2015 ) {
+                    $data->{films}->{4584}->{format} = "TV Series";
+                }
+            }
         }
 
         my @html;
         my $attrs = {};
         my $cf_template = CatalanFilmsTemplate->new(
-            include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
+            include_path  => $c->config->{base_dir} . $html_template_dir,
             template_file => $c->config->{categories}->{$cat}->{name} . '.tt.html'
         );
         # Sort films A-Z for each format section
@@ -202,6 +217,7 @@ sub index : Path("catalogue2015") {
                 } elsif ( $format_id eq $current_format_id ) {
                     $attrs->{format_id} = "";
                 }
+                $c->log->debug("item " . $item);
                 foreach my $field (@fields) {
                     if( $field->{output_name} ) {
                         $attrs->{$field->{output_name}} = $jth->process_item_field($data->{films}->{$item}, $field);
@@ -237,14 +253,18 @@ sub index : Path("catalogue2015") {
     }
 
     # Sales
-    $jth->url($c->config->{sales}->{url});
+    $url = $c->config->{sales}->{url};
+    $url =~ s/{year}/$year/g;
+    $jth->url($url);
     $jth->category($c->config->{sales}->{name});
     my $json_data = $jth->get_sales_producers_json_data();
     my $sales_data = $jth->decode_json_data($json_data);
 #    $c->log->debug("Sales Data " . scalar(keys %{$sales_data}));
 
     # Producers
-    $jth->url($c->config->{producers}->{url});
+    $url = $c->config->{producers}->{url};
+    $url =~ s/{year}/$year/g;
+    $jth->url($url);
     $jth->category($c->config->{producers}->{name});
     $json_data = $jth->get_sales_producers_json_data();
     my $producers_data = $jth->decode_json_data($json_data);
@@ -269,7 +289,7 @@ sub index : Path("catalogue2015") {
         push(@sales_producers_list, $sales_producers_data->{$key});
     }
     my $sales_producers_index_template = CatalanFilmsTemplate->new(
-        include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
+        include_path  => $c->config->{base_dir} . $html_template_dir,
         template_file => 'sales_producers_index.tt.html'
     );
     $c->stash->{sales_producers_index} = $sales_producers_index_template->process({
@@ -279,7 +299,7 @@ sub index : Path("catalogue2015") {
     # Sort all films in alphabetical order and group by alphabet
     my @sorted_film_names = sort({ NFKD(lc($a->{title})) cmp NFKD(lc($b->{title})) } @film_names);
     my $title_index_template = CatalanFilmsTemplate->new(
-        include_path  => $c->config->{base_dir} . $c->config->{html_template_dir},
+        include_path  => $c->config->{base_dir} . $html_template_dir,
         template_file => 'title_index.tt.html'
     );
     $c->stash->{title_index} = $title_index_template->process({

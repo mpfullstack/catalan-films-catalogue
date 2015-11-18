@@ -2,9 +2,9 @@ syntax: glob
 
 CatalanFilms/config
 catalanfilms.yml
-root/static/json_data
-root/static/images/fiction
-root/static/images/documentary
-root/static/images/animation
-root/static/images/videogames
-root/static/images/formats
+root/static/json_data*
+root/static/images_*/fiction
+root/static/images_*/documentary
+root/static/images_*/animation
+root/static/images_*/videogames
+root/static/images_*/formats

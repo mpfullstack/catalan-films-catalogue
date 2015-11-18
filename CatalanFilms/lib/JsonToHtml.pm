@@ -21,19 +21,20 @@ has 'image_cache'       => (is => 'rw', isa => 'Bool', default => 1);
 has 'file'              => (is => 'ro', isa => 'Object', default => sub { return File::Util->new() });
 has 'hs'                => (is => 'ro', isa => 'Object', default => sub { return HTML::Strip->new(striptags => [ 'br' ]) });
 has 'c'                 => (is => 'ro', isa => 'Object');
+has 'base_dir'          => (is => 'rw', isa => 'Str');
 has 'json_dir'          => (is => 'rw', isa => 'Str');
 has 'images_dir'        => (is => 'rw', isa => 'Str');
 has 'html_data_dir'     => (is => 'rw', isa => 'Str');
-has 'html_tempalte_dir' => (is => 'rw', isa => 'Str');
+has 'html_template_dir' => (is => 'rw', isa => 'Str');
 has 'config_dir'        => (is => 'rw', isa => 'Str');
 
 sub get_category_json_data {
     my ( $self ) = @_;
     $self->c->log->debug("Llegint categoria " . $self->category . "...");
     my $data;
-    my $filedir = $self->json_dir . $self->file->SL . $self->category.".json";
-    $self->file->make_dir($self->json_dir, 0755, '--if-not-exists');
-    $self->file->make_dir($self->images_dir . $self->file->SL . $self->category, 0755, '--if-not-exists');
+    my $filedir = $self->base_dir . $self->json_dir . $self->file->SL . $self->category.".json";
+    $self->file->make_dir($self->base_dir . $self->json_dir, 0755, '--if-not-exists');
+    $self->file->make_dir($self->base_dir . $self->images_dir . $self->file->SL . $self->category, 0755, '--if-not-exists');
     if( $self->json_cache and $self->file->existent($filedir) ) {
         $data = $self->file->load_file($filedir);
     } else {
@@ -53,8 +54,8 @@ sub get_sales_producers_json_data {
     my ( $self ) = @_;
     $self->c->log->debug("Llegint categoria " . $self->category . "...");
     my $data;
-    my $filedir = $self->json_dir . $self->file->SL . $self->category.".json";
-    $self->file->make_dir($self->json_dir, 0755, '--if-not-exists');
+    my $filedir = $self->base_dir . $self->json_dir . $self->file->SL . $self->category.".json";
+    $self->file->make_dir($self->base_dir . $self->json_dir, 0755, '--if-not-exists');
     if( $self->json_cache and $self->file->existent($filedir) ) {
         $data = $self->file->load_file($filedir);
     } else {
@@ -92,10 +93,9 @@ sub get_category_config {
 
 sub process_item_field {
     my ( $self, $item, $field ) = @_;
-
     my $cleanvalue;
     if( $field->{type} ) {
-        if( $field->{type} eq 'list' ) {
+        if( $field->{type} eq 'list' and $item->{$field->{name}} ) {
             $cleanvalue = $self->hs->parse(join(', ', @{$item->{$field->{name}}}));
         } elsif( $field->{type} eq 'list_br' ) {
             $cleanvalue = $item->{$field->{name}};
@@ -134,7 +134,7 @@ sub process_item_field {
             my $extension = $1;
             if(
                 !$self->file->existent(
-                    $self->images_dir.
+                    $self->base_dir . $self->images_dir.
                     $self->file->SL.
                     $self->category.
                     $self->file->SL.
@@ -143,14 +143,14 @@ sub process_item_field {
             ) {
                 my $image = get($image_url);
                 $self->file->write_file(
-                  'file' => $self->images_dir . $self->file->SL . $self->category . $self->file->SL . $item->{id} . "." . $extension,
+                  'file' => $self->base_dir . $self->images_dir . $self->file->SL . $self->category . $self->file->SL . $item->{id} . "." . $extension,
                   'content' => $image
                 );
             }
             if( !$self->image_cache
                 ||
                 !$self->file->existent(
-                    $self->images_dir.
+                    $self->base_dir . $self->images_dir.
                     $self->file->SL.
                     $self->category.
                     $self->file->SL.
@@ -158,11 +158,11 @@ sub process_item_field {
                 )
             ) {
                 $self->scaleImage(
-                    $self->images_dir . $self->file->SL . $self->category . $self->file->SL . $item->{id} . "." . $extension,
+                    $self->base_dir . $self->images_dir . $self->file->SL . $self->category . $self->file->SL . $item->{id} . '.' . $extension,
                     500
                 );
             }
-            $cleanvalue = $self->c->uri_for('static/images/'. $self->category . '/' . $item->{id} . "_thumb.jpg");
+            $cleanvalue = $self->c->uri_for($self->images_dir . '/' . $self->category . '/' . $item->{id} . '_thumb.jpg');
         }
     } else {
 #        $cleanvalue = $self->hs->parse($item->{$field->{name}});

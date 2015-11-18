@@ -1,6 +1,6 @@
-[% INSERT html_templates/introduction.tt.html %]
+[% INSERT html_templates_2016/introduction.tt.html %]
 
-[% INSERT html_templates/index.tt.html %]
+[% INSERT html_templates_2016/index.tt.html %]
 
 <div id="fiction" name="fiction" class="category">
     [% fiction %]
@@ -27,7 +27,7 @@
 </div>
 
 <div id="eventsinstitutions" name="eventsinstitutions">
-[% PROCESS html_templates/eventsinstitutions.tt.html %]
+[% PROCESS html_templates_2016/eventsinstitutions.tt.html %]
 </div>
 
 <div id="titleindex" name="titleindex">
@@ -35,5 +35,5 @@
 </div>
 
 <div id="credits" name="credits">
-    [% PROCESS html_templates/credits.tt.html %]
+    [% PROCESS html_templates_2016/credits.tt.html %]
 </div>

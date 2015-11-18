@@ -19,7 +19,7 @@
 }
 */
 html {
-   
+
 }
 
 a {
@@ -33,7 +33,7 @@ a:hover {
 
 h2 {
     margin: 12px 0 4px 0;
-} 
+}
 
 p {
     margin: 2px 0;
@@ -56,21 +56,21 @@ font-size: 50%;
 /*
  * Section colors
  * */
-.fiction-color, .fiction-color a, .fiction .category-title { 
-	color: #ee7724; 
+.fiction-color, .fiction-color a, .fiction .category-title {
+	color: #ee7724;
 }
 
-.documentary-color, .documentary-color a, .documentary .category-title { 
-	color: #00953b; 
+.documentary-color, .documentary-color a, .documentary .category-title {
+	color: #00953b;
 }
 .animation-color, .animation-color a, .animation .category-title {
 	color: #cb3726;
 }
 .formats-color, .formats-color a, .formats .category-title {
-	color: #0078ca; 
+	color: #0078ca;
 }
 .videogames-color, .videogames-color a, .videogames .category-title {
-	color: #6d207c; 
+	color: #6d207c;
 }
 
 div.category .upcoming p,
@@ -105,7 +105,7 @@ div.category-entry {
 div.category-entry-info {
     position: absolute;
     bottom: 30px;
-    left: 0;    
+    left: 0;
 }
 
 div.category-entry-info h2 {
@@ -162,20 +162,20 @@ div.category p {
  * Introduction
  * */
 div.introduction {
-    text-align: center;	
+    text-align: center;
     background: url('/static/images/bg-introduction2.jpg') no-repeat 0 0;
 }
 
 	div.introduction p.categories {
 		font-size: 30px;
 	}
-	
+
 	div.introduction .credits {
 		font-size: 16px;
 		margin-top: 60px;
 		font-weight: bold;
 	}
-	
+
 		div.introduction .credits span {
 			color: #b2270a;
 		}
@@ -265,7 +265,7 @@ div.credits {
  * Index
  * */
 div.index {
-    
+
 }
 
     div.index .left {
@@ -282,26 +282,28 @@ div.index {
         div.index .left p {
             font-size: 16px;
             margin-left: -40px;
-font-weight: 300;
+            font-weight: 300;
         }
 
     div.index .right {
         width: 512px;
         float: left;
         padding-left: 35px;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
         margin-top: 40px;
     }
-	
+
 		div.index .right h2 {
 			font-size: 28px;
             font-weight: 400;
-		margin-top: 12px;}
-		
+		    margin-top: 12px;
+        }
+
 		div.index .right p {
 			font-size: 18px;
-	    font-weight: 300;
-	line-height: 24px;	}
+            font-weight: 300;
+            line-height: 24px;
+        }
 
         div.index .right p a {
             color: #333;
@@ -314,7 +316,7 @@ font-weight: 300;
         padding-top: 5px;
         border-top: 1px dashed #000;
     }
-	
+
 		div.index .bottom  p {
 			font-size: 14px;
 line-height: 19px;
@@ -325,26 +327,26 @@ line-height: 19px;
  * */
 
 #fiction div.upcoming {
-    background: url('/static/images/bg-fiction.jpg') repeat-y 0 0; 
+    background: url('/static/images/bg-fiction.jpg') repeat-y 0 0;
 }
 
 #documentary div.upcoming {
-    background: url('/static/images/bg-documentary.jpg') repeat-y 0 0; 
+    background: url('/static/images/bg-documentary.jpg') repeat-y 0 0;
 }
 
 #animation div.upcoming {
-    background: url('/static/images/bg-animation.jpg') repeat-y 0 0; 
+    background: url('/static/images/bg-animation.jpg') repeat-y 0 0;
 }
 
 #formats div.upcoming {
-    background: url('/static/images/bg-formats.jpg') repeat-y 0 0; 
+    background: url('/static/images/bg-formats.jpg') repeat-y 0 0;
 }
 
 #videogames div.upcoming {
-    background: url('/static/images/bg-videogames.jpg') repeat-y 0 0; 
+    background: url('/static/images/bg-videogames.jpg') repeat-y 0 0;
 }
 
-/* 
+/*
  * Page
  * */
 
@@ -386,7 +388,7 @@ div.page p.subcategory {
     }
 
     div.page p.subcategory span.catalanspoke-label {
-        font-size: 33px; 
+        font-size: 33px;
 font-family: Franklin Gothic;
     }
 
@@ -441,7 +443,7 @@ div.page p.extra-info {
     padding-left: 0;
     padding-right: 0;
     bottom: 18px;
-} 
+}
 
 /*
  * Index Titles
@@ -468,17 +470,17 @@ div.title-index .header p.title {
     font-weight: 400;
 }
 
-div.title-index .header p.sub-title {   
+div.title-index .header p.sub-title {
     color: #000;
     font-size: 19px;
-    font-weight: 300;    
+    font-weight: 300;
 }
 
-div.title-index .header p.sub-title span {   
+div.title-index .header p.sub-title span {
     float: left;
 }
 
-div.title-index .header p.sub-title span.year {   
+div.title-index .header p.sub-title span.year {
     float: right;
     font-size: 25px;
 }
@@ -524,7 +526,7 @@ div.title-index .column p.title-value {
 }
 
 div.title-index .column p.contact-value {
-    font-weight: 300;    
+    font-weight: 300;
     font-size: 15px;
     width: 100%;
     white-space: nowrap;
