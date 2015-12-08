@@ -1,0 +1,551 @@
+@font-face {
+	font-family: "AkzidenzGrotesk";
+	src: url("/static/fonts/AkzidenzGrotesk-Regular.otf");
+}
+
+@font-face {
+	font-family: "AkzidenzGrotesk-Light";
+	src: url("/static/fonts/AkzidenzGrotesk-Light.otf");
+}
+
+@font-face {
+	font-family: "AkzidenzGrotesk-Medium";
+	src: url("/static/fonts/AkzidenzGrotesk-Medium.otf");
+}
+
+@font-face {
+	font-family: "FranklinGothicRoman";
+	src: url("/static/fonts/FranklinGothicRoman.ttf");
+}
+
+html {
+
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h2 {
+    margin: 12px 0 4px 0;
+}
+
+p {
+    margin: 2px 0;
+}
+
+body {
+	font-family: "AkzidenzGrotesk",helvetica, arial, sans-serif;
+    font-size: 50%;
+    background-color: #fff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#main-container {
+    width: [% site.page_width %];
+    margin: 0 auto;
+}
+
+/*
+ * Section colors
+ * */
+.fiction-color, .fiction-color a, .fiction .category-title {
+	color: #ee7724;
+}
+
+.documentary-color, .documentary-color a, .documentary .category-title {
+	color: #00953b;
+}
+.animation-color, .animation-color a, .animation .category-title {
+	color: #cb3726;
+}
+.formats-color, .formats-color a, .formats .category-title {
+	color: #0078ca;
+}
+.videogames-color, .videogames-color a, .videogames .category-title {
+	color: #6d207c;
+}
+
+div.category .upcoming p,
+div.category .upcoming a {
+    color: #fff;
+}
+
+div.page.upcoming p.subcategory,
+div.page.upcoming p.extra-info {
+    border-bottom: 1px dashed #fff;
+}
+
+/*
+ * Page style
+ * */
+div.page {
+    width: [% site.page_width %];
+    height: [% site.page_height %];
+    page-break-after: always;
+    background: url('/static/images/bg-page2.jpg') repeat-y 0 0;
+/*    overflow: hidden;*/
+}
+
+div.category-entry {
+    position: relative;
+}
+
+/*div.category-entry img {*/
+/*    width: 101.2%;*/
+/*}*/
+
+div.category-entry-info {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+}
+
+div.category-entry-info h2 {
+    font-size: 32px;
+    font-weight: 400;
+}
+
+div.category-entry-info p {
+    font-size: 21px;
+    font-weight: 400;
+}
+
+div.category-entry-info p a {
+font-weight: 300;
+    color: #000;
+}
+
+div.category-entry-info p a.selected {
+    font-size: 40px;
+}
+
+div.page a.link-production {
+    float: right;
+    clear: right;
+    width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    font-size: 17px;
+    font-weight: 300;
+    text-decoration: none;
+    margin-top: 6px;
+}
+
+div.page .container-details {
+    min-height: 355px;
+    width: 468px;
+}
+
+div.inner-content {
+	width: 96%;
+	margin: 0 auto;
+	padding: 10px 0;
+    position: relative;
+    height: 680px;
+}
+
+div.category p {
+	color: #000;
+}
+
+/*
+ * Introduction
+ * */
+div.introduction {
+    text-align: center;
+    background: url('/static/images/bg-introduction2.jpg') no-repeat 0 0;
+}
+
+	div.introduction p.categories {
+		font-size: 30px;
+	}
+
+	div.introduction .credits {
+		font-size: 16px;
+		margin-top: 60px;
+		font-weight: bold;
+	}
+
+		div.introduction .credits span {
+			color: #b2270a;
+		}
+
+/*
+ * Credits
+ * */
+div.credits {
+/*    text-align: center;	*/
+/*    background: url('/static/images/bg-credits.jpg') no-repeat 0 0;*/
+}
+
+    div.credits .inner {
+        width: 573px;
+        margin: 0 auto;
+        padding-top: 100px;
+    }
+
+    div.credits .inner a {
+	display: block;
+    }
+
+        div.credits .bottom {
+            width: 100%;
+            border-top: 1px solid #000;
+            margin-top: 20px;
+            padding-top: 25px;
+        }
+
+        div.credits .bottom img.proa {
+            margin-right: 49px;
+        }
+
+        div.credits .bottom p {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        div.credits .bottom a {
+            display: inline-block;
+            margin-right: 49px;
+            margin-bottom: 10px;
+        }
+
+            div.credits .bottom a.last {
+                margin-right: 0;
+            }
+
+        div.credits .footer {
+            width: 90%;
+            overflow: hidden;
+            margin: 150px auto 0 auto;
+            padding: 7px 0 12px 0;
+            border-top: 1px dashed #000;
+            border-bottom: 1px dashed #000;
+        }
+
+        div.credits .footer a.catalanfilms {
+            float: left;
+            height: 54px;
+            display: block;
+            border-right: 1px dashed #000;
+            padding-right: 17px;
+        }
+
+        div.credits .footer p {
+            float: left;
+            font-size: 15px;
+            margin-left: 22px;
+            margin-top: 22px;
+        }
+
+        div.credits p.design-guime {
+            text-align: right;
+            font-size: 1.3em;
+            width: 90%;
+            margin: 8px auto 0 auto;
+            display: block;
+        }
+
+            div.credits p.design-guime a {
+                display: inline-block;
+                font-weight: 600;
+            }
+
+/*
+ * Index
+ * */
+div.index {
+
+}
+
+    div.index .left {
+        width: 470px;
+        float: left;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+        div.index .left img {
+            margin-top: 276px;
+        }
+
+        div.index .left p {
+            font-size: 16px;
+            margin-left: -40px;
+            font-weight: 300;
+        }
+
+    div.index .right {
+        width: 512px;
+        float: left;
+        padding-left: 35px;
+        margin-bottom: 30px;
+        margin-top: 40px;
+    }
+
+		div.index .right h2 {
+			font-size: 28px;
+            font-weight: 400;
+		    margin-top: 12px;
+        }
+
+		div.index .right p {
+			font-size: 18px;
+            font-weight: 300;
+            line-height: 24px;
+        }
+
+        div.index .right p a {
+            color: #333;
+        }
+
+    div.index .bottom {
+        margin: 0 auto;
+        width: 96%;
+        clear: both;
+        padding-top: 5px;
+        border-top: 1px dashed #000;
+    }
+
+		div.index .bottom  p {
+			font-size: 14px;
+line-height: 19px;
+		}
+
+/*
+ * Upcomings by Section
+ * */
+
+#fiction div.upcoming {
+    background: url('/static/images/bg-fiction.jpg') repeat-y 0 0;
+}
+
+#documentary div.upcoming {
+    background: url('/static/images/bg-documentary.jpg') repeat-y 0 0;
+}
+
+#animation div.upcoming {
+    background: url('/static/images/bg-animation.jpg') repeat-y 0 0;
+}
+
+#formats div.upcoming {
+    background: url('/static/images/bg-formats.jpg') repeat-y 0 0;
+}
+
+#videogames div.upcoming {
+    background: url('/static/images/bg-videogames.jpg') repeat-y 0 0;
+}
+
+/*
+ * Page
+ * */
+
+div.page p.category-title {
+	font-size: 28px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+div.page p.subcategory {
+	border-bottom: 1px dashed #000;
+    padding-top: 0;
+    margin-top: 0;
+	padding-bottom: 4px;
+	margin-bottom: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+
+    div.page p.subcategory span.format {
+        font-size: 18px;
+        float: left;
+        margin-top: 6px;
+	font-weight: 300;
+    }
+
+    div.page p.subcategory span {
+        float: right;
+    }
+
+    div.page p.subcategory span.upcoming-label,
+    div.page p.subcategory span.sep {
+        font-size: 25px;
+    }
+
+    div.page p.subcategory span.sep {
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    div.page p.subcategory span.catalanspoke-label {
+        font-size: 33px;
+        font-family: "FranklinGothicRoman";
+    }
+
+div.page p.title {
+	font-size: 31px;
+	margin-top: 5px;
+}
+
+div.page p.title-original {
+	font-size: 26px;
+    font-weight:300;
+    margin-top: 0;
+}
+
+div.page p.director {
+	font-size: 21px;
+    font-weight: 300;
+    margin-bottom: 11px;
+}
+
+div.category img {
+	margin-top: 5px;
+	float: right;
+    margin-left: 5px;
+}
+
+div.page p.details span.name {
+	font-size: 24px;
+}
+
+div.page p.details span.value {
+	font-size: 17px;
+    line-height: 21px;
+    font-weight: 300;
+}
+
+div.page p.sinopsis {
+	font-size: 17px;
+    font-weight: 300;
+line-height: 19px;
+}
+
+div.page p.extra-info {
+    font-weight: 300;
+    font-size: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #000;
+    position: absolute;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    bottom: 18px;
+}
+
+/*
+ * Index Titles
+ * */
+
+div.title-index .header {
+    width: 100%;
+    border-bottom: 1px dashed #000;
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+div.title-index .header p {
+    margin: 4px 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+div.title-index .header p.title {
+    color: #000;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+div.title-index .header p.sub-title {
+    color: #000;
+    font-size: 19px;
+    font-weight: 300;
+}
+
+div.title-index .header p.sub-title span {
+    float: left;
+}
+
+div.title-index .header p.sub-title span.year {
+    float: right;
+    font-size: 25px;
+}
+
+div.title-index .column {
+    width: 32%;
+    float: left;
+    padding-right: 1%;
+}
+
+div.sales-producers .header {
+    margin-bottom: 10px;
+}
+
+div.sales-producers .column {
+    width: 50%;
+    padding-right: 0;
+}
+
+div.title-index .column p.letter {
+    font-size: 265px;
+    color: #000;
+    margin: 0;
+    padding: 40px 0 7px 0;
+    line-height: 172px;
+font-weight: 600;
+letter-spacing: 14px;}
+
+div.sales-producers .column p.letter {
+font-weight: 600;
+    padding: 54px 0 25px 0;
+letter-spacing: 14px;
+}
+
+div.title-index .column p.title-value {
+    font-size: 17px;
+    margin: 0;
+    padding: 0 0 5px 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.title-index .column p.contact-value {
+    font-weight: 300;
+    font-size: 15px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.sales-producers .column p.contact-value a {
+    color: #333;
+}
+
+div.sales-producers .column p.title-value {
+    padding-bottom: 0;
+    margin-top: 13px;
+    font-size: 16px;
+    color: #000;
+}
+
+    div.sales-producers .column p.title-value span.special {
+        font-size: 14px;
+        color: #333;
+    }

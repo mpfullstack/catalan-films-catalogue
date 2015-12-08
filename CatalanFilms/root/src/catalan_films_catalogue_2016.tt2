@@ -1,6 +1,8 @@
-[% INSERT html_templates_2015/introduction.tt.html %]
+[% Catalyst.log.debug("site year $site.year") %]
 
-[% INSERT html_templates_2015/index.tt.html %]
+[% INSERT html_templates_2016/introduction.tt.html %]
+
+[% INSERT html_templates_2016/index.tt.html %]
 
 <div id="fiction" name="fiction" class="category">
     [% fiction %]
@@ -27,7 +29,7 @@
 </div>
 
 <div id="eventsinstitutions" name="eventsinstitutions">
-[% PROCESS html_templates_2015/eventsinstitutions.tt.html %]
+[% PROCESS html_templates_2016/eventsinstitutions.tt.html %]
 </div>
 
 <div id="titleindex" name="titleindex">
@@ -35,5 +37,5 @@
 </div>
 
 <div id="credits" name="credits">
-    [% PROCESS html_templates_2015/credits.tt.html %]
+    [% PROCESS html_templates_2016/credits.tt.html %]
 </div>

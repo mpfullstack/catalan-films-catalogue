@@ -306,7 +306,9 @@ sub index : Path("catalogue") {
         grouped_film_names => $self->group_by_alphabet("title", @sorted_film_names)
     });
 
-    $c->stash->{template} = "catalan_films_catalogue_2015.tt2";
+    $c->stash->{template} = "catalan_films_catalogue_$year.tt2";
+    $c->log->debug("Year " . $year);
+    $c->stash->{year} = $year;
     $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width};
     $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}
 }

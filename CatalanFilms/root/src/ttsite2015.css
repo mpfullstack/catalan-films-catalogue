@@ -1,4 +1,4 @@
-/*@font-face {
+@font-face {
 	font-family: "AkzidenzGrotesk";
 	src: url("/static/fonts/AkzidenzGrotesk-Regular.otf");
 }
@@ -17,7 +17,7 @@
 	font-family: "FranklinGothicRoman";
 	src: url("/static/fonts/FranklinGothicRoman.ttf");
 }
-*/
+
 html {
 
 }
@@ -40,8 +40,8 @@ p {
 }
 
 body {
-	font-family: /*Akzidenz-Grotesk BQ,*/helvetica, arial, sans-serif;
-font-size: 50%;
+	font-family: "AkzidenzGrotesk",helvetica, arial, sans-serif;
+    font-size: 50%;
     background-color: #fff;
     color: #333;
     margin: 0;
@@ -389,7 +389,7 @@ div.page p.subcategory {
 
     div.page p.subcategory span.catalanspoke-label {
         font-size: 33px;
-font-family: Franklin Gothic;
+        font-family: "FranklinGothicRoman";
     }
 
 div.page p.title {

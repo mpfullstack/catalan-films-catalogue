@@ -1,4 +1,5 @@
-[% 
-    site.page_width = page_width 
-    site.page_height = page_height 
+[%
+    site.page_width = page_width
+    site.page_height = page_height
+    site.year = year
 -%]
