@@ -105,6 +105,8 @@ div.page {
     width: [% site.page_width %];
     height: [% site.page_height %];
     page-break-after: always;
+    /* Temporal */
+    margin: 5px 0;
 }
 
 div.category-entry {
