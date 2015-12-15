@@ -24,7 +24,7 @@ html {
 
 a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
 }
 
 a:hover {
@@ -41,7 +41,7 @@ p {
 
 body {
 	font-family: "AkzidenzGrotesk",helvetica, arial, sans-serif;
-    font-size: 50%;
+/*    font-size: 50%;*/
     background-color: #fff;
     color: #333;
     margin: 0;
@@ -57,17 +57,32 @@ body {
  * Section colors
  * */
 .fiction-color, .fiction-color a, .fiction .category-title {
-	color: #ee7724;
+	color: #ffb369;
+}
+#fiction div.page {
+    background-color: #ffdf77;
+}
+#fiction div.page p.extra-info span {
+    background-color: #ffb369;
+    color: #fff;
 }
 
 .documentary-color, .documentary-color a, .documentary .category-title {
-	color: #00953b;
+	color: #79c68f;
 }
+#documentary div.page {
+    background-color: #79c68f;
+}
+#documentary div.page p.extra-info span {
+    background-color: #fff;
+    color: #000;
+}
+
 .animation-color, .animation-color a, .animation .category-title {
-	color: #cb3726;
+	color: #e46e7d;
 }
 .formats-color, .formats-color a, .formats .category-title {
-	color: #0078ca;
+	color: #b378b4;
 }
 .videogames-color, .videogames-color a, .videogames .category-title {
 	color: #6d207c;
@@ -90,8 +105,6 @@ div.page {
     width: [% site.page_width %];
     height: [% site.page_height %];
     page-break-after: always;
-    background: url('/static/images/bg-page2.jpg') repeat-y 0 0;
-/*    overflow: hidden;*/
 }
 
 div.category-entry {
@@ -104,27 +117,68 @@ div.category-entry {
 
 div.category-entry-info {
     position: absolute;
-    bottom: 30px;
+    top: 0;
     left: 0;
 }
 
-div.category-entry-info h2 {
-    font-size: 32px;
+div.category-entry-info div.main-menu p {
+    font-size: 20px;
+    letter-spacing: 0;
+    font-family: "AkzidenzGrotesk-Medium";
     font-weight: 400;
+    display: inline-block;
+    padding: 35px 15px 15px 15px;
+    margin-top: 0;
 }
 
+    div.category-entry-info div.main-menu p.selected {
+        font-size: 34px;
+        letter-spacing: -0.01in;
+    }
+
+    div.category-entry-info div.main-menu p a {
+        color: #000;
+        font-family: "AkzidenzGrotesk-Medium";
+    }
+
+    div.category-entry-info div.main-menu p.selected a {
+        color: #fff;
+    }
+
 div.category-entry-info p {
-    font-size: 21px;
+    font-size: 16px;
     font-weight: 400;
+    margin-top: 14px;
 }
 
 div.category-entry-info p a {
-font-weight: 300;
+    font-family: "AkzidenzGrotesk";
     color: #000;
+    padding: 7px 20px;
 }
 
 div.category-entry-info p a.selected {
-    font-size: 40px;
+    color: #fff;
+}
+
+/* Specific color sections */
+
+/* Fiction */
+#fiction div.category-entry-info p a.selected,
+#fiction div.category-entry-info div.main-menu p.selected {
+    background-color: #ffb369;
+    color: #fff;
+}
+
+/* Documentary */
+#documentary div.category-entry-info p a.selected,
+#documentary div.category-entry-info div.main-menu p.selected {
+    background-color: #fff;
+    color: #000;
+}
+
+#documentary div.category-entry-info div.main-menu p.selected a {
+    color: #000;
 }
 
 div.page a.link-production {
@@ -142,17 +196,25 @@ div.page a.link-production {
 }
 
 div.page .container-details {
-    min-height: 355px;
-    width: 468px;
+    min-height: 590px;
+    width: 100%;
+    position: absolute;
+    top: 0;
 }
 
 div.inner-content {
 	width: 96%;
 	margin: 0 auto;
-	padding: 10px 0;
+	padding: 0;
     position: relative;
-    height: 680px;
+    height: 800px;
 }
+
+    div.inner-content div.container-content {
+        position: absolute;
+        top: 180px;
+        width: 100%;
+    }
 
 div.category p {
 	color: #000;
@@ -163,7 +225,7 @@ div.category p {
  * */
 div.introduction {
     text-align: center;
-    background: url('/static/images/bg-introduction2.jpg') no-repeat 0 0;
+    background: url('/static/images_2016/bg-intro.jpg') no-repeat 0 0;
 }
 
 	div.introduction p.categories {
@@ -265,7 +327,8 @@ div.credits {
  * Index
  * */
 div.index {
-
+    text-align: center;
+    background: url('/static/images_2016/bg-index.jpg') no-repeat 0 0;
 }
 
     div.index .left {
@@ -286,17 +349,25 @@ div.index {
         }
 
     div.index .right {
-        width: 512px;
-        float: left;
+        width: 600px;
+        text-align: left;
+        float: right;
         padding-left: 35px;
         margin-bottom: 30px;
-        margin-top: 40px;
+        margin-top: 70px;
+        height: 600px;
+        position: relative;
     }
 
 		div.index .right h2 {
-			font-size: 28px;
+            font-family: "AkzidenzGrotesk-Medium";
+			font-size: 58px;
+            letter-spacing: -0.01in;
             font-weight: 400;
-		    margin-top: 12px;
+		    margin-top: 1px;
+            margin-bottom: 1px;
+            padding: 0;
+            line-height: 44px;
         }
 
 		div.index .right p {
@@ -309,17 +380,28 @@ div.index {
             color: #333;
         }
 
+        div.index .right p.catalan-production-text {
+            color: #666;
+            font-size: 16px;
+            padding-left: 40px;
+            position: absolute;
+            bottom: 0;
+            margin-left: 4px;
+            background: url('/static/images_2016/catalan-mini-logo.png') no-repeat 0 0;
+        }
+
     div.index .bottom {
         margin: 0 auto;
         width: 96%;
         clear: both;
         padding-top: 5px;
-        border-top: 1px dashed #000;
+        color: #666;
     }
 
-		div.index .bottom  p {
-			font-size: 14px;
-line-height: 19px;
+		div.index .bottom p {
+			font-size: 16px;
+            line-height: 19px;
+/*            font-family: "AkzidenzGrotesk-Light";*/
 		}
 
 /*
@@ -394,56 +476,69 @@ div.page p.subcategory {
 
 div.page p.title {
 	font-size: 31px;
-	margin-top: 5px;
+	margin-top: 370px;
+    margin-left: 5px;
 }
 
 div.page p.title-original {
-	font-size: 26px;
-    font-weight:300;
+	font-size: 31px;
+    font-weight: 700;
     margin-top: 0;
+    margin-left: 5px;
 }
 
 div.page p.director {
-	font-size: 21px;
+	font-size: 15px;
     font-weight: 300;
-    margin-bottom: 11px;
+    margin-bottom: 0;
+    margin-left: 5px;
+    line-height: 18px;
 }
 
 div.category img {
 	margin-top: 5px;
-	float: right;
+	float: left;
     margin-left: 5px;
 }
 
-div.page p.details span.name {
-	font-size: 24px;
+div.page p.details {
+    margin-left: 5px;
 }
 
+div.page p.details span.name,
 div.page p.details span.value {
-	font-size: 17px;
-    line-height: 21px;
+	font-size: 15px;
+    line-height: 18px;
     font-weight: 300;
 }
 
 div.page p.sinopsis {
-	font-size: 17px;
+	font-size: 19px;
     font-weight: 300;
-line-height: 19px;
+    line-height: 23px;
+    width: 52%;
+    float: right;
 }
 
 div.page p.extra-info {
-    font-weight: 300;
-    font-size: 20px;
+    font-weight: 700;
+    font-size: 26px;
     padding-bottom: 8px;
-    border-bottom: 1px dashed #000;
     position: absolute;
-    width: 100%;
+    right: 0;
+    width: 52%;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
     padding-right: 0;
-    bottom: 18px;
+    bottom: 0;
+    line-height: 46px;
 }
+
+    div.page p.extra-info span {
+        padding: 3px 8px;
+        white-space: nowrap;
+    }
 
 /*
  * Index Titles
@@ -506,13 +601,14 @@ div.title-index .column p.letter {
     margin: 0;
     padding: 40px 0 7px 0;
     line-height: 172px;
-font-weight: 600;
-letter-spacing: 14px;}
+    font-weight: 600;
+    letter-spacing: 14px;
+}
 
 div.sales-producers .column p.letter {
-font-weight: 600;
+    font-weight: 600;
     padding: 54px 0 25px 0;
-letter-spacing: 14px;
+    letter-spacing: 14px;
 }
 
 div.title-index .column p.title-value {

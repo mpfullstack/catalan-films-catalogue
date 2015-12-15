@@ -159,7 +159,7 @@ sub process_item_field {
             ) {
                 $self->scaleImage(
                     $self->base_dir . $self->images_dir . $self->file->SL . $self->category . $self->file->SL . $item->{id} . '.' . $extension,
-                    500
+                    560
                 );
             }
             $cleanvalue = $self->c->uri_for($self->images_dir . '/' . $self->category . '/' . $item->{id} . '_thumb.jpg');

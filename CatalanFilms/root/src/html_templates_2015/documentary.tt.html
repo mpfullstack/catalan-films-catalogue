@@ -4,10 +4,10 @@
         <div class="category-entry-info">
             <h2 class="documentary-color">Documentary /</h2>
             <p>
-                <a href="#documentary-featurefilms"%% IF format_id == "documentary-featurefilms" %% class="selected"%% END %%>Feature Films</a> / 
-                <a href="#documentary-shortfilms"%% IF format_id == "documentary-shortfilms" %% class="selected"%% END %%>Short Films</a> / 
+                <a href="#documentary-featurefilms"%% IF format_id == "documentary-featurefilms" %% class="selected"%% END %%>Feature Films</a> /
+                <a href="#documentary-shortfilms"%% IF format_id == "documentary-shortfilms" %% class="selected"%% END %%>Short Films</a> /
                 <a href="#documentary-televisiondocumentaries"%% IF format_id == "documentary-televisiondocumentaries" %% class="selected"%% END %%>TV Documentaries</a><br />
-                <a href="#documentary-televisiondocumentariesseries"%% IF format_id == "documentary-televisiondocumentariesseries" %% class="selected"%% END %%>Documentary Series</a> / 
+                <a href="#documentary-televisiondocumentariesseries"%% IF format_id == "documentary-televisiondocumentariesseries" %% class="selected"%% END %%>Documentary Series</a> /
                 <a href="#documentary-transmedia"%% IF format_id == "documentary-transmedia" %% class="selected"%% END %%>Transmedia</a>
             </p>
         </div>
@@ -46,15 +46,15 @@
         </div>
 
         <p class="details"><span class="name">Synopsis</span></p>
-        <p class="sinopsis">%% sinopsis %%</p>		
+        <p class="sinopsis">%% sinopsis %%</p>
         <p class="extra-info">
-        %% IF gender; gender _ " / "; END; %% 
+        %% IF gender; gender _ " / "; END; %%
         %% IF duration; duration _ "' /"; END; %%
         %% IF color; color _ " /"; END; %%
         %% IF tech; tech _ " / "; END; %%
         %% IF sound; sound _ " / "; END; %%
         %% IF public; public _ " / "; END; %%
         %% IF vo; vo; END; %%
-        </p>		
+        </p>
 	</div>
 </div>

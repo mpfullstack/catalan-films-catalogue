@@ -1,5 +1,3 @@
-[% Catalyst.log.debug("site year $site.year") %]
-
 [% INSERT html_templates_2016/introduction.tt.html %]
 
 [% INSERT html_templates_2016/index.tt.html %]

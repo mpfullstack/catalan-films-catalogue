@@ -42,12 +42,13 @@ sub index : Path("catalogue") {
     $year = 2016 unless $year;
     $category = "all" unless $category;
     $ppi = 72 unless $ppi;
+    if( $year == 2016 ) {
+        $ppi = "custom";
+    }
     my $A4_LANSCAPE = {
         72  => {
             width  => "1024px",
             height => "700px"
-#            width  => "842px",
-#            height => "595px"
         },
         200 => {
             width  => "2339px",
@@ -56,6 +57,10 @@ sub index : Path("catalogue") {
         300 => {
             width  => "3508px",
             height => "2480px"
+        },
+        custom => {
+            width  => "1280px",
+            height => "800px"
         }
     };
 
@@ -72,7 +77,8 @@ sub index : Path("catalogue") {
         images_dir        => $images_dir,
         config_dir        => $c->config->{config_dir},
         c                 => $c,
-        image_cache       => 1
+        image_cache       => 0,
+        json_cache        => 0
     );
 
     my @categories;
@@ -170,6 +176,7 @@ sub index : Path("catalogue") {
 
         foreach my $item (@filmsSortByFormat) {
             my $current_format_id = lc($data->{films}->{$item}->{format});
+            $attrs->{category} = $cat;
             if(
                 $cat eq "formats"
                 and
@@ -214,10 +221,11 @@ sub index : Path("catalogue") {
                 if( !$format_id || $format_id ne $current_format_id ) {
                     $format_id = $current_format_id;
                     $attrs->{format_id} = $current_format_id;
-                } elsif ( $format_id eq $current_format_id ) {
+                }
+                elsif ( $format_id eq $current_format_id ) {
                     $attrs->{format_id} = "";
                 }
-                $c->log->debug("item " . $item);
+                $attrs->{current_format_id} = $current_format_id;
                 foreach my $field (@fields) {
                     if( $field->{output_name} ) {
                         $attrs->{$field->{output_name}} = $jth->process_item_field($data->{films}->{$item}, $field);
