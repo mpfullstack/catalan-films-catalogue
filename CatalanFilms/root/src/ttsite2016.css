@@ -81,9 +81,25 @@ body {
 .animation-color, .animation-color a, .animation .category-title {
 	color: #e46e7d;
 }
+#animation div.page {
+    background-color: #ffdf77;
+}
+#animation div.page p.extra-info span {
+    background-color: #ffb369;
+    color: #fff;
+}
+
 .formats-color, .formats-color a, .formats .category-title {
 	color: #b378b4;
 }
+#formats div.page {
+    background-color: #ffdf77;
+}
+#formats div.page p.extra-info span {
+    background-color: #ffb369;
+    color: #fff;
+}
+
 .videogames-color, .videogames-color a, .videogames .category-title {
 	color: #6d207c;
 }
@@ -129,7 +145,7 @@ div.category-entry-info div.main-menu p {
     font-family: "AkzidenzGrotesk-Medium";
     font-weight: 400;
     display: inline-block;
-    padding: 35px 15px 15px 15px;
+    padding: 35px 0 15px;
     margin-top: 0;
 }
 
@@ -178,8 +194,27 @@ div.category-entry-info p a.selected {
     background-color: #fff;
     color: #000;
 }
-
 #documentary div.category-entry-info div.main-menu p.selected a {
+    color: #000;
+}
+
+/* Animation */
+#animation div.category-entry-info p a.selected,
+#animation div.category-entry-info div.main-menu p.selected {
+    background-color: #fff;
+    color: #000;
+}
+#animation div.category-entry-info div.main-menu p.selected a {
+    color: #000;
+}
+
+/* Formats */
+#formats div.category-entry-info p a.selected,
+#formats div.category-entry-info div.main-menu p.selected {
+    background-color: #fff;
+    color: #000;
+}
+#formats div.category-entry-info div.main-menu p.selected a {
     color: #000;
 }
 
@@ -196,6 +231,29 @@ div.page a.link-production {
     text-decoration: none;
     margin-top: 6px;
 }
+
+div.page .properties {
+    position: absolute;
+    top: 130px;
+    right: 0;
+}
+
+    div.page .properties span.catalanspoke-label,
+    div.page .properties span.upcoming-label {
+        font-size: 28px;
+        padding: 5px 5px 3px 5px;
+        font-family: "FranklinGothicRoman";
+    }
+
+    div.page .properties span.catalanspoke-label {
+        background-color: #fff;
+        color: #000;
+    }
+
+    div.page .properties span.upcoming-label {
+        background-color: #ec3e6c;
+        color: #fff;
+    }
 
 div.page .container-details {
     min-height: 590px;
@@ -482,6 +540,10 @@ div.page p.title {
     margin-left: 5px;
 }
 
+div.page p.title a {
+    color: #000;
+}
+
 div.page p.title-original {
 	font-size: 31px;
     font-weight: 700;
@@ -601,7 +663,7 @@ div.title-index .column p.letter {
     font-size: 265px;
     color: #000;
     margin: 0;
-    padding: 40px 0 7px 0;
+    padding: 25px 0 65px;
     line-height: 172px;
     font-weight: 600;
     letter-spacing: 14px;
@@ -621,6 +683,10 @@ div.title-index .column p.title-value {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+div.title-index .column p.title-value a {
+    color: #000;
 }
 
 div.title-index .column p.contact-value {
@@ -646,4 +712,8 @@ div.sales-producers .column p.title-value {
     div.sales-producers .column p.title-value span.special {
         font-size: 14px;
         color: #333;
+    }
+
+    div.sales-producers .column p.title-value a {
+        color: #000;
     }

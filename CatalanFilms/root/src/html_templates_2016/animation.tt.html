@@ -1,24 +1,19 @@
-%% IF format_id %%
-<!--<div id="%% format_id %%" name="%% format_id %%" class="page category-entry">-->
-<!--    <div class="inner-content">-->
-<!--        %% PROCESS catalogue_menu.tt.html %%-->
-<!--    </div>-->
-<!--</div>-->
-%% END %%
-<div id="%% IF format_id;format_id;ELSE;id;END %%" name="%% IF format_id;format_id;ELSE;id;END %%" class="page fiction%% IF upcoming == 'upcoming' %% upcoming%% END %%">
+<div id="%% IF format_id;format_id;ELSE;id;END %%" name="%% IF format_id;format_id;ELSE;id;END %%" class="page fiction">
 	<div class="inner-content">
         %% PROCESS catalogue_menu.tt.html %%
-<!--        <p class="category-title">Fiction /</p>-->
-<!--            <p class="subcategory"><span class="format">%% format %%</span></p>-->
-<!--        %% IF catalanspoke == 'catalanspoken' %%<span class="catalanspoke-label">C*</span>%% END %%-->
-<!--        %% IF catalanspoke == 'catalanspoken' AND upcoming == 'upcoming' %%<span class="sep"> / </span>%% END %%-->
-<!--        %% IF upcoming == 'upcoming' %%<span class="upcoming-label">Upcoming</span>%% END %%-->
-<!--        </p>-->
+        <div class="properties">
+            %% IF upcoming == 'upcoming' %%<span class="upcoming-label">Upcoming</span>%% END %%
+            %% IF catalanspoke == 'catalanspoken' %%<span class="catalanspoke-label">C*</span>%% END %%
+        </div>
         <div class="container-content">
-            <img src="%% image_linked %%" alt="" />
             <div class="container-details">
+                <img src="%% image_linked %%" alt="" />
                 <p class="sinopsis">%% sinopsis %%</p>
-                <p class="title">%% title_en %%</p>
+                <p class="title">
+                %% IF link_produccio %%<a href="%% link_produccio %%">%% END %%
+                %% title_en %%
+                %% IF link_produccio %%</a>%% END %%
+                </p>
                 %% IF title_original %%<p class="title-original">%% title_original %%</p>%% END %%
                 <p class="director">Directed by %% directorStr %%</p>
                 %% IF script %%
@@ -54,3 +49,4 @@
         </div>
 	</div>
 </div>
+

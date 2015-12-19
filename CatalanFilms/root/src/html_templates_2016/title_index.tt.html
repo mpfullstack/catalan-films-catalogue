@@ -2,12 +2,12 @@
     <div class="inner-content">
         <div class="header">
             <p class="title">Title Index</p>
-            <p class="sub-title"><span>A-Z</span><span class="year">2015 /</span></p>
+            <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
         </div>
         <div class="column">
             <p class="letter">0/</p>
             %% FOREACH film IN grouped_film_names.0.list %%
-                <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>                
+                <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
             %% END %%
             <p class="title-value">&nbsp;</p>
             <p class="title-value">&nbsp;</p>
@@ -22,7 +22,7 @@
             <p class="letter">2/</p>
             %% FOREACH film IN grouped_film_names.2.list %%
                 <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-            %% END %%     
+            %% END %%
             <p class="title-value">&nbsp;</p>
             <p class="title-value">&nbsp;</p>
             <p class="title-value">&nbsp;</p>
@@ -35,7 +35,7 @@
             <p class="letter">4/</p>
             %% FOREACH film IN grouped_film_names.4.list %%
                 <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-            %% END %%                 
+            %% END %%
         </div>
     </div>
 </div>
@@ -49,21 +49,21 @@ FOREACH key IN grouped_film_names.keys.sort;
         <div class="inner-content">
             <div class="header">
                 <p class="title">Title Index</p>
-                <p class="sub-title"><span>A-Z</span><span class="year">2015 /</span></p>
+                <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
             </div>
             <div class="column">
                 <p class="letter">%% key %%/</p>
                 %% FOREACH film IN grouped_film_names.$key.list %%
                     <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-                    %% 
-                    count = count + 1; 
+                    %%
+                    count = count + 1;
                     IF count > 14 AND columns == 0;
                         count = 0;
                         columns = columns + 1;
                     %%
                         </div>
                         <div class="column">
-                    %% 
+                    %%
                     ELSIF count > 24 AND columns > 0;
                         count = 0;
                         columns = columns + 1;
@@ -83,7 +83,7 @@ FOREACH key IN grouped_film_names.keys.sort;
         <div class="inner-content">
             <div class="header">
                 <p class="title">Title Index</p>
-                <p class="sub-title"><span>A-Z</span><span class="year">2015 /</span></p>
+                <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
             </div>
             <div class="column">
                 %%
@@ -93,7 +93,7 @@ FOREACH key IN grouped_film_names.keys.sort;
             </div>
         </div>
     </div>
-%% 
+%%
     END;
 END;
 %%

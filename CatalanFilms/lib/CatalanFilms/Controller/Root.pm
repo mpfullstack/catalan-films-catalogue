@@ -77,7 +77,7 @@ sub index : Path("catalogue") {
         images_dir        => $images_dir,
         config_dir        => $c->config->{config_dir},
         c                 => $c,
-        image_cache       => 1,
+        image_cache       => 0,
         json_cache        => 0
     );
 

@@ -199,7 +199,7 @@ sub process_item_field {
         }
     }
 
-#    $cleanvalue =~ s/<br \/>/ /gmi;
+    $cleanvalue =~ s/<i>(.+)<i>/<em>$1<\/em>/gmi;
 
     $cleanvalue =~ s///gmi;
     $cleanvalue = $self->trim($cleanvalue);
