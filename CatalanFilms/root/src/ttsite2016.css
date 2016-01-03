@@ -290,82 +290,32 @@ div.introduction {
  * Credits
  * */
 div.credits {
-/*    text-align: center;	*/
-/*    background: url('/static/images/bg-credits.jpg') no-repeat 0 0;*/
+    position: relative;
+    background: #71D3F2 url('/static/images_2016/bg-credits.png') no-repeat center right;
 }
 
     div.credits .inner {
-        width: 573px;
         margin: 0 auto;
-        padding-top: 100px;
     }
 
-    div.credits .inner a {
-	display: block;
+    div.credits .inner a,
+    div.credits .inner p {
+	    display: inline-block;
+        color: #fff;
     }
 
-        div.credits .bottom {
-            width: 100%;
-            border-top: 1px solid #000;
-            margin-top: 20px;
-            padding-top: 25px;
-        }
+    div.credits .inner p.credits-address {
+        position: absolute;
+        bottom: 165px;
+        left: 90px;
+    }
 
-        div.credits .bottom img.proa {
-            margin-right: 49px;
-        }
+    div.credits .logos {
+        position: absolute;
+        bottom: 20px;
+        left: 60px;
+    }
 
-        div.credits .bottom p {
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        div.credits .bottom a {
-            display: inline-block;
-            margin-right: 49px;
-            margin-bottom: 10px;
-        }
-
-            div.credits .bottom a.last {
-                margin-right: 0;
-            }
-
-        div.credits .footer {
-            width: 90%;
-            overflow: hidden;
-            margin: 150px auto 0 auto;
-            padding: 7px 0 12px 0;
-            border-top: 1px dashed #000;
-            border-bottom: 1px dashed #000;
-        }
-
-        div.credits .footer a.catalanfilms {
-            float: left;
-            height: 54px;
-            display: block;
-            border-right: 1px dashed #000;
-            padding-right: 17px;
-        }
-
-        div.credits .footer p {
-            float: left;
-            font-size: 15px;
-            margin-left: 22px;
-            margin-top: 22px;
-        }
-
-        div.credits p.design-guime {
-            text-align: right;
-            font-size: 1.3em;
-            width: 90%;
-            margin: 8px auto 0 auto;
-            display: block;
-        }
-
-            div.credits p.design-guime a {
-                display: inline-block;
-                font-weight: 600;
-            }
 
 /*
  * Index

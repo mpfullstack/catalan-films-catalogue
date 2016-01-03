@@ -12,8 +12,8 @@
 
    # define a data structure to hold sitewide data
    site = {
-     title     => 'Catalan Films Catalogue 2015',
-     copyright => '2014 Catalan Films',
+     title     => 'Catalan Films Catalogue 2016',
+     copyright => '2016 Catalan Films',
    };
 
    # load up any other configuration items

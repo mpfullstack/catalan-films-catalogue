@@ -35,5 +35,14 @@
 </div>
 
 <div id="credits" name="credits">
-    [% PROCESS html_templates_2016/credits.tt.html %]
+    <div class="page credits">
+        <div class="inner">
+            <p class="credits-address">C/Proven&ccedil;a 281, 2&ordm;2&ordf; - 08037 Barcelona<br /><a href="mailto:info@catalanfilms.cat">info@catalanfilms.cat</a></p>
+            <div class="logos">
+            <a href=""><img src="/static/images_2016/catalanfilms-logo.png" alt="Catalan Films" /></a>
+            <a href=""><img src="/static/images_2016/proa-logo.png" alt="Proa" /></a>
+            <a href=""><img src="/static/images_2016/generalitat-logo.png" alt="Generalitat de Catalunya" /></a>
+            </div>
+        </div>
+    </div>
 </div>
