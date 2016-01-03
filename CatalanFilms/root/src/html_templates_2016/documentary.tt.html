@@ -1,4 +1,4 @@
-<div id="%% IF format_id;format_id;ELSE;id;END %%" name="%% IF format_id;format_id;ELSE;id;END %%" class="page fiction">
+<div id="%% IF format_id;format_id;ELSE;id;END %%" name="%% IF format_id;format_id;ELSE;id;END %%" class="page fiction%% IF upcoming == 'upcoming' %% upcoming%% END %%">
 	<div class="inner-content">
         %% PROCESS catalogue_menu.tt.html %%
         <div class="properties">
@@ -7,30 +7,32 @@
         </div>
         <div class="container-content">
             <div class="container-details">
+                <div class="info-container">
+                    <p class="title">
+                    %% IF link_produccio %%<a href="%% link_produccio %%">%% END %%
+                    %% title_en %%
+                    %% IF link_produccio %%</a>%% END %%
+                    </p>
+                    %% IF title_original %%<p class="title-original">%% title_original %%</p>%% END %%
+                    <p class="director">Directed by %% directorStr %%</p>
+                    %% IF script %%
+                    <p class="details"><span class="name">Written by</span> <span class="value">%% script %%</span></p>
+                    %% END %%
+                    %% IF cast %%
+                    <p class="details"><span class="name">Cast by</span> <span class="value">%% cast %%</span></p>
+                    %% END %%
+                    %% IF companyinfo or coproducers %%
+                        <p class="details"><span class="name">Produced by</span>
+                        %% IF companyinfo %%<span class="value">%% companyinfo; IF coproducers; ', ' _ coproducers; END; %%</span>%% END %%
+                        %% IF coproducers_rol %% <span class="value">in association with %% coproducers_rol %%</span>%% END %%
+                        </p>
+                    %% END %%
+                    %% IF salesagent %%
+                    <p class="details"><br /><span class="name sales-agent">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
+                    %% END %%
+                </div>
                 <img src="%% image_linked %%" alt="" />
                 <p class="sinopsis">%% sinopsis %%</p>
-                <p class="title">
-                %% IF link_produccio %%<a href="%% link_produccio %%">%% END %%
-                %% title_en %%
-                %% IF link_produccio %%</a>%% END %%
-                </p>
-                %% IF title_original %%<p class="title-original">%% title_original %%</p>%% END %%
-                <p class="director">Directed by %% directorStr %%</p>
-                %% IF script %%
-                <p class="details"><span class="name">Written by</span> <span class="value">%% script %%</span></p>
-                %% END %%
-                %% IF cast %%
-                <p class="details"><span class="name">Cast by</span> <span class="value">%% cast %%</span></p>
-                %% END %%
-                %% IF companyinfo or coproducers %%
-                    <p class="details"><span class="name">Produced by</span>
-                    %% IF companyinfo %%<span class="value">%% companyinfo; IF coproducers; ', ' _ coproducers; END; %%</span>%% END %%
-                    %% IF coproducers_rol %% <span class="value">in association with %% coproducers_rol %%</span>%% END %%
-                    </p>
-                %% END %%
-                %% IF salesagent %%
-                <p class="details"><br /><span class="name">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
-                %% END %%
 
                 %% IF link_produccio %%
 <!--                <a class="link-production" href="%% link_produccio %%">catalanfilmsdb.cat/%% title_en %%</a> -->

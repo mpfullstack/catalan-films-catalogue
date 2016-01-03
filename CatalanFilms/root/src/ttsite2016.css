@@ -59,44 +59,33 @@ body {
 .fiction-color, .fiction-color a, .fiction .category-title {
 	color: #ffb369;
 }
-#fiction div.page {
-    background-color: #ffdf77;
-}
+
 #fiction div.page p.extra-info span {
     background-color: #ffb369;
     color: #fff;
 }
 
 .documentary-color, .documentary-color a, .documentary .category-title {
-	color: #79c68f;
-}
-#documentary div.page {
-    background-color: #79c68f;
+	color: #8EC051;
 }
 #documentary div.page p.extra-info span {
-    background-color: #fff;
-    color: #000;
+    background-color: #8ec051;
+    color: #fff;
 }
 
 .animation-color, .animation-color a, .animation .category-title {
-	color: #e46e7d;
-}
-#animation div.page {
-    background-color: #ffdf77;
+	color: #E51652;
 }
 #animation div.page p.extra-info span {
-    background-color: #ffb369;
+    background-color: #E51652;
     color: #fff;
 }
 
 .formats-color, .formats-color a, .formats .category-title {
-	color: #b378b4;
-}
-#formats div.page {
-    background-color: #ffdf77;
+	color: #C54693;
 }
 #formats div.page p.extra-info span {
-    background-color: #ffb369;
+    background-color: #C54693;
     color: #fff;
 }
 
@@ -104,14 +93,18 @@ body {
 	color: #6d207c;
 }
 
+div.category .upcoming div.category-entry-info div.main-menu p a,
 div.category .upcoming p,
-div.category .upcoming a {
-    color: #fff;
+div.category .upcoming a,
+div.category .upcoming p.title a {
+    color: #fff !important;
 }
 
-div.page.upcoming p.subcategory,
-div.page.upcoming p.extra-info {
-    border-bottom: 1px dashed #fff;
+div.page.upcoming div.category-entry-info p a.selected,
+div.page.upcoming div.category-entry-info div.main-menu p.selected,
+div.page.upcoming div.category-entry-info div.main-menu p.selected a {
+    background-color: #fff !important;
+    color: #4d4d4d !important;
 }
 
 /*
@@ -121,8 +114,8 @@ div.page {
     width: [% site.page_width %];
     height: [% site.page_height %];
     page-break-after: always;
-    /* Temporal */
-    margin: 5px 0;
+    margin: 0;
+    background-color: #fff;
 }
 
 div.category-entry {
@@ -155,7 +148,7 @@ div.category-entry-info div.main-menu p {
     }
 
     div.category-entry-info div.main-menu p a {
-        color: #000;
+        color: #4d4d4d;
         font-family: "AkzidenzGrotesk-Medium";
     }
 
@@ -171,7 +164,7 @@ div.category-entry-info p {
 
 div.category-entry-info p a {
     font-family: "AkzidenzGrotesk";
-    color: #000;
+    color: #4d4d4d;
     padding: 7px 20px;
 }
 
@@ -191,31 +184,22 @@ div.category-entry-info p a.selected {
 /* Documentary */
 #documentary div.category-entry-info p a.selected,
 #documentary div.category-entry-info div.main-menu p.selected {
-    background-color: #fff;
-    color: #000;
-}
-#documentary div.category-entry-info div.main-menu p.selected a {
-    color: #000;
+    background-color: #8EC051;
+    color: #fff;
 }
 
 /* Animation */
 #animation div.category-entry-info p a.selected,
 #animation div.category-entry-info div.main-menu p.selected {
-    background-color: #fff;
-    color: #000;
-}
-#animation div.category-entry-info div.main-menu p.selected a {
-    color: #000;
+    background-color: #E51652;
+    color: #fff;
 }
 
 /* Formats */
 #formats div.category-entry-info p a.selected,
 #formats div.category-entry-info div.main-menu p.selected {
-    background-color: #fff;
-    color: #000;
-}
-#formats div.category-entry-info div.main-menu p.selected a {
-    color: #000;
+    background-color: #C54693;
+    color: #fff;
 }
 
 div.page a.link-production {
@@ -277,7 +261,7 @@ div.inner-content {
     }
 
 div.category p {
-	color: #000;
+	color: #4D4D4D;
 }
 
 /*
@@ -469,19 +453,19 @@ div.index {
  * */
 
 #fiction div.upcoming {
-    background: url('/static/images/bg-fiction.jpg') repeat-y 0 0;
+    background-color: #ffb369;
 }
 
 #documentary div.upcoming {
-    background: url('/static/images/bg-documentary.jpg') repeat-y 0 0;
+    background-color: #8ec051;
 }
 
 #animation div.upcoming {
-    background: url('/static/images/bg-animation.jpg') repeat-y 0 0;
+    background-color: #E51652;
 }
 
 #formats div.upcoming {
-    background: url('/static/images/bg-formats.jpg') repeat-y 0 0;
+    background-color: #C54693;
 }
 
 #videogames div.upcoming {
@@ -534,54 +518,62 @@ div.page p.subcategory {
         font-family: "FranklinGothicRoman";
     }
 
+div.page div.info-container {
+    width: 53%;
+    float: right;
+    margin-left: 0;
+    min-height: 358px;
+}
+
 div.page p.title {
 	font-size: 31px;
-	margin-top: 370px;
-    margin-left: 5px;
+    margin-bottom: 0;
+    line-height: 26px;
+	margin-top: 0;
 }
 
 div.page p.title a {
-    color: #000;
+    color: #4D4D4D;
 }
 
 div.page p.title-original {
 	font-size: 31px;
     font-weight: 700;
     margin-top: 0;
-    margin-left: 5px;
 }
 
 div.page p.director {
-	font-size: 15px;
+	font-size: 20px;
     font-weight: 300;
     margin-bottom: 0;
-    margin-left: 5px;
-    line-height: 18px;
+    margin-top: 7px;
+    line-height: 23px;
 }
 
 div.category img {
-	margin-top: 5px;
+	margin-top: 0;
 	float: left;
-    margin-left: 5px;
-}
-
-div.page p.details {
-    margin-left: 5px;
 }
 
 div.page p.details span.name,
 div.page p.details span.value {
-	font-size: 15px;
-    line-height: 18px;
+	font-size: 20px;
+    line-height: 23px;
     font-weight: 300;
 }
 
+div.page p.details span.sales-agent {
+    font-weight: 700;
+}
+
 div.page p.sinopsis {
-	font-size: 19px;
+	font-size: 16px;
     font-weight: 300;
-    line-height: 23px;
-    width: 52%;
-    float: right;
+    line-height: 19px;
+    width: 560px;
+    float: left;
+    clear: left;
+    margin-top: 10px;
 }
 
 div.page p.extra-info {
@@ -590,7 +582,7 @@ div.page p.extra-info {
     padding-bottom: 8px;
     position: absolute;
     right: 0;
-    width: 52%;
+    width: 53%;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
@@ -602,6 +594,11 @@ div.page p.extra-info {
     div.page p.extra-info span {
         padding: 3px 8px;
         white-space: nowrap;
+    }
+
+    div.page.upcoming p.extra-info span {
+        color: #4d4d4d !important;
+        background-color: #fff !important;
     }
 
 /*
