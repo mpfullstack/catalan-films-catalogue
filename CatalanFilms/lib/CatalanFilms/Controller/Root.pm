@@ -251,7 +251,7 @@ sub index : Path("catalogue") {
                 $film->{$key} = encode("utf-8",$film->{$key});
             }
             $film->{$key} =~ /^(.{1}).*/gmi;
-            my $first_letter = uc(NFKD($1));
+            my $first_letter = lc(NFKD($1));
             $first_letter =~ s/\p{NonspacingMark}//g;
             $group->{$first_letter} = () unless exists $group->{$first_letter};
             push(@{$group->{$first_letter}}, $film);

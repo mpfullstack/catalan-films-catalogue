@@ -1,107 +1,101 @@
-<div class="page title-index sales-producers">
+<div class="page title-index sales-producers" id="sales-producers-letter-2">
     <div class="inner-content">
-        <div class="header">
-            <p class="title">Sales & Production Companies</p>
-            <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
-        </div>
-        <div class="column">
-            <p class="letter">1/</p>
-            %% items = sales_producers_names.1.list.count %%
-            %% FOREACH company IN sales_producers_names.1.list %%
-                <p class="title-value">
-                    %% IF company.web %%<a href="http://%% company.web %%">%% END %%
-                        %% company.empresa %%
-                    %% IF company.web %%</a>%% END %%
-                </p>
-                <p class="contact-value">%% company.contacto %% / %% company.direccion %%</p>
-                <p class="contact-value">%% IF company.tel; company.tel; END; %% /
+        %% PROCESS header.tt.html %%
+        <div class="letter-index">
+            <a class="selected" href="#sales-producers-letter-2">2 3 4</a>
+            %% FOREACH menu_key IN sales_producers_names.keys.sort %%
+                %% IF menu_key != 2 && menu_key != 3 && menu_key != 4 %%
+                    <a href="#sales-producers-letter-%% menu_key %%">%% menu_key %%</a>
+                %% END %%
             %% END %%
         </div>
         <div class="column">
-            <p class="letter">2/</p>
             %% items = sales_producers_names.2.list.count %%
             %% FOREACH company IN sales_producers_names.2.list %%
-                <p class="title-value">
-                    %% IF company.web %%<a href="http://%% company.web %%">%% END %%
-                        %% company.empresa %%
-                    %% IF company.web %%</a>%% END %%
-                </p>
-                <p class="contact-value">%% company.contacto %% / %% company.direccion %%</p>
-                <p class="contact-value">%% IF company.tel; company.tel; END; %% /
+                <p class="title-value">%% company.empresa %%</p>
+                <p class="contact-value">%% company.contacto %%</p>
+                <p class="contact-value">%% company.direccion %%</p>
+                %% IF company.tel %%
+                    <p class="contact-value">%% company.tel %%</p>
+                %% END %%
+                %% IF company.email %%
+                    <p class="contact-value"><a href="mailto:%% company.email %%">%% company.email %%</a></p>
+                %% END %%
+                %% IF company.web %%
+                <p class="contact-value"><a href="http://%% company.web %%">%% company.web %%</a></p>
+                %% END %%
             %% END %%
-        </div>
-    </div>
-</div>
-<div class="page title-index sales-producers">
-    <div class="inner-content">
-        <div class="header">
-            <p class="title">Sales & Production Companies</p>
-            <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
-        </div>
-        <div class="column">
-            <p class="letter">4/</p>
+            %% items = sales_producers_names.3.list.count %%
+            %% FOREACH company IN sales_producers_names.3.list %%
+                <p class="title-value">%% company.empresa %%</p>
+                <p class="contact-value">%% company.contacto %%</p>
+                <p class="contact-value">%% company.direccion %%</p>
+                %% IF company.tel %%
+                    <p class="contact-value">%% company.tel %%</p>
+                %% END %%
+                %% IF company.email %%
+                    <p class="contact-value"><a href="mailto:%% company.email %%">%% company.email %%</a></p>
+                %% END %%
+                %% IF company.web %%
+                <p class="contact-value"><a href="http://%% company.web %%">%% company.web %%</a></p>
+                %% END %%
+            %% END %%
             %% items = sales_producers_names.4.list.count %%
             %% FOREACH company IN sales_producers_names.4.list %%
-                <p class="title-value">
-                    %% IF company.web %%<a href="http://%% company.web %%">%% END %%
-                        %% company.empresa %%
-                    %% IF company.web %%</a>%% END %%
-                </p>
-                <p class="contact-value">%% company.contacto %% / %% company.direccion %%</p>
-                <p class="contact-value">%% IF company.tel; company.tel; END; %% /
-            %% END %%
-        </div>
-        <div class="column">
-            <p class="letter">6/</p>
-            %% items = sales_producers_names.6.list.count %%
-            %% FOREACH company IN sales_producers_names.6.list %%
-                <p class="title-value">
-                    %% IF company.web %%<a href="http://%% company.web %%">%% END %%
-                        %% company.empresa %%
-                    %% IF company.web %%</a>%% END %%
-                </p>
-                <p class="contact-value">%% company.contacto %% / %% company.direccion %%</p>
-                <p class="contact-value">%% IF company.tel; company.tel; END; %% /
+                <p class="title-value">%% company.empresa %%</p>
+                <p class="contact-value">%% company.contacto %%</p>
+                <p class="contact-value">%% company.direccion %%</p>
+                %% IF company.tel %%
+                    <p class="contact-value">%% company.tel %%</p>
+                %% END %%
+                %% IF company.email %%
+                    <p class="contact-value"><a href="mailto:%% company.email %%">%% company.email %%</a></p>
+                %% END %%
+                %% IF company.web %%
+                <p class="contact-value"><a href="http://%% company.web %%">%% company.web %%</a></p>
+                %% ELSE %%
+                <p class="contact-value">&nbsp;</p>
+                %% END %%
             %% END %%
         </div>
     </div>
 </div>
-
 %%
 FOREACH key IN sales_producers_names.keys.sort;
     count = 0;
     columns = 0;
     total_count = 0;
-    IF key != 1 AND key != 2 AND key != 4 AND key != 6;
+    IF key != 2 AND key != 3 AND key != 4;
 %%
-    <div class="page title-index sales-producers">
+    <div class="page title-index sales-producers" id="sales-producers-letter-%% key %%">
         <div class="inner-content">
-            <div class="header">
-                <p class="title">Sales & Production Companies</p>
-                <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
+            %% PROCESS header.tt.html %%
+            <div class="letter-index">
+                <a href="#sales-producers-letter-2">2 3 4</a>
+                %% FOREACH menu_key IN sales_producers_names.keys.sort %%
+                    %% IF menu_key != 2 && menu_key != 3 && menu_key != 4 %%
+                        <a class="%% IF menu_key == key %%selected%% END %%" href="#sales-producers-letter-%% menu_key %%">%% menu_key %%</a>
+                    %% END %%
+                %% END %%
             </div>
             <div class="column">
-                <p class="letter">%% key %%/</p>
                 %% items = sales_producers_names.$key.list.count %%
                 %% FOREACH company IN sales_producers_names.$key.list %%
                     %% total_count = total_count+1 %%
-                    <p class="title-value">
-                        %% IF company.web %%<a href="http://%% company.web %%">%% END %%
-                            %% company.empresa %%
-                        %% IF company.web %%</a>%% END %%
-                        %% IF company.empresa == "BRB Internacional" || company.empresa == "Alla Kinda" || company.empresa == "Castelao Productions" || company.empresa == "Filmax International" || company.empresa == "Filmax" || company.empresa == "Neptuno Films" %%
-                            <span class="special">/ %% company.contacto %%</span>
-                        %% END %%
-                    </p>
-                    %% IF company.empresa == "Neptuno Films" %%
-                    <p class="contact-value">Prc. Audiovisual Catalunya. Ctra.BV-1274,KM1 Ed.Nord,L. 12,08225,Terrassa</p>
-		    %% ELSIF company.empresa == "BRB Internacional (Worldwide except Germany) / Dracco (Germany)" %%
-		    <p class="contact-value">Autovía Fuencarral-Alcobenda, Km 12,220, Ed. Auge I, 4º, 28049, Madrid</p>
-                    %% ELSE %%
-                    <p class="contact-value">%% IF company.empresa != "BRB Internacional (Worldwide except Germany) / Dracco (Germany)" && company.empresa != "BRB Internacional" && company.empresa != "Alla Kinda" && company.empresa != "Castelao Productions" && company.empresa != "Filmax International" && company.empresa != "Filmax"; company.contacto; %% / %% END;company.direccion %%</p>
+                    <p class="title-value">%% company.empresa %%</p>
+                    <p class="contact-value">%% company.contacto %%</p>
+                    <p class="contact-value">%% company.direccion %%</p>
+                    %% IF company.tel %%
+                        <p class="contact-value">%% company.tel %%</p>
                     %% END %%
-                    <p class="contact-value">%% IF company.tel; company.tel; END; %% /
-                    %% IF company.email %%<a href="mailto:%% company.email %%">%% company.email %%</a>%% END %%</p>
+                    %% IF company.email %%
+                        <p class="contact-value"><a href="mailto:%% company.email %%">%% company.email %%</a></p>
+                    %% END %%
+                    %% IF company.web %%
+                    <p class="contact-value"><a href="http://%% company.web %%">%% company.web %%</a></p>
+                    %% ELSE %%
+                    <p class="contact-value">&nbsp;</p>
+                    %% END %%
                     %%
                     count = count + 1;
                     IF count > 4 AND columns == 0;
@@ -111,11 +105,14 @@ FOREACH key IN sales_producers_names.keys.sort;
                         </div>
                         <div class="column">
                     %%
-                    ELSIF (key == "M" AND columns == 3 AND count == 9) || (key == "F" AND columns == 1 AND count == 9);
+                    ELSIF ((count > 4 AND columns == 1) || (count > 4 AND columns == 3) || (count > 4 AND columns == 4));
+                        count = 0;
+                        columns = columns + 1;
                     %%
+                        </div>
+                        <div class="column">
                     %%
-                    BREAK;
-                    ELSIF count > 8 AND ( columns == 1 || columns == 3 );
+                    ELSIF ((count > 4 AND columns == 2) || (count > 4 AND columns == 5));
                         count = 0;
                         columns = columns + 1;
                     %%
@@ -125,13 +122,10 @@ FOREACH key IN sales_producers_names.keys.sort;
     <div class="page title-index sales-producers">
 
         <div class="inner-content">
-            <div class="header">
-                <p class="title">Sales & Production Companies</p>
-                <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
-            </div>
+            %% PROCESS header.tt.html %%
             <div class="column">
                 %%
-                ELSIF count > 8 AND columns == 2;
+                ELSIF count > 4 AND columns == 2;
                         count = 0;
                         columns = columns + 1;
                 %%
