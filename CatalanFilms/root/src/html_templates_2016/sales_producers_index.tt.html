@@ -43,13 +43,21 @@
             %% items = sales_producers_names.4.list.count %%
             %% FOREACH company IN sales_producers_names.4.list %%
                 <p class="title-value">%% company.empresa %%</p>
+                %% IF company.contacto %%
                 <p class="contact-value">%% company.contacto %%</p>
+                %% ELSE %%
+                    <p class="contact-value">&nbsp;</p>
+                %% END %%
                 <p class="contact-value">%% company.direccion %%</p>
                 %% IF company.tel %%
                     <p class="contact-value">%% company.tel %%</p>
+                %% ELSE %%
+                    <p class="contact-value">&nbsp;</p>
                 %% END %%
                 %% IF company.email %%
                     <p class="contact-value"><a href="mailto:%% company.email %%">%% company.email %%</a></p>
+                %% ELSE %%
+                    <p class="contact-value">&nbsp;</p>
                 %% END %%
                 %% IF company.web %%
                 <p class="contact-value"><a href="http://%% company.web %%">%% company.web %%</a></p>
@@ -83,13 +91,21 @@ FOREACH key IN sales_producers_names.keys.sort;
                 %% FOREACH company IN sales_producers_names.$key.list %%
                     %% total_count = total_count+1 %%
                     <p class="title-value">%% company.empresa %%</p>
+                    %% IF company.contacto %%
                     <p class="contact-value">%% company.contacto %%</p>
+                    %% ELSE %%
+                        <p class="contact-value">&nbsp;</p>
+                    %% END %%
                     <p class="contact-value">%% company.direccion %%</p>
                     %% IF company.tel %%
                         <p class="contact-value">%% company.tel %%</p>
+                    %% ELSE %%
+                        <p class="contact-value">&nbsp;</p>
                     %% END %%
                     %% IF company.email %%
                         <p class="contact-value"><a href="mailto:%% company.email %%">%% company.email %%</a></p>
+                    %% ELSE %%
+                        <p class="contact-value">&nbsp;</p>
                     %% END %%
                     %% IF company.web %%
                     <p class="contact-value"><a href="http://%% company.web %%">%% company.web %%</a></p>
