@@ -56,7 +56,9 @@ body {
 /*
  * Section colors
  * */
-.fiction-color, .fiction-color a, .fiction .category-title {
+.fiction-color, .fiction-color a, .fiction .category-title,
+div.page.section p.fiction-color a,
+div.page.section h2.fiction-color a {
 	color: #ffb369;
 }
 
@@ -65,7 +67,9 @@ body {
     color: #fff;
 }
 
-.documentary-color, .documentary-color a, .documentary .category-title {
+.documentary-color, .documentary-color a, .documentary .category-title,
+div.page.section p.documentary-color a,
+div.page.section h2.documentary-color a {
 	color: #8EC051;
 }
 #documentary div.page p.extra-info span {
@@ -73,7 +77,9 @@ body {
     color: #fff;
 }
 
-.animation-color, .animation-color a, .animation .category-title {
+.animation-color, .animation-color a, .animation .category-title,
+div.page.section p.animation-color a,
+div.page.section h2.animation-color a {
 	color: #E51652;
 }
 #animation div.page p.extra-info span {
@@ -81,7 +87,9 @@ body {
     color: #fff;
 }
 
-.formats-color, .formats-color a, .formats .category-title {
+.formats-color, .formats-color a, .formats .category-title,
+div.page.section p.formats-color a,
+div.page.section h2.formats-color a {
 	color: #C54693;
 }
 #formats div.page p.extra-info span {
@@ -295,7 +303,7 @@ div.introduction {
  * */
 div.credits {
     position: relative;
-    background: #71D3F2 url('/static/images_2016/bg-credits.png') no-repeat center right;
+    background: url('/static/images_2016/bg-credits.jpg') no-repeat center right;
 }
 
     div.credits .inner {
@@ -320,6 +328,9 @@ div.credits {
         left: 60px;
     }
 
+    div.credits .logos a.catalanfilms {
+        margin-right: 90px;
+    }
 
 /*
  * Index
@@ -353,8 +364,12 @@ div.index {
         padding-left: 35px;
         margin-bottom: 30px;
         margin-top: 70px;
-        height: 600px;
+        height: 400px;
         position: relative;
+    }
+
+    div.index .right.main {
+        height: 600px;
     }
 
 		div.index .right h2 {
@@ -365,8 +380,12 @@ div.index {
 		    margin-top: 1px;
             margin-bottom: 1px;
             padding: 0;
-            line-height: 44px;
+            line-height: 46px;
         }
+
+            div.index .right h2 a {
+                display: inline-block;
+            }
 
 		div.index .right p {
 			font-size: 18px;
@@ -401,6 +420,83 @@ div.index {
             line-height: 19px;
 /*            font-family: "AkzidenzGrotesk-Light";*/
 		}
+
+    div.index.section p {
+        font-family: "AkzidenzGrotesk-Medium";
+        font-size: 58px;
+        letter-spacing: -0.01in;
+        font-weight: 400;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        padding: 0;
+        line-height: 46px;
+    }
+
+    div.index.section p a {
+        display: inline-block;
+        text-decoration: line-through;
+        color: #fff;
+        line-height: 20px;
+    }
+
+        div.index.section p.selected a {
+            text-decoration: none;
+        }
+
+    div.index.fiction {
+        background: url('/static/images_2016/fiction.jpg') no-repeat 0 0;
+    }
+    div.index.fiction .right {
+        width: 510px;
+    }
+
+    div.index.documentary {
+        background: url('/static/images_2016/documentary.jpg') no-repeat 0 0;
+    }
+    div.index.documentary .right {
+        float: left;
+        margin-top: 350px;
+    }
+
+    div.index.animation {
+        background: url('/static/images_2016/animation.jpg') no-repeat 0 0;
+    }
+    div.index.animation .right {
+        margin-top: 350px;
+    }
+
+    div.index.formats {
+        background: url('/static/images_2016/formats.jpg') no-repeat 0 0;
+    }
+    div.index.formats .right {
+        margin-top: 50px;
+        float: left;
+        padding-left: 75px;
+    }
+
+    div.index.salesproduction {
+        background: url('/static/images_2016/salesproduction.jpg') no-repeat 0 0;
+    }
+    div.index.salesproduction .right {
+        margin-top: 190px;
+        width: 550px;
+    }
+
+    div.index.eventsinstitutions {
+        background: url('/static/images_2016/eventsinstitutions.jpg') no-repeat 0 0;
+    }
+    div.index.eventsinstitutions .right {
+        margin-top: 350px;
+        padding-left: 110px;
+        float: left;
+    }
+
+    div.index.titleindex {
+        background: url('/static/images_2016/titles.jpg') no-repeat 0 0;
+    }
+    div.index.titleindex .right {
+        margin-top: 110px;
+    }
 
 /*
  * Upcomings by Section
@@ -490,7 +586,8 @@ div.page p.title a {
     color: #4D4D4D;
 }
 
-div.page p.title-original {
+div.page p.title-original,
+div.page p.unique {
 	font-size: 31px;
     font-weight: 700;
     margin-top: 0;

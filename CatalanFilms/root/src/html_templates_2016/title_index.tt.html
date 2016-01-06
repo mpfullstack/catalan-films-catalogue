@@ -1,91 +1,58 @@
-<div class="page title-index">
-    <div class="inner-content">
-        <div class="header">
-            <p class="title">Title Index</p>
-            <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
-        </div>
-        <div class="column">
-            <p class="letter">0/</p>
-            %% FOREACH film IN grouped_film_names.0.list %%
-                <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-            %% END %%
-            <p class="title-value">&nbsp;</p>
-            <p class="title-value">&nbsp;</p>
-            <p class="title-value">&nbsp;</p>
-            <p class="title-value">&nbsp;</p>
-            <p class="letter">1/</p>
-            %% FOREACH film IN grouped_film_names.1.list %%
-                <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-            %% END %%
-        </div>
-        <div class="column">
-            <p class="letter">2/</p>
-            %% FOREACH film IN grouped_film_names.2.list %%
-                <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-            %% END %%
-            <p class="title-value">&nbsp;</p>
-            <p class="title-value">&nbsp;</p>
-            <p class="title-value">&nbsp;</p>
-            <p class="letter">3/</p>
-            %% FOREACH film IN grouped_film_names.3.list %%
-                <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-            %% END %%
-        </div>
-        <div class="column">
-            <p class="letter">4/</p>
-            %% FOREACH film IN grouped_film_names.4.list %%
-                <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
-            %% END %%
-        </div>
-    </div>
-</div>
 %%
+index_section = 'titles';
 FOREACH key IN grouped_film_names.keys.sort;
     count = 0;
     columns = 0;
-    IF key != 0 AND key != 1 AND key != 2 AND key != 3 AND key != 4;
+    total_count = 0;
 %%
-    <div class="page title-index">
+    <div class="page title-index sales-producers" id="titles-letter-%% key %%">
         <div class="inner-content">
-            <div class="header">
-                <p class="title">Title Index</p>
-                <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
+            %% PROCESS header.tt.html %%
+            <div class="letter-index">
+                %% FOREACH menu_key IN grouped_film_names.keys.sort %%
+                    <a class="%% IF menu_key == key %%selected%% END %%" href="#titles-letter-%% menu_key %%">%% menu_key %%</a>
+                %% END %%
             </div>
             <div class="column">
-                <p class="letter">%% key %%/</p>
+                %% items = grouped_film_names.$key.list.count %%
                 %% FOREACH film IN grouped_film_names.$key.list %%
+                    %% total_count = total_count+1 %%
                     <p class="title-value"><a href="#%% film.id %%">%% film.title %%</a></p>
                     %%
                     count = count + 1;
-                    IF count > 14 AND columns == 0;
+                    IF count > 12 AND columns == 0;
                         count = 0;
                         columns = columns + 1;
                     %%
                         </div>
                         <div class="column">
                     %%
-                    ELSIF count > 24 AND columns > 0;
+                    ELSIF ((count > 12 AND columns == 1) || (count > 12 AND columns == 3) || (count > 12 AND columns == 4));
                         count = 0;
                         columns = columns + 1;
                     %%
                         </div>
                         <div class="column">
                     %%
-                    END;
-                    IF columns == 3;
-                        columns = columns + 1;
+                    ELSIF ((count > 12 AND columns == 2) || (count > 12 AND columns == 5));
                         count = 0;
+                        columns = columns + 1;
                     %%
             </div>
         </div>
     </div>
-    <div class="page title-index">
+    <div class="page title-index sales-producers">
+
         <div class="inner-content">
-            <div class="header">
-                <p class="title">Title Index</p>
-                <p class="sub-title"><span>A-Z</span><span class="year">2016 /</span></p>
-            </div>
+            %% PROCESS header.tt.html %%
             <div class="column">
+                %%
+                ELSIF count > 12 AND columns == 2;
+                        count = 0;
+                        columns = columns + 1;
+                %%
+                </div>
+                <div class="column">
                 %%
             END;
         END;
@@ -94,6 +61,5 @@ FOREACH key IN grouped_film_names.keys.sort;
         </div>
     </div>
 %%
-    END;
 END;
 %%

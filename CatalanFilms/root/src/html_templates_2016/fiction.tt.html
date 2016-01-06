@@ -8,12 +8,7 @@
         <div class="container-content">
             <div class="container-details">
                 <div class="info-container">
-                    <p class="title">
-                    %% IF link_produccio %%<a href="%% link_produccio %%">%% END %%
-                    %% title_en %%
-                    %% IF link_produccio %%</a>%% END %%
-                    </p>
-                    %% IF title_original %%<p class="title-original">%% title_original %%</p>%% END %%
+                    %% PROCESS film_title.tt.html %%
                     <p class="director">Directed by %% directorStr %%</p>
                     %% IF script %%
                     <p class="details"><span class="name">Written by</span> <span class="value">%% script %%</span></p>
