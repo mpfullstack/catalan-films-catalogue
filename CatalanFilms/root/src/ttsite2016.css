@@ -57,8 +57,8 @@ body {
  * Section colors
  * */
 .fiction-color, .fiction-color a, .fiction .category-title,
-div.page.section p.fiction-color a,
-div.page.section h2.fiction-color a {
+div.page.section p.fiction-color.selected a,
+div.page.section h2.fiction-color.selected a {
 	color: #ffb369;
 }
 
@@ -68,8 +68,8 @@ div.page.section h2.fiction-color a {
 }
 
 .documentary-color, .documentary-color a, .documentary .category-title,
-div.page.section p.documentary-color a,
-div.page.section h2.documentary-color a {
+div.page.section p.documentary-color.selected a,
+div.page.section h2.documentary-color.selected a {
 	color: #8EC051;
 }
 #documentary div.page p.extra-info span {
@@ -78,8 +78,8 @@ div.page.section h2.documentary-color a {
 }
 
 .animation-color, .animation-color a, .animation .category-title,
-div.page.section p.animation-color a,
-div.page.section h2.animation-color a {
+div.page.section p.animation-color.selected a,
+div.page.section h2.animation-color.selected a {
 	color: #E51652;
 }
 #animation div.page p.extra-info span {
@@ -88,8 +88,8 @@ div.page.section h2.animation-color a {
 }
 
 .formats-color, .formats-color a, .formats .category-title,
-div.page.section p.formats-color a,
-div.page.section h2.formats-color a {
+div.page.section p.formats-color.selected a,
+div.page.section h2.formats-color.selected a {
 	color: #C54693;
 }
 #formats div.page p.extra-info span {
@@ -247,7 +247,7 @@ div.page .properties {
     }
 
     div.page .properties span.upcoming-label {
-        background-color: #ec3e6c;
+        background-color: #000;
         color: #fff;
     }
 
@@ -320,6 +320,10 @@ div.credits {
         position: absolute;
         bottom: 165px;
         left: 90px;
+    }
+
+    div.credits .inner p.credits-address span {
+        font-weight: 700;
     }
 
     div.credits .logos {
@@ -434,13 +438,13 @@ div.index {
 
     div.index.section p a {
         display: inline-block;
-        text-decoration: line-through;
         color: #fff;
         line-height: 20px;
     }
 
         div.index.section p.selected a {
             text-decoration: none;
+            color: #000;
         }
 
     div.index.fiction {
@@ -575,8 +579,10 @@ div.page div.info-container {
     min-height: 358px;
 }
 
-div.page p.title {
+div.page p.title,
+div.page p.unique {
 	font-size: 31px;
+    font-weight: 700;
     margin-bottom: 0;
     line-height: 26px;
 	margin-top: 0;
@@ -586,18 +592,20 @@ div.page p.title a {
     color: #4D4D4D;
 }
 
-div.page p.title-original,
-div.page p.unique {
+div.page p.title-original {
 	font-size: 31px;
-    font-weight: 700;
+    font-weight: 300;
+    font-family: "AkzidenzGrotesk-Light";
     margin-top: 0;
 }
 
 div.page p.director {
 	font-size: 20px;
     font-weight: 300;
+    font-family: "AkzidenzGrotesk-Light";
     margin-bottom: 0;
-    margin-top: 7px;
+    margin-top: 4px;
+    margin-bottom: 7px;
     line-height: 23px;
 }
 
@@ -606,20 +614,37 @@ div.category img {
 	float: left;
 }
 
+div.page p.details {
+    float: left;
+    width: 100%;
+    display: inline-block;
+}
+
 div.page p.details span.name,
 div.page p.details span.value {
+    float: left;
 	font-size: 20px;
     line-height: 23px;
     font-weight: 300;
+    font-family: "AkzidenzGrotesk-Light";
 }
 
-div.page p.details span.sales-agent {
+div.page p.details span.sales-agent,
+div.page p.details span.name {
+    float: left;
+    display: inline-block;
     font-weight: 700;
+}
+
+div.page p.details span.value {
+    float: left;
+    clear: left;
 }
 
 div.page p.sinopsis {
 	font-size: 16px;
     font-weight: 300;
+    font-family: "AkzidenzGrotesk-Light";
     line-height: 19px;
     width: 560px;
     float: left;

@@ -9,7 +9,7 @@
             <div class="container-details">
                 <div class="info-container">
                     %% PROCESS film_title.tt.html %%
-                    <p class="director">Directed by %% directorStr %%</p>
+                    <p class="director">by %% directorStr %%</p>
                     %% IF script %%
                     <p class="details"><span class="name">Written by</span> <span class="value">%% script %%</span></p>
                     %% END %%
@@ -23,10 +23,12 @@
                         </p>
                     %% END %%
                     %% IF salesagent %%
-                    <p class="details"><br /><span class="name sales-agent">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
+                    <p class="details"><span class="name sales-agent">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
                     %% END %%
                 </div>
+                %% IF link_produccio %%<a href="%% link_produccio %%">%% END %%
                 <img src="%% image_linked %%" alt="" />
+                %% IF link_produccio %%</a>%% END %%
                 <p class="sinopsis">%% sinopsis %%</p>
 
                 %% IF link_produccio %%
@@ -35,7 +37,7 @@
 
                 <p class="extra-info">
                 %% IF gender; '<span>' _ gender _ '</span>'; END; %%
-                %% IF duration; '<span>' _ duration _ '</span>'; END; %%
+                %% IF duration; '<span>' _ duration _ '\'</span>'; END; %%
                 %% IF color; '<span>' _ color _ '</span>'; END; %%
                 %% IF tech; '<span>' _ tech _ '</span>'; END; %%
                 %% IF sound; '<span>' _ sound _ '</span>'; END; %%
