@@ -1,4 +1,7 @@
-<div id="%% IF format_id;format_id;ELSE;id;END %%" name="%% IF format_id;format_id;ELSE;id;END %%" class="page fiction%% IF upcoming == 'upcoming' %% upcoming%% END %%">
+%% IF format_id %%
+<div id="%%format_id%%" name="%% format_id %%"></div>
+%% END %%
+<div id="%% id %%" name="%% id %%" class="page fiction%% IF upcoming == 'upcoming' %% upcoming%% END %%">
 	<div class="inner-content">
         %% PROCESS catalogue_menu.tt.html %%
         <div class="properties">
@@ -9,7 +12,7 @@
             <div class="container-details">
                 <div class="info-container">
                     %% PROCESS film_title.tt.html %%
-                    <p class="director">by %% directorStr %%</p>
+                    <p class="details"><span class="name">Directed by</span> <span class="value">%% directorStr %%</span></p>
                     %% IF script %%
                     <p class="details"><span class="name">Written by</span> <span class="value">%% script %%</span></p>
                     %% END %%

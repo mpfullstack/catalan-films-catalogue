@@ -131,7 +131,7 @@ div.category-entry {
 }
 
 div.sales-producers {
-    background-color: #000;
+    background-color: #fff;
 }
 
 /*div.category-entry img {*/
@@ -172,6 +172,11 @@ div.category-entry-info p {
     font-size: 16px;
     font-weight: 400;
     margin-top: 14px;
+}
+
+div.category-entry-info p.sub-menu a {
+    font-weight: 400;
+    font-family: "AkzidenzGrotesk-Light";
 }
 
 div.category-entry-info p a {
@@ -378,7 +383,7 @@ div.index {
 
 		div.index .right h2 {
             font-family: "AkzidenzGrotesk-Medium";
-			font-size: 58px;
+			font-size: 56px;
             letter-spacing: -0.01in;
             font-weight: 400;
 		    margin-top: 1px;
@@ -409,6 +414,8 @@ div.index {
             bottom: 0;
             margin-left: 4px;
             background: url('/static/images_2016/catalan-mini-logo.png') no-repeat 0 0;
+            font-family: "AkzidenzGrotesk-Light";
+            font-weight: 400;
         }
 
     div.index .bottom {
@@ -422,12 +429,13 @@ div.index {
 		div.index .bottom p {
 			font-size: 16px;
             line-height: 19px;
-/*            font-family: "AkzidenzGrotesk-Light";*/
+            font-family: "AkzidenzGrotesk-Light";
+            font-weight: 400;
 		}
 
     div.index.section p {
         font-family: "AkzidenzGrotesk-Medium";
-        font-size: 58px;
+        font-size: 56px;
         letter-spacing: -0.01in;
         font-weight: 400;
         margin-top: 1px;
@@ -584,7 +592,6 @@ div.page p.unique {
 	font-size: 31px;
     font-weight: 700;
     margin-bottom: 0;
-    line-height: 26px;
 	margin-top: 0;
 }
 
@@ -633,7 +640,8 @@ div.page p.details span.sales-agent,
 div.page p.details span.name {
     float: left;
     display: inline-block;
-    font-weight: 700;
+    font-weight: 400;
+    font-family: "AkzidenzGrotesk-Medium";
 }
 
 div.page p.details span.value {
@@ -654,7 +662,7 @@ div.page p.sinopsis {
 
 div.page p.extra-info {
     font-weight: 700;
-    font-size: 26px;
+    font-size: 20px;
     padding-bottom: 8px;
     position: absolute;
     right: 0;
@@ -683,7 +691,6 @@ div.page p.extra-info {
 
 div.title-index .header {
     width: 100%;
-    border-bottom: 1px dashed #000;
     padding-bottom: 5px;
     margin-bottom: 25px;
     overflow: hidden;
@@ -742,12 +749,16 @@ div.sales-producers .header {
         padding: 35px 10px 18px;
     }
 
+        div.sales-producers .header .main-menu p a {
+            color: #000;
+        }
+
         div.sales-producers .header .main-menu p.selected {
-            background-color: #fff;
+            background-color: #000;
         }
 
             div.sales-producers .header .main-menu p.selected a {
-                color: #000;
+                color: #fff;
             }
 
 div.sales-producers div.letter-index {
@@ -756,9 +767,13 @@ div.sales-producers div.letter-index {
     padding-left: 15px;
 }
 
-    div.sales-producers div.letter-index a.selected {
+    div.sales-producers div.letter-index a {
         color: #000;
-        background-color: #fff;
+    }
+
+    div.sales-producers div.letter-index a.selected {
+        color: #fff;
+        background-color: #000;
         padding: 4px;
     }
 
@@ -805,7 +820,7 @@ div.title-index .column p.contact-value {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #fff;
+    color: #333;
 }
 
 div.sales-producers .column p.contact-value a {
