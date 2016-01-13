@@ -1,27 +1,27 @@
 [%
     links = [
-        {id = "01", link = ""},
-        {id = "02", link = ""},
-        {id = "03", link = ""},
-        {id = "04", link = ""},
-        {id = "05", link = ""},
-        {id = "06", link = ""},
-        {id = "07", link = ""},
-        {id = "08", link = ""},
-        {id = "09", link = ""},
-        {id = "10", link = ""},
-        {id = "11", link = ""},
-        {id = "12", link = ""},
-        {id = "13", link = ""},
-        {id = "14", link = ""},
-        {id = "15", link = ""},
-        {id = "16", link = ""}
+        {id = "01", link = "http://sitgesfilmfestival.com/"},
+        {id = "02", link = "http://www.sgae.cat"},
+        {id = "03", link = "http://www.festivalrec.com"},
+        {id = "04", link = "http://www.medimed.org"},
+        {id = "05", link = "http://alternativa.cccb.org/"},
+        {id = "06", link = "https://www.in-edit.org/"},
+        {id = "07", link = "http://academiadelcinema.cat/"},
+        {id = "08", link = "http://www.festivalfilmets.cat/"},
+        {id = "09", link = "http://catalunyafilmfestivals.com/"},
+        {id = "10", link = "http://bcncatfilmcommission.bcn.cat/"},
+        {id = "11", link = "http://www.cartoon-media.eu/"},
+        {id = "12", link = "http://www.europacreativamedia.cat/"},
+        {id = "13", link = "http://www.docsbarcelona.com"},
+        {id = "14", link = "http://www.cinemadautor.cat/"},
+        {id = "15", link = "http://www.parcaudiovisual.cat/"},
+        {id = "16", link = "http://bcncatfilmcommission.bcn.cat/"}
     ];
     FOREACH item IN links;
 %]
 <div class="page" style="text-align: center;">
     <a href="[% item.link %]">
-        <img src="/static/images_2016/events/[% item.id %].jpg" alt="" />
+        <img src="/static/images_2016/events/[% item.id %].jpg?v=[% resources_version %]" alt="" />
     </a>
 </div>
 [%

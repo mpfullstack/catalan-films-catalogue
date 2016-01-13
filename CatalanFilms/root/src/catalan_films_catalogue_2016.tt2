@@ -55,7 +55,7 @@
             --
             </p>
             <div class="logos">
-            <a class="catalanfilms" href="http://www.catalanfilms.cat"><img src="/static/images_2016/catalanfilms-logo.png" alt="Catalan Films" /></a>
+            <a class="catalanfilms" href="http://www.catalanfilms.cat"><img src="/static/images_2016/catalanfilms-logo.png?v=[% resources_version %]" alt="Catalan Films" /></a>
             <a href="http://www.proafed.com"><img src="/static/images_2016/proa-logo.png" alt="Proa" /></a>
             <a href="http://cultura.gencat.cat/"><img src="/static/images_2016/generalitat-logo.png" alt="Generalitat de Catalunya" /></a>
             </div>

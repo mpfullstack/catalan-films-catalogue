@@ -317,6 +317,7 @@ sub index : Path("catalogue") {
     $c->stash->{template} = "catalan_films_catalogue_$year.tt2";
     $c->log->debug("Year " . $year);
     $c->stash->{year} = $year;
+    $c->stash->{resources_version} = "2";
     $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width};
     $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}
 }
