@@ -1,5 +1,6 @@
 [%
     links = [
+        {id = "00", link = "http://www.catalanfilms.cat/"},
         {id = "01", link = "http://sitgesfilmfestival.com/"},
         {id = "02", link = "http://www.sgae.cat"},
         {id = "03", link = "http://www.festivalrec.com"},
@@ -20,7 +21,7 @@
     FOREACH item IN links;
 %]
 <div class="page" style="text-align: center;">
-    <a href="[% item.link %]">
+    <a href="[% item.link %]" target="_blank">
         <img src="/static/images_2016/events/[% item.id %].jpg?v=[% resources_version %]" alt="" />
     </a>
 </div>

@@ -35,6 +35,7 @@
 [% section_intro = 'eventsinstitutions' %]
 [% PROCESS html_templates_2016/section_intro.tt.html %]
 <div id="eventsinstitutions" name="eventsinstitutions">
+    <div id="eventsinstitutions-start" name="eventsinstitutions-start"></div>
     [% PROCESS html_templates_2016/eventsinstitutions.tt.html %]
 </div>
 

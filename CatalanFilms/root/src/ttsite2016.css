@@ -339,6 +339,7 @@ div.credits {
 
     div.credits .logos a.catalanfilms {
         margin-right: 90px;
+        margin-left: 25px;
     }
 
 /*
@@ -672,7 +673,7 @@ div.page p.extra-info {
     padding-left: 0;
     padding-right: 0;
     bottom: 0;
-    line-height: 46px;
+    line-height: 35px;
 }
 
     div.page p.extra-info span {
@@ -822,6 +823,10 @@ div.title-index .column p.contact-value {
     text-overflow: ellipsis;
     color: #333;
 }
+
+    div.title-index .column p.contact-value.smaller {
+        font-size: 12px;
+    }
 
 div.sales-producers .column p.contact-value a {
     color: #333;
