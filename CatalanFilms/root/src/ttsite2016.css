@@ -9,6 +9,11 @@
 }
 
 @font-face {
+	font-family: "AkzidenzGrotesk-Italic-Light";
+	src: url("/static/fonts/AkzidenzGrotesk-LightItalic.otf");
+}
+
+@font-face {
 	font-family: "AkzidenzGrotesk-Medium";
 	src: url("/static/fonts/AkzidenzGrotesk-Medium.otf");
 }
@@ -153,6 +158,15 @@ div.category-entry-info div.main-menu p {
     padding: 35px 0 15px;
     margin-top: 0;
 }
+
+    div.category-entry-info div.main-menu p.smaller {
+        font-size: 19px;
+        padding-left: 0;
+    }
+
+        div.category-entry-info div.main-menu p.smaller a {
+            color: #999;
+        }
 
     div.category-entry-info div.main-menu p.selected {
         font-size: 34px;
@@ -660,6 +674,10 @@ div.page p.sinopsis {
     clear: left;
     margin-top: 10px;
 }
+
+    div.page p.sinopsis em {
+        font-family: "AkzidenzGrotesk-Italic-Light" !important;
+    }
 
 div.page p.extra-info {
     font-weight: 700;
