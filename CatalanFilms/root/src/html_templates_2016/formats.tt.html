@@ -1,7 +1,7 @@
-%% IF format_id %%
-<div id="%%format_id%%" name="%% format_id %%"></div>
-%% END %%
 <div id="%% id %%" name="%% id %%" class="page fiction%% IF upcoming == 'upcoming' %% upcoming%% END %%">
+    %% IF format_id %%
+    <div id="%%format_id%%" name="%% format_id %%"></div>
+    %% END %%
 	<div class="inner-content">
         %% PROCESS catalogue_menu.tt.html %%
         <div class="properties">
@@ -29,14 +29,9 @@
                     <p class="details"><span class="name sales-agent">Sales Agent</span><br /><span class="value">%% salesagent %%</span></p>
                     %% END %%
                 </div>
-                %% IF link_produccio %%<a target="_blank" href="%% link_produccio %%">%% END %%
+                %% IF link_produccio %%<a target="_blank" class="link-produccio" href="%% link_produccio %%">&nbsp;</a>%% END %%
                 <img src="%% image_linked %%" alt="" />
-                %% IF link_produccio %%</a>%% END %%
                 <p class="sinopsis">%% sinopsis %%</p>
-
-                %% IF link_produccio %%
-<!--                <a class="link-production" href="%% link_produccio %%">catalanfilmsdb.cat/%% title_en %%</a> -->
-                %% END %%
 
                 <p class="extra-info">
                 %% IF gender; '<span>' _ gender _ '</span>'; END; %%

@@ -199,7 +199,9 @@ sub process_item_field {
         }
     }
 
-    $cleanvalue =~ s/<i>(.+)<i>/<em>$1<\/em>/gmi;
+    $cleanvalue =~ s/<i>Farselona<i>/<em>Farselona<\/em>/gmi;
+    $cleanvalue =~ s/<i>/<em>/gmi;
+    $cleanvalue =~ s/<\/i>/<\/em>/gmi;
 
     $cleanvalue =~ s///gmi;
     $cleanvalue = $self->trim($cleanvalue);

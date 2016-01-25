@@ -134,7 +134,7 @@ sub index : Path("catalogue") {
                 # Duplicate 6169 "My Preschool Monsters " to Apps
                 my $tmp_film = clone($data->{films}->{6169});
                 $data->{films}->{6169_1} = $tmp_film;
-                $data->{films}->{6169_1}->{format} = "Apps";
+                $data->{films}->{6169_1}->{format} = "Other Platforms";
             }
         }
 
@@ -334,7 +334,7 @@ sub index : Path("catalogue") {
     $c->stash->{template} = "catalan_films_catalogue_$year.tt2";
     $c->log->debug("Year " . $year);
     $c->stash->{year} = $year;
-    $c->stash->{resources_version} = "7";
+    $c->stash->{resources_version} = "9";
     $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width};
     $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}
 }
