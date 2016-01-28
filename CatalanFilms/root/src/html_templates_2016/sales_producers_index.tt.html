@@ -139,7 +139,7 @@ FOREACH key IN sales_producers_names.keys.sort;
                         </div>
                         <div class="column">
                     %%
-                    ELSIF ((count > 4 AND columns == 2) || (count > 4 AND columns == 5));
+                    ELSIF ((count > 4 AND columns == 2) || (count > 4 AND columns == 5)) && key != "b";
                         count = 0;
                         columns = columns + 1;
                     %%

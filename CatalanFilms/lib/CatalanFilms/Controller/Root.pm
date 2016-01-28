@@ -125,6 +125,7 @@ sub index : Path("catalogue") {
                 # Copy "Old Folk's Tale/Contes d'avis 3rd season" From Animation to Documentary Transmedia
                 $data->{films}->{5978} = decode_json q({"id":"5978","cast":[],"castArr":"","sinopsis":"<i>Old Folks' Tales<\/i> is an awarded collaborative documentary project about elders and grandchildren, and about turning orally told memories of childhood into animated stories. Stories both connected with personal experience and common history. But it's also an invitation to listen to the elders' voice, and search those wonderful stories of the past that help us understand who we are.","sound":["Digital 5.1"],"soundArr":"Digital 5.1","tech":["HD"],"techArr":"HD","video":"","duration":"14x5","format":"TV Series","arrFormat":["16"],"formatclass":"tv-series","title_original":"Cuentos de Viejos (III)","title_en":"Old Folks' Tales (III)","catalanspoke":"","upcoming":"upcoming","img":"cftv15509.tif","gender":["Documentary"],"genderArr":"Documentary","public":"General Audiences","vo":["Spanish"],"voArr":"Spanish","color":["Colour"],"year":"2015","companyinfo":{"id":"6750","country":"","name":"Piaggiodematei, Crossmedia Development"},"coproducers":[{"name":"Se\u00f1al Colombia","rol":"","country":"(Colombia)"},{"name":"Hierro Animaci\u00f3n","rol":"","country":"(Colombia)"}],"companysales":[],"filmtype":"Animation","director":["Marcelo Dematei","Carlos Smith","Laura Piaggio"],"directorStr":"Marcelo Dematei, Carlos Smith, Laura Piaggio","script":["Carolina Robledo Forero","Carlos Smith","Marcelo Dematei"],"scriptArr":"Carolina Robledo Forero<br \/>Carlos Smith<br \/>Marcelo Dematei","salesagent":"Contact producer","salesinfo":"","salesagents":{"name":"Contact producer","tel":"+34 932 002 500","email":"info@motionpic.com"},"image_linked":"http:\/\/gestor.catalanfilmsdb.cat\/imagenes\/produccions\/cftv15509.tif","link_produccio":"http:\/\/www.catalanfilmsdb.cat\/en\/f\/5978\/"});
                 $data->{films}->{5978}->{format} = "Transmedia";
+                delete $data->{films}->{6300};
             } elsif( $cat eq "animation" ) {
                 # Duplicate 6132 "Troubling Monsters" to TV Series
                 my $tmp_film = clone($data->{films}->{6132});
@@ -334,7 +335,7 @@ sub index : Path("catalogue") {
     $c->stash->{template} = "catalan_films_catalogue_$year.tt2";
     $c->log->debug("Year " . $year);
     $c->stash->{year} = $year;
-    $c->stash->{resources_version} = "9";
+    $c->stash->{resources_version} = "13";
     $c->stash->{page_width} = $A4_LANSCAPE->{$ppi}->{width};
     $c->stash->{page_height} = $A4_LANSCAPE->{$ppi}->{height}
 }
